@@ -273,15 +273,15 @@ class LinkedList<T> {
      */
     public Nodo<T> search(T tInfo) {
         if (!isEmpty()) {
-            Nodo<T> auxNodo = first();
-            while (auxNodo != null) {
-                if (auxNodo.gettInfo().equals(tInfo)) {
+            Nodo<T> auxNodo;
+            for (auxNodo = first(); auxNodo != null; auxNodo = next(auxNodo)){
+                if (auxNodo.gettInfo().equals(tInfo)){
                     return auxNodo;
                 }
-                auxNodo = next(auxNodo);
             }
+            return null;
         }
-        return null;
+        return null;    
     }
     
     /**

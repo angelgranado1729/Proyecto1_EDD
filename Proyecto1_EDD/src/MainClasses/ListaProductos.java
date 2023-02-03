@@ -8,7 +8,7 @@ package MainClasses;
  *
  * @author Angel Granado
  */
-public class ListaProductos extends LinkedList {
+public class ListaProductos extends LinkedList<Producto> {
     
     /**
      * Constructor de la clase.
