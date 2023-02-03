@@ -6,45 +6,57 @@ package MainClasses;
 /**
  *
  * @author Angel Granado
+ * @param <T>
  */
 public class Nodo<T> {
-
+    
+    /**
+     * La informacion que guarda el nodo.
+     */
     private T tInfo;
+    /**
+     * Nodo que predecesor.
+     */
     private Nodo<T> nextNodo;
 
     /**
-     * Constructor de la clase nodo
+     * Constructor de la clase.
      *
-     * @param tInfo
+     * @param tInfo informacion a guardar.
      */
     public Nodo(T tInfo) {
         this.tInfo = tInfo;
         this.nextNodo = null;
     }
     
+    /**
+     * COnstructor de la clase.
+     */
     public Nodo(){
         this.tInfo = null;
         this.nextNodo = null;
     }
 
     /**
-     * Getter method para acceder al atributo tInfo
+     * Getter para acceder al atributo tInfo
      *
-     * @return tInfo
+     * @return tInfo informacion guardada en el nodo.
      */
     public T gettInfo() {
         return tInfo;
     }
 
     /**
-     * @param tInfo the tInfo to set
+     * Setter para modificar la informacion almacenada en el nodo.
+     * 
+     * @param tInfo nueva informacion a guardar en el nodo.
      */
     public void settInfo(T tInfo) {
         this.tInfo = tInfo;
     }
 
     /**
-     * Getter method para acceder al nodo nextNodo
+     * Getter para acceder al nodo predecesor.
      *
      * @return the nextNodo
      */
@@ -53,11 +65,18 @@ public class Nodo<T> {
     }
 
     /**
-     * @param nextNodo
+     * Setter para modicicar el nodo predecesor.
+     * @param nextNodo nuevo predecesor del nodo.
      */
     public void setNextNodo(Nodo<T> nextNodo) {
         this.nextNodo = nextNodo;
     }
+    
+    /**
+     * Retorna un string con la informacion guardada en el nodo.
+     * 
+     * @return string
+     */
     @Override
     public String toString(){
         return tInfo.toString();

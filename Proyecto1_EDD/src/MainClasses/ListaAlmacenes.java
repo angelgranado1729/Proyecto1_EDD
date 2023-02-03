@@ -9,11 +9,21 @@ package MainClasses;
  * @author Angel Granado
  */
 public class ListaAlmacenes extends LinkedList<Almacen> {
-
+    
+    /**
+     * Constructor de la clase.
+     */
     public ListaAlmacenes() {
         super();
     }
-
+    
+    /**
+     * Ordena la lista dado dos extremos.
+     * 
+     * @param a extremo inferior.
+     * @param b extremo superior.
+     * @return result nuevo nodo inicial
+     */
     public Nodo<Almacen> sortedMerge(Nodo<Almacen> a, Nodo<Almacen> b){
         Nodo<Almacen> result;
         if (a == null){
@@ -33,6 +43,13 @@ public class ListaAlmacenes extends LinkedList<Almacen> {
         return result;      
     }
     
+    /**
+     * A partir de un nodo dado, ordena la lista de forma ascendente,
+     * segun los nombres de los almacenes registrados en la lista.
+     * 
+     * @param headNodo nodo de referencia.
+     * @return sortedList nuevo nodo cabeza.
+     */
     public Nodo<Almacen> mergeSort(Nodo<Almacen> headNodo){
         if (headNodo == null || next(headNodo) == null){
             return null;
@@ -46,6 +63,10 @@ public class ListaAlmacenes extends LinkedList<Almacen> {
         return sortedList;
     }
     
+    /**
+     * Ordena toda la lista de forma alfabetica, segun los
+     * nombres de los almacenes registrados en la lista.
+     */
     public void sort(){
         if (!isEmpty()){
             Nodo<Almacen> newHead = mergeSort(first());
@@ -53,6 +74,13 @@ public class ListaAlmacenes extends LinkedList<Almacen> {
         }
     }
     
+    /**
+     * Metodo que retorna la posicion que ocupa en la lista un nodo
+     * con el nombre del almacen dada.
+     * 
+     * @param almacen nombre del almacen dado.
+     * @return auxNodo nodo que guarda el almacen dado.
+     */
     public int indexOf(String almacen) {
         if (!isEmpty()) {
             Nodo<Almacen> auxNodo = first();
@@ -68,7 +96,13 @@ public class ListaAlmacenes extends LinkedList<Almacen> {
         }
         return -1;
     }
-
+    
+    /**
+     * Retorna un nodo que este guardando un almacen con el nombre dado.
+     * 
+     * @param almacen nombre del almacen
+     * @return auxNodo nodo que esta guarda el almacen con el nombre dado
+     */
     public Almacen getByAlmacen(String almacen) {
         Almacen temp = null;
         if (!isEmpty()) {
@@ -84,7 +118,12 @@ public class ListaAlmacenes extends LinkedList<Almacen> {
         }
         return temp;
     }
-
+    
+    /**
+     * Retorna todos los nodos de la lista en un array.
+     * 
+     * @return arrayOfAlacen
+     */
     public Almacen[] toArray() {
         int len = size();
         Nodo<Almacen> auxNodo = first();
@@ -99,8 +138,9 @@ public class ListaAlmacenes extends LinkedList<Almacen> {
     }
 
     /**
-     *
-     * @return
+     * Retorna un string con toda la informacion de la instacia.
+     * 
+     * @return string
      */
     @Override
     public String toString() {

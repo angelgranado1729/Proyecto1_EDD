@@ -7,51 +7,90 @@ package MainClasses;
 /**
  *
  * @author Angel Granado
+ * @param T
  */
 class LinkedList<T> {
-
+    
+    /**
+     * Tamaño de la lista.
+     */
     private int iSize;
+    /**
+     * Primer nodo de la lista.
+     */
     private Nodo<T> firstNodo;
+    /**
+     * Ultimo nodo de la lista.
+     */
     private Nodo<T> lastNodo;
 
-    /*
-    *Constructor de la clase
+    /**
+     * Constructor de la clase.
      */
     public LinkedList() {
         this.iSize = 0;
         this.firstNodo = null;
         this.lastNodo = null;
     }
-
+    
+    /**
+     * Retorna el primer nodo de la lista.
+     * 
+     * @return firstNodo
+     */
     public Nodo<T> first() {
         return firstNodo;
     }
-
+    
+    /**
+     * Retorna el ultimo nodo de la lista/
+     * 
+     * @return lastNodo
+     */
     public Nodo<T> last() {
         return lastNodo;
     }
     
- /**
-     * @param firstNodo the firstNodo to set
+    /**
+     * Setter para modificar el primer nodo de la lista.
+     * 
+     * @param firstNodo el nuevo nodo que sera el primero de la lista.
      */
     public void setFirstNodo(Nodo<T> firstNodo) {
         this.firstNodo = firstNodo;
     }
 
     /**
-     * @param lastNodo the lastNodo to set
+     * Setter para modificar el ultimo nodo de la lista.
+     * 
+     * @param lastNodo el nuevo nodo que sera el ultimo de la lista.
      */
     public void setLastNodo(Nodo<T> lastNodo) {
         this.lastNodo = lastNodo;
     }
     
+    /**
+     * Retorna el siguiente nodo enlazado.
+     * 
+     * @param pNodo el nodo dado.
+     * @return nextNodo el siguiente nodo.
+     */
     public Nodo<T> next(Nodo<T> pNodo) {
+        Nodo<T> nextNodo = null;
         if (pNodo != null) {
-            return pNodo.getNextNodo();
+            nextNodo = pNodo.getNextNodo();
+            return nextNodo;
         }
-        return null;
+        return nextNodo;
     }
     
+    /**
+     * Metodo que retorna el nodo que se encuentra en el punto 
+     * medio de la lista, dado un punto inicial.
+     * 
+     * @param startNodo nodo inicial.
+     * @return middleNodo
+     */
     public Nodo<T> getMiddle(Nodo<T> startNodo){
         if (startNodo == null){
             return null;
@@ -64,21 +103,40 @@ class LinkedList<T> {
         }
         return middleNodo;        
     }
-
+    
+    /**
+     * Verifica si la lista esta vacia.
+     * 
+     * @return boolean
+     */
     public boolean isEmpty() {
         return firstNodo == null;
     }
-
+    
+    /**
+     * Procedimiento que destruye completamente la lista.
+     */
     public void destroy() {
         setFirstNodo(null);
         iSize = 0;
         setLastNodo(null);
     }
-
+    
+    /**
+     * Retorna el tamaño de la lista.
+     * 
+     * @return iSize
+     */
     public int size() {
         return iSize;
     }
-
+    
+    /**
+     * Metodo que inserta un nodo con la informacion dada a 
+     * insertar en la primera posicion de la lista.
+     * 
+     * @param tInfo informacion a insertar
+     */
     public void insertFirst(T tInfo) {
         Nodo<T> NodoAux = new Nodo<>(tInfo);
         NodoAux.setNextNodo(first());
@@ -89,6 +147,13 @@ class LinkedList<T> {
         iSize++;
     }
     
+    /**
+     * Metodo que inserta un nodo con la informacion dada a 
+     * insertar, en la posicion siguiente de un nodo dado.
+     * 
+     * @param tInfo informacion a insertar.
+     * @param position nodo de referencia.
+     */
     public void postInsert(T tInfo, Nodo<T> position) {
         Nodo<T> newNodo = new Nodo<>(tInfo);        
         if (isEmpty()){
@@ -104,6 +169,13 @@ class LinkedList<T> {
         iSize++;
     }
     
+    /**
+     * Metodo que inserta un nodo con la informacion dada a 
+     * insertar, en la posicion anterior a un nodo dado.
+     * 
+     * @param tInfo informacion a insertar.
+     * @param position nodo de referencia.
+     */
     public void preInsert(T tInfo, Nodo<T> position){
         Nodo<T> newNodo = new Nodo<>(tInfo);
         if (isEmpty()){
@@ -122,7 +194,13 @@ class LinkedList<T> {
         }
         iSize++;
     }
-
+    
+    /**
+     * Agrega en la ultima posicion, un nodo con la 
+     * informacion dada.
+     * 
+     * @param tInfo informacion a insertar.
+     */
     public void append(T tInfo) {
         Nodo<T> auxNodo = new Nodo<>(tInfo);
         if (isEmpty()) {
@@ -133,7 +211,14 @@ class LinkedList<T> {
         setLastNodo(auxNodo);
         iSize++;
     }
-
+    
+    /**
+     * Inserta un nodo con la informacion dada, en la 
+     * posicion indicada.
+     * 
+     * @param tInfo informacion a insertar.
+     * @param index posicion indicada.
+     */
     public void insert(T tInfo, int index) {
         if (index == 0){
             insertFirst(tInfo);
@@ -149,6 +234,13 @@ class LinkedList<T> {
         }
     }
    
+    /**
+     * Metodo que accede a los nodos de la lista a traves
+     * de la posicion que ocupan.
+     * 
+     * @param index posicion del nodo.
+     * @return auxNodo nodo a acceder.
+     */
     public Nodo<T> getByIndex(int index) {
         if (index >= 0 && index < iSize) {
             int aux = 0;
@@ -162,10 +254,23 @@ class LinkedList<T> {
         return null;
     }
     
+    /**
+     * Retorna la informacion que almacena el nodo dado.
+     * 
+     * @param nodo nodo dado.
+     * @return tInfo informacion que guarda el nodo.
+     */
     public T getInfo(Nodo<T> nodo){
         return nodo.gettInfo();
     }
 
+    /**
+     * Busca un nodo en la lista que este guardando
+     * la informacion dada.
+     * 
+     * @param tInfo informacion dada.
+     * @return auxNodo nodo con la informacion dada.
+     */
     public Nodo<T> search(T tInfo) {
         if (!isEmpty()) {
             Nodo<T> auxNodo = first();
@@ -178,7 +283,10 @@ class LinkedList<T> {
         }
         return null;
     }
-
+    
+    /**
+     * Procedimiento que elimina el primer nodo de la lista.
+     */
     public void delateAtStart() {
         if (iSize == 1) {
             destroy();
@@ -190,6 +298,9 @@ class LinkedList<T> {
         }
     }
 
+    /**
+     * Procedimiento que elimina el primer nodo de la lista.
+     */
     public void delateAtEnd() {
         if (iSize == 1) {
             destroy();
@@ -203,7 +314,12 @@ class LinkedList<T> {
             iSize--;
         }
     }
-
+    
+    /**
+     * Elimina el nodo que ocupa la posicion dada.
+     * 
+     * @param index posicion dada.
+     */
     public void delate(int index) {
         if (index >= 0 && index < iSize) {
             Nodo<T> auxNodo = first();
@@ -218,6 +334,11 @@ class LinkedList<T> {
         }
     }
     
+    /**
+     * Elimina el nodo dado.
+     * 
+     * @param nodo nodo dado.
+     */
     public void delate(Nodo<T> nodo){
         if (!isEmpty() && nodo != null){
             if (nodo.equals(firstNodo)){
@@ -234,7 +355,12 @@ class LinkedList<T> {
             }
         } 
     }
-
+    
+    /**
+     * Elimina un nodo que este guardando la informacion dada.
+     * 
+     * @param tInfo informacion dada.
+     */
     public void delateByInfo(T tInfo) {
         if (!isEmpty()){
             Nodo<T> nodo = search(tInfo);
@@ -244,6 +370,11 @@ class LinkedList<T> {
         }
     }
     
+    /**
+     * Retorna un string con toda la informacion de la instacia.
+     * 
+     * @return string
+     */
     @Override
     public String toString(){
         String string = "";

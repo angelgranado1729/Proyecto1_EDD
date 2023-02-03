@@ -10,13 +10,20 @@ package MainClasses;
  */
 public class ListaProductos extends LinkedList {
     
+    /**
+     * Constructor de la clase.
+     */
     public ListaProductos() {
         super();
     }
 
-    /*
-    Une las listas a y b
-    */
+    /**
+     * Ordena la lista dado dos extremos.
+     * 
+     * @param a extremo inferior.
+     * @param b extremo superior.
+     * @return result nuevo nodo inicial
+     */
     public Nodo<Producto> sortedMerge(Nodo<Producto> a, Nodo<Producto> b){
         Nodo<Producto> result;
         if (a == null){
@@ -36,6 +43,13 @@ public class ListaProductos extends LinkedList {
         return result;      
     }
     
+    /**
+     * A partir de un nodo dado, ordena la lista de forma ascendente,
+     * segun los nombres de los productos registrados en la lista.
+     * 
+     * @param headNodo nodo de referencia.
+     * @return sortedList nuevo nodo cabeza.
+     */
     public Nodo<Producto> mergeSort(Nodo<Producto> headNodo){
         if (headNodo == null || next(headNodo) == null){
             return headNodo;
@@ -49,6 +63,10 @@ public class ListaProductos extends LinkedList {
         return sortedList;
     }
     
+    /**
+     * Ordena toda la lista de forma alfabetica, segun los
+     * nombres de los productos registrados en la lista.
+     */
     public void sort(){
         if (!isEmpty()){
             Nodo<Producto> newHead = mergeSort(first());
@@ -56,6 +74,13 @@ public class ListaProductos extends LinkedList {
         }
     }
     
+    /**
+     * Metodo que retorna la posicion que ocupa en la lista un nodo
+     * con el nombre del producto dada.
+     * 
+     * @param producto nombre del producto dado.
+     * @return auxNodo nodo que guarda el producto dado.
+     */
     public int indexOf(String producto) {
         if (!isEmpty()){
             Nodo<Producto> auxNodo = first();
@@ -71,7 +96,13 @@ public class ListaProductos extends LinkedList {
         }
         return -1;
     }
-
+    
+    /**
+     * Retorna un nodo que este guardando un producto con el nombre dado.
+     * 
+     * @param producto nombre del producto.
+     * @return auxNodo nodo que esta guardando el producto con el nombre dado.
+     */
     public Nodo<Producto> getProduct(String producto) {
         if (!isEmpty()){
            Nodo<Producto> auxNodo = first();
@@ -86,7 +117,11 @@ public class ListaProductos extends LinkedList {
         return null;
     }
     
-
+    /**
+     * Retorna todos los nodos de la lista en un array.
+     * 
+     * @return arrayOfProducto
+     */
     public Producto[] toArray() {
         int len = size();
         Nodo<Producto> auxNodo = first();
@@ -101,8 +136,9 @@ public class ListaProductos extends LinkedList {
     }
 
     /**
-     *
-     * @return
+     *Retorna un string con toda la informacion de la instacia.
+     * 
+     * @return string
      */
     @Override
     public String toString() {
