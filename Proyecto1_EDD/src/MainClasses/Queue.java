@@ -7,6 +7,7 @@ package MainClasses;
 /**
  *
  * @author Angel Granado
+ * @param <T>
  */
 public class Queue<T> {
     private int length;
