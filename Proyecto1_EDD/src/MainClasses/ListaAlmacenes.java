@@ -79,7 +79,7 @@ public class ListaAlmacenes extends LinkedList<Almacen> {
      * con el nombre del almacen dada.
      * 
      * @param almacen nombre del almacen dado.
-     * @return auxNodo nodo que guarda el almacen dado.
+     * @return index la posicion del nodo que guarda el almacen
      */
     public int indexOf(String almacen) {
         if (!isEmpty()) {
@@ -98,7 +98,7 @@ public class ListaAlmacenes extends LinkedList<Almacen> {
     }
     
     /**
-     * Retorna un nodo que este guardando un almacen con el nombre dado.
+     * Retorna un nodo que esta guardando un almacen con el nombre dado.
      * 
      * @param almacen nombre del almacen
      * @return auxNodo nodo que esta guarda el almacen con el nombre dado

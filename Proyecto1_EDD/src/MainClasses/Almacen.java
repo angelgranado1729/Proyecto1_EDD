@@ -32,11 +32,11 @@ public class Almacen {
      * Constructor de la clase.
      * 
      * @param almacen nombre del almacen.
-     * @param listaProductos lista de los productos registrados en el almacen.
+     * @param listaProducts lista de los productos registrados en el almacen.
      */
-    public Almacen(String almacen, ListaProductos listaProductos){
+    public Almacen(String almacen, ListaProductos listaProducts){
         this.almacen = almacen;
-        this.listaProductos = listaProductos;
+        this.listaProductos = listaProducts;
     }
 
     /**
@@ -68,10 +68,10 @@ public class Almacen {
     /** 
      * Setter para modificar listaProductos.
      * 
-     * @param listaProductos nueva listaProductos.
+     * @param listaProducts nueva listaProductos.
      */
-    public void setListaProductos(ListaProductos listaProductos) {
-        this.listaProductos = listaProductos;
+    public void setListaProductos(ListaProductos listaProducts) {
+        this.listaProductos = listaProducts;
     }
 
     /**
