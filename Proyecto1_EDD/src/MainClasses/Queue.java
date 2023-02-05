@@ -127,13 +127,13 @@ public class Queue<T> {
      * @return aux el elemento que guarda el primer nodo
      * en cola.
      */
-    public T dequeue() throws Exception {
-        T aux;
+    public T dequeue(){
+        T aux = null;
         if (!isEmpty()){
             aux = front.gettInfo();
             this.front = next(front);
             length--;
-        } else throw new Exception("No hay elementos en cola.");
+        } 
         return aux;
     }
     

@@ -98,10 +98,10 @@ public class ListaAlmacenes extends LinkedList<Almacen> {
     }
     
     /**
-     * Retorna un nodo que esta guardando un almacen con el nombre dado.
+     * Retorna el almacen con el nombre dado.
      * 
      * @param almacen nombre del almacen
-     * @return auxNodo nodo que esta guarda el almacen con el nombre dado
+     * @return temp el almacen con el nombre dado.
      */
     public Almacen getByAlmacen(String almacen) {
         Almacen temp = null;

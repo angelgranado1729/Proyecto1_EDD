@@ -6,7 +6,7 @@ package MainClasses;
 
 /**
  *
- * @author Angel Granado
+ * @author Angel Granado & andre
  */
 public class Grafo{
     private ListaAlmacenes almacenes;
@@ -28,6 +28,9 @@ public class Grafo{
         this.matrixAdj = new MatrizAdj();
     }
     
+    public boolean isEmpty(){
+        return almacenes.isEmpty();
+    }
     public int numAlmacen(String almacen){
         return almacenes.indexOf(almacen);
     }
@@ -59,7 +62,77 @@ public class Grafo{
         return matrixAdj.adjacency(numSource, numDestination);
     }
     
-    public ListaAlmacenes BFSreport(){
+    public boolean adjacency(int source, int destination){
+        boolean b = matrixAdj.adjacency(source, destination);
+        return b;
+    }
+    
+    public ListaAlmacenes BFS() throws Exception{
+        if (!isEmpty()){
+            Queue<Almacen> cola = new Queue<>();
+            ListaAlmacenes almacenesVisitados = new ListaAlmacenes();
+            boolean visitados[] = new boolean[numVertices];
+            Almacen almacenActual;
+
+            for (int i = 0; i < numVertices; i++){
+                visitados[i] = false;
+            }
+            for(int i = 0; i < numVertices; i++){
+
+                if (!visitados[i]){
+                    cola.enqueue(almacenes.getByIndex(i).gettInfo());
+                    visitados[i] = true;
+
+                    while (!cola.isEmpty()){
+                        almacenActual = cola.dequeue();
+                        almacenesVisitados.append(almacenActual);
+                        System.out.println(almacenActual.getAlmacen());
+                        int numAux = numAlmacen(almacenActual.getAlmacen());
+
+                        for (int j = 0; j < numVertices; j++){
+                            if ((numAux != j) && (adjacency(numAux,j)) && (!visitados[j])){                            
+                                cola.enqueue(almacenes.getByIndex(j).gettInfo());
+                                visitados[j] = true;
+                            }
+                        }   
+                    }
+                }
+            }
+            return almacenesVisitados;
+        } else throw new Exception("Grafo vacio.");
+    }
+    
+    public ListaAlmacenes deepTraveling(int numVertice, boolean[]visitados, ListaAlmacenes almacenesVisitados){
+        visitados[numVertice] = true;
+        almacenesVisitados.append(almacenes.getByIndex(numVertice).gettInfo());
+        
+        for (int i = 0; i < numVertices; i++){
+            if ((numVertice != i) && (!visitados[i]) && (matrixAdj.adjacency(numVertice, i))){
+                almacenesVisitados = deepTraveling(i, visitados,almacenesVisitados);
+            }
+        }
+        return almacenesVisitados;
+    }
+    
+    public ListaAlmacenes DFS() throws Exception{
+        if (!isEmpty()){
+            boolean[] visitados = new boolean[numVertices];
+            ListaAlmacenes almacenesVisitados = new ListaAlmacenes();
+
+            for (int i = 0; i < numVertices; i++){
+                visitados[i] = false;
+            }
+            for (int i = 0; i < numVertices; i++){
+                if (!visitados[i]){
+                    almacenesVisitados = deepTraveling(i, visitados, almacenesVisitados);
+                }
+            }
+            return almacenesVisitados; 
+        } else throw new Exception("Grafo vacio.");
+        
+    }
+    
+    public void dijktra(String almacenOrigen){
         
     }
     

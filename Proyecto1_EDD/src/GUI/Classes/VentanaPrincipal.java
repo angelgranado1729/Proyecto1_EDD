@@ -6,7 +6,7 @@ package GUI.Classes;
 
 /**
  *
- * @author Angel Granado
+ * @author Angel Granado & andre
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
