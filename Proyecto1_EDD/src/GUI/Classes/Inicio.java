@@ -91,7 +91,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(icono1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(195, Short.MAX_VALUE))
         );
         btn_Inicio1Layout.setVerticalGroup(
             btn_Inicio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,7 +103,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
-        SidePanel.add(btn_Inicio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 320, 60));
+        SidePanel.add(btn_Inicio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 330, 60));
 
         btn_cargar_guardar.setBackground(new java.awt.Color(55, 71, 90));
 
@@ -123,7 +123,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(icono2)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         btn_cargar_guardarLayout.setVerticalGroup(
             btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,7 +135,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
-        SidePanel.add(btn_cargar_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 320, 60));
+        SidePanel.add(btn_cargar_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 330, 60));
 
         btn_nueva_ruta.setBackground(new java.awt.Color(55, 71, 90));
 
@@ -155,7 +155,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(icono3)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
         btn_nueva_rutaLayout.setVerticalGroup(
             btn_nueva_rutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,7 +167,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
-        SidePanel.add(btn_nueva_ruta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 320, 60));
+        SidePanel.add(btn_nueva_ruta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 330, 60));
 
         btn_nuevo_almacen.setBackground(new java.awt.Color(55, 71, 90));
 
@@ -199,7 +199,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
-        SidePanel.add(btn_nuevo_almacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 320, 60));
+        SidePanel.add(btn_nuevo_almacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 330, 60));
 
         btn_reporte.setBackground(new java.awt.Color(55, 71, 90));
 
@@ -219,7 +219,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(icono5)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8)
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
         btn_reporteLayout.setVerticalGroup(
             btn_reporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,7 +231,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
-        SidePanel.add(btn_reporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 320, 60));
+        SidePanel.add(btn_reporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 330, 60));
 
         btn_gest_inventario1.setBackground(new java.awt.Color(55, 71, 90));
 
@@ -251,7 +251,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(icono6)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         btn_gest_inventario1Layout.setVerticalGroup(
             btn_gest_inventario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,7 +263,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
-        SidePanel.add(btn_gest_inventario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 320, 60));
+        SidePanel.add(btn_gest_inventario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 330, 60));
 
         btn_mapa_almacenes.setBackground(new java.awt.Color(55, 71, 90));
 
@@ -283,7 +283,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(icono)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         btn_mapa_almacenesLayout.setVerticalGroup(
             btn_mapa_almacenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,7 +295,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
-        SidePanel.add(btn_mapa_almacenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 550, 320, 60));
+        SidePanel.add(btn_mapa_almacenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 550, 330, 60));
 
         btn_cargar_guardar1.setBackground(new java.awt.Color(55, 71, 90));
 
@@ -315,7 +315,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(icono7)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel10)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         btn_cargar_guardar1Layout.setVerticalGroup(
             btn_cargar_guardar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,7 +327,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
-        SidePanel.add(btn_cargar_guardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 320, 60));
+        SidePanel.add(btn_cargar_guardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 330, 60));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -337,7 +337,7 @@ public class Inicio extends javax.swing.JFrame {
         jSeparator1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         SidePanel.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 260, 26));
 
-        BG.add(SidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 710));
+        BG.add(SidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 710));
 
         jPanel1.setBackground(new java.awt.Color(34, 46, 60));
 
@@ -434,37 +434,37 @@ public class Inicio extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-  public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+public static void main(String args[]) {
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+     * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+     */
+    try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Inicio().setVisible(true);
-            }
-        });
+    } catch (ClassNotFoundException ex) {
+        java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (InstantiationException ex) {
+        java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex) {
+        java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
+
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(new Runnable() {
+        public void run() {
+            new Inicio().setVisible(true);
+        }
+    });
+}
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
