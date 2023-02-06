@@ -4,6 +4,8 @@
  */
 package GUI.Classes;
 
+import java.awt.Point;
+
 /**
  *
  * @author andre
@@ -340,6 +342,16 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(34, 46, 60));
 
         jPanel4.setBackground(new java.awt.Color(246, 183, 102));
+        jPanel4.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel4MouseDragged(evt);
+            }
+        });
+        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel4MousePressed(evt);
+            }
+        });
 
         exit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/exit.png"))); // NOI18N
@@ -401,6 +413,23 @@ public class Inicio extends javax.swing.JFrame {
         System.exit(0);
 
     }//GEN-LAST:event_exitMousePressed
+    private Point initialClick;
+
+    private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
+        // TODO add your handling code here:
+        initialClick = evt.getPoint();
+    }//GEN-LAST:event_jPanel4MousePressed
+
+    private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
+        // TODO add your handling code here:
+            int x = getLocation().x - initialClick.x + evt.getX();
+            int y = getLocation().y - initialClick.y + evt.getY();
+            setLocation(x, y);
+    }//GEN-LAST:event_jPanel4MouseDragged
+
+
+ 
+
 
     /**
      * @param args the command line arguments
