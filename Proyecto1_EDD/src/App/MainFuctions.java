@@ -135,8 +135,5 @@ public class MainFuctions {
 	mergeSort(rutas, 0, rutas.length - 1);
 	return rutas[0];
 	}
-    
-        
-        
-        
+               
 }
