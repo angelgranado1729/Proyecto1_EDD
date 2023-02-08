@@ -7,9 +7,9 @@ package MainClasses;
 /**
  *
  * @author Angel Granado
- * @param T
+ * @param <T>
  */
-class LinkedList<T> {
+public class LinkedList<T> {
     
     /**
      * Tamaño de la lista.

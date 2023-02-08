@@ -29,10 +29,10 @@ public class Grafo{
     }
     
     public boolean isEmpty(){
-        return almacenes.isEmpty();
+        return getAlmacenes().isEmpty();
     }
     public int numAlmacen(String almacen){
-        return almacenes.indexOf(almacen);
+        return getAlmacenes().indexOf(almacen);
     }
     
     public boolean isVertex(String almacen){
@@ -40,10 +40,10 @@ public class Grafo{
     }
     
     public void addAlmacen(String almacen){
-        if (!isVertex(almacen) && almacenes.size() < numMaxVertices){
+        if (!isVertex(almacen) && getAlmacenes().size() < getNumMaxVertices()){
             Almacen newAlmacen = new Almacen(almacen);
-            almacenes.append(newAlmacen);
-            numVertices++;
+            getAlmacenes().append(newAlmacen);
+            setNumVertices(getNumVertices() + 1);
         }
     }
     
@@ -52,18 +52,18 @@ public class Grafo{
         int numDestination = numAlmacen(destination);
         if (numSource < 0 || numDestination < 0) throw new Exception("Vertice no existe");
         if (distance < 0) throw new Exception("Distancia no valida");
-        matrixAdj.addEdge(numSource, numDestination, distance);
+        getMatrixAdj().addEdge(numSource, numDestination, distance);
     }
     
     public boolean adjacency(String source, String destination) throws Exception{
         int numSource = numAlmacen(source);
         int numDestination = numAlmacen(destination);
         if (numSource < 0 || numDestination < 0) throw new Exception("Vertice no existe");
-        return matrixAdj.adjacency(numSource, numDestination);
+        return getMatrixAdj().adjacency(numSource, numDestination);
     }
     
     public boolean adjacency(int source, int destination){
-        boolean b = matrixAdj.adjacency(source, destination);
+        boolean b = getMatrixAdj().adjacency(source, destination);
         return b;
     }
     
@@ -71,16 +71,16 @@ public class Grafo{
         if (!isEmpty()){
             Queue<Almacen> cola = new Queue<>();
             ListaAlmacenes almacenesVisitados = new ListaAlmacenes();
-            boolean visitados[] = new boolean[numVertices];
+            boolean visitados[] = new boolean[getNumVertices()];
             Almacen almacenActual;
 
-            for (int i = 0; i < numVertices; i++){
+            for (int i = 0; i < getNumVertices(); i++){
                 visitados[i] = false;
             }
-            for(int i = 0; i < numVertices; i++){
+            for(int i = 0; i < getNumVertices(); i++){
 
                 if (!visitados[i]){
-                    cola.enqueue(almacenes.getByIndex(i).gettInfo());
+                    cola.enqueue(getAlmacenes().getByIndex(i).gettInfo());
                     visitados[i] = true;
 
                     while (!cola.isEmpty()){
@@ -89,9 +89,9 @@ public class Grafo{
                         System.out.println(almacenActual.getAlmacen());
                         int numAux = numAlmacen(almacenActual.getAlmacen());
 
-                        for (int j = 0; j < numVertices; j++){
+                        for (int j = 0; j < getNumVertices(); j++){
                             if ((numAux != j) && (adjacency(numAux,j)) && (!visitados[j])){                            
-                                cola.enqueue(almacenes.getByIndex(j).gettInfo());
+                                cola.enqueue(getAlmacenes().getByIndex(j).gettInfo());
                                 visitados[j] = true;
                             }
                         }   
@@ -104,10 +104,10 @@ public class Grafo{
     
     public ListaAlmacenes deepTraveling(int numVertice, boolean[]visitados, ListaAlmacenes almacenesVisitados){
         visitados[numVertice] = true;
-        almacenesVisitados.append(almacenes.getByIndex(numVertice).gettInfo());
+        almacenesVisitados.append(getAlmacenes().getByIndex(numVertice).gettInfo());
         
-        for (int i = 0; i < numVertices; i++){
-            if ((numVertice != i) && (!visitados[i]) && (matrixAdj.adjacency(numVertice, i))){
+        for (int i = 0; i < getNumVertices(); i++){
+            if ((numVertice != i) && (!visitados[i]) && (getMatrixAdj().adjacency(numVertice, i))){
                 almacenesVisitados = deepTraveling(i, visitados,almacenesVisitados);
             }
         }
@@ -116,28 +116,79 @@ public class Grafo{
     
     public ListaAlmacenes DFS() throws Exception{
         if (!isEmpty()){
-            boolean[] visitados = new boolean[numVertices];
+            boolean[] visitados = new boolean[getNumVertices()];
             ListaAlmacenes almacenesVisitados = new ListaAlmacenes();
 
-            for (int i = 0; i < numVertices; i++){
+            for (int i = 0; i < getNumVertices(); i++){
                 visitados[i] = false;
             }
-            for (int i = 0; i < numVertices; i++){
+            for (int i = 0; i < getNumVertices(); i++){
                 if (!visitados[i]){
                     almacenesVisitados = deepTraveling(i, visitados, almacenesVisitados);
                 }
             }
             return almacenesVisitados; 
-        } else throw new Exception("Grafo vacio.");
-        
+        } else throw new Exception("Grafo vacio.");    
+    } 
+
+    /**
+     * @return the almacenes
+     */
+    public ListaAlmacenes getAlmacenes() {
+        return almacenes;
+    }
+
+    /**
+     * @param almacenes the almacenes to set
+     */
+    public void setAlmacenes(ListaAlmacenes almacenes) {
+        this.almacenes = almacenes;
+    }
+
+    /**
+     * @return the numMaxVertices
+     */
+    public int getNumMaxVertices() {
+        return numMaxVertices;
+    }
+
+    /**
+     * @param numMaxVertices the numMaxVertices to set
+     */
+    public void setNumMaxVertices(int numMaxVertices) {
+        this.numMaxVertices = numMaxVertices;
+    }
+
+    /**
+     * @return the numVertices
+     */
+    public int getNumVertices() {
+        return numVertices;
+    }
+
+    /**
+     * @param numVertices the numVertices to set
+     */
+    public void setNumVertices(int numVertices) {
+        this.numVertices = numVertices;
+    }
+
+    /**
+     * @return the matrixAdj
+     */
+    public MatrizAdj getMatrixAdj() {
+        return matrixAdj;
+    }
+
+    /**
+     * @param matrixAdj the matrixAdj to set
+     */
+    public void setMatrixAdj(MatrizAdj matrixAdj) {
+        this.matrixAdj = matrixAdj;
     }
     
-    public void dijktra(String almacenOrigen){
-        
+    public double getPeso(int source, int target){
+        return matrixAdj.getPeso(source, target);
     }
-    
-    
-    
-    
     
 }

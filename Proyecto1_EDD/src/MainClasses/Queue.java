@@ -18,7 +18,7 @@ public class Queue<T> {
     /**
      * Ultimo elemento de la cola, ultimo en salir
      */
-    private Nodo<T> rear;
+    private Nodo<T> back;
     
     /**
      * Constructor de la clase.
@@ -26,7 +26,7 @@ public class Queue<T> {
     
     public Queue(){
         this.length = 0;
-        this.front = this.rear = null;
+        this.front = this.back = null;
     }
     
     /**
@@ -68,19 +68,19 @@ public class Queue<T> {
     /**
      * Getter para acceder al ultimo nodo en cola.
      * 
-     * @return rear el ultimo nodo en cola.
+     * @return back el ultimo nodo en cola.
      */
-    public Nodo<T> getRear(){
-        return rear;
+    public Nodo<T> getback(){
+        return back;
     }
     
     /**
      * Setter para modificar el ultimo nodo en cola.
      * 
-     * @param newRear nuevo nodo que sera el ultimo de la cola.
+     * @param newback nuevo nodo que sera el ultimo de la cola.
      */
-    public void setRear(Nodo<T> newRear){
-        this.rear = newRear;
+    public void setback(Nodo<T> newback){
+        this.back = newback;
     }
     
     /**
@@ -105,7 +105,7 @@ public class Queue<T> {
     
     /**
      * Inserta un nodo con la informacion dada despues del
-     * ultimo nodo en cola, y desplaza el rear nodo al 
+     * ultimo nodo en cola, y desplaza el back nodo al 
      * siguiente nodo.
      * 
      * @param tInfo informacion a almacenar
@@ -113,17 +113,17 @@ public class Queue<T> {
     public void enqueue(T tInfo){
         Nodo<T> newNodo = new Nodo(tInfo);
         if (isEmpty()){
-            this.front = newNodo;
+            front = newNodo;
         } else {
-            this.rear = newNodo;
+            back.setNextNodo(newNodo);
         }
+        back = newNodo;
         length++;
     }
     
     /**
      * Saca el primer nodo en cola.
      * 
-     * @throws Exception No hay elementos en cola.
      * @return aux el elemento que guarda el primer nodo
      * en cola.
      */

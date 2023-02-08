@@ -13,9 +13,10 @@ public class MatrizAdj {
     private int numVertices;
     private int numMaxVertices;
 
-    public MatrizAdj(int numMaxVertices){
-        this.numVertices = 0;
-        this.numMaxVertices = numMaxVertices;
+
+    public MatrizAdj(int numVertices){
+        this.numVertices = numVertices;
+        this.numMaxVertices = 30;
         this.matrix = new double[numMaxVertices][numMaxVertices];
         for (int i = 0; i < numMaxVertices; i++){
             for (int j = 0; j <  numMaxVertices; j++){
@@ -27,9 +28,9 @@ public class MatrizAdj {
     public MatrizAdj(){
         this.numVertices = 0;
         this.numMaxVertices = 30;
-        this.matrix = new double[30][30];
-        for (int i = 0; i < 30; i++){
-            for (int j = 0; j <  30; j++){
+        this.matrix = new double[numMaxVertices][numMaxVertices];
+        for (int i = 0; i < numMaxVertices; i++){
+            for (int j = 0; j <  numMaxVertices; j++){
                 matrix[i][j] = 0;
             }
         }
@@ -62,6 +63,14 @@ public class MatrizAdj {
     public void setNumVertices(int numVertices) {
         this.numVertices = numVertices;
     }
+    
+    public void addEdge(int source, int destination, double distance){
+        getMatrix()[source][destination] = distance;
+    }
+    
+    public boolean adjacency(int source, int destination){
+        return getMatrix()[source][destination] != 0;
+    }
 
     /**
      * @return the numMaxVertices
@@ -77,12 +86,15 @@ public class MatrizAdj {
         this.numMaxVertices = numMaxVertices;
     }
     
-    public void addEdge(int source, int destination, double distance){
-        getMatrix()[source][destination] = distance;
+    public double getPeso(int source, int destination){
+        if (adjacency(source, destination)){
+            return matrix[source][destination];
+        } else {
+            return 0;
+        }
     }
     
-    public boolean adjacency(int source, int destination){
-        return getMatrix()[source][destination] != 0;
+    public void setPeso(int source, int destination, double peso){
+        this.matrix[source][destination] = peso;
     }
-    
 }
