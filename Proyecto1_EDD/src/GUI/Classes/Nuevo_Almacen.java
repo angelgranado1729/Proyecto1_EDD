@@ -66,7 +66,7 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
         setLocationByPlatform(true);
         setUndecorated(true);
 
-        BG.setBackground(new java.awt.Color(191, 202, 218));
+        BG.setBackground(new java.awt.Color(155, 170, 193));
         BG.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         SidePanel.setBackground(new java.awt.Color(34, 46, 60));

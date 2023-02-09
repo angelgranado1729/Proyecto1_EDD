@@ -66,7 +66,7 @@ public class Nuevo_pedido extends javax.swing.JFrame {
         setLocationByPlatform(true);
         setUndecorated(true);
 
-        BG.setBackground(new java.awt.Color(204, 204, 204));
+        BG.setBackground(new java.awt.Color(155, 170, 193));
         BG.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         SidePanel.setBackground(new java.awt.Color(34, 46, 60));
