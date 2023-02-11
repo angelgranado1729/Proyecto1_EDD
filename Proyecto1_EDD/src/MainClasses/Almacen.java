@@ -21,7 +21,7 @@ public class Almacen {
     
     /**
      * Constructor de la clase.
-     * @param almacen nombre del almacen
+     * @param almacen, el nombre del almacen
      */
     public Almacen(String almacen){
         this.almacen = almacen;
@@ -31,8 +31,9 @@ public class Almacen {
     /**
      * Constructor de la clase.
      * 
-     * @param almacen nombre del almacen.
-     * @param listaProducts lista de los productos registrados en el almacen.
+     * @param almacen, el nombre del almacen.
+     * @param listaProducts, la lista de los productos 
+     * registrados en el almacen.
      */
     public Almacen(String almacen, ListaProductos listaProducts){
         this.almacen = almacen;
@@ -42,7 +43,7 @@ public class Almacen {
     /**
      * Getter para acceder al nombre del almacen.
      * 
-     * @return almacen nombre del almacen. 
+     * @return almacen, el nombre del almacen. 
      */
     public String getAlmacen() {
         return almacen;
@@ -51,7 +52,7 @@ public class Almacen {
     /**
      * Setter para modificar el nombre del almacen.
      * 
-     * @param almacen nuevo nombre.
+     * @param almacen, el nuevo nombre.
      */
     public void setAlmacen(String almacen) {
         this.almacen = almacen;
@@ -59,7 +60,7 @@ public class Almacen {
 
     /** Getter para acceder a la lista producto.
      * 
-     * @return listaProductos
+     * @return listaProductos.
      */
     public ListaProductos getListaProductos() {
         return listaProductos;
@@ -68,7 +69,7 @@ public class Almacen {
     /** 
      * Setter para modificar listaProductos.
      * 
-     * @param listaProducts nueva listaProductos.
+     * @param listaProducts, la nueva listaProductos.
      */
     public void setListaProductos(ListaProductos listaProducts) {
         this.listaProductos = listaProducts;
@@ -77,8 +78,8 @@ public class Almacen {
     /**
      * Procedimiento que agrega un nuevo producto a listaProductos.
      * 
-     * @param producto nombre del producto.
-     * @param stock cantidad disponible.
+     * @param producto, el nombre del producto.
+     * @param stock, la cantidad disponible.
      */
     public void addProduct(String producto, int stock) {
         if (stock >= 0){
@@ -93,7 +94,7 @@ public class Almacen {
     /**
      * Elimina un producto de listaProducto.
      * 
-     * @param producto nombre del producto que se desea eliminar.
+     * @param producto, el nombre del producto que se desea eliminar.
      */
     public void delateProduct(String producto) {
         int index = this.listaProductos.indexOf(producto);
@@ -103,12 +104,12 @@ public class Almacen {
     /**
      * Modifica el stock de un producto registrado.
      * 
-     * @param producto nombre del producto.
-     * @param newStock nueva cantidad disponible.
+     * @param producto, el nombre del producto.
+     * @param newStock, la nueva cantidad disponible.
      */
     public void modifyStock(String producto, int newStock) {
         if (newStock >= 0){
-            Nodo<Producto> productNodo = this.listaProductos.getProduct(producto);
+            Nodo<Producto> productNodo = this.listaProductos.search(producto);
             Producto newProduct = new Producto(productNodo.gettInfo().getProducto(), newStock);
             productNodo.settInfo(newProduct);
         }       
@@ -117,11 +118,11 @@ public class Almacen {
     /**
      * Metodo que busca el producto en listaProductos.
      * 
-     * @param producto nombre del producto a buscar.
-     * @return product el producto encontrado.
+     * @param producto, el nombre del producto a buscar.
+     * @return product, el producto encontrado.
      */
     public Producto searchProduct(String producto) {
-        Nodo<Producto> productNodo = this.listaProductos.getProduct(producto);
+        Nodo<Producto> productNodo = this.listaProductos.search(producto);
         Producto product = productNodo.gettInfo();
         return product;
     }

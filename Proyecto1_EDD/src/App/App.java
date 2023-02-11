@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package App;
+import GUI.Classes.Inicio;
 
 /**
  *
@@ -11,11 +12,8 @@ package App;
 public class App {
     
     public static void start(){
-        
-    }
-    
-    public static void startWithNewData(String fileDirectory){
-        
+       Inicio ventanaInicio = new Inicio();
+       ventanaInicio.setVisible(true);
     }
     
 }

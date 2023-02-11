@@ -16,6 +16,7 @@ import MainClasses.ListaAlmacenes;
  */
 public class MainFuctions {
     
+
     public static int getMinDistance(double[] distancias, boolean[] verticesVisitados){
         double minDistancia = Double.MAX_VALUE;
         int verticeDistanciaMin = 1;
@@ -28,6 +29,7 @@ public class MainFuctions {
         }
         return verticeDistanciaMin;     
     }
+    
     
     public static Object[] getPath(int[] ultimosVertices, double[] distancias, int origen, int destino){
         int target = destino;
@@ -133,7 +135,12 @@ public class MainFuctions {
             count++;
 	}
 	mergeSort(rutas, 0, rutas.length - 1);
-	return rutas[0];
-	}
+        
+        if ((double) ((Object[]) rutas[0])[1] < Double.MAX_VALUE){
+            return rutas[0];
+        } else {
+            return null;
+        }
+    }
                
 }

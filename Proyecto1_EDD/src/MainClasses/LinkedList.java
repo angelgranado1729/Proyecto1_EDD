@@ -43,7 +43,7 @@ public class LinkedList<T> {
     }
     
     /**
-     * Retorna el ultimo nodo de la lista/
+     * Retorna el ultimo nodo de la lista.
      * 
      * @return lastNodo
      */
@@ -54,7 +54,7 @@ public class LinkedList<T> {
     /**
      * Setter para modificar el primer nodo de la lista.
      * 
-     * @param firstNodo el nuevo nodo que sera el primero de la lista.
+     * @param firstNodo, el nuevo nodo que sera el primero de la lista.
      */
     public void setFirstNodo(Nodo<T> firstNodo) {
         this.firstNodo = firstNodo;
@@ -63,17 +63,29 @@ public class LinkedList<T> {
     /**
      * Setter para modificar el ultimo nodo de la lista.
      * 
-     * @param lastNodo el nuevo nodo que sera el ultimo de la lista.
+     * @param lastNodo, el nuevo nodo que sera el ultimo de la lista.
      */
     public void setLastNodo(Nodo<T> lastNodo) {
         this.lastNodo = lastNodo;
     }
     
     /**
+     * Modifica el tamaño de la lista.
+     * 
+     * @param size, el nuevo tamaño de la lista.
+     */
+    public void setSize(int size){
+        if (size >= 0){
+            this.iSize = size;
+        }
+    }
+    
+    
+    /**
      * Retorna el siguiente nodo enlazado.
      * 
-     * @param pNodo el nodo dado.
-     * @return nextNodo el siguiente nodo.
+     * @param pNodo, el nodo dado.
+     * @return nextNodo, el siguiente nodo.
      */
     public Nodo<T> next(Nodo<T> pNodo) {
         Nodo<T> nextNodo = null;
@@ -88,8 +100,8 @@ public class LinkedList<T> {
      * Metodo que retorna el nodo que se encuentra en el punto 
      * medio de la lista, dado un punto inicial.
      * 
-     * @param startNodo nodo inicial.
-     * @return middleNodo
+     * @param startNodo, nodo inicial.
+     * @return middleNodo, el nodo que se ubica en la mitad de la lista.
      */
     public Nodo<T> getMiddle(Nodo<T> startNodo){
         if (startNodo == null){
@@ -107,7 +119,8 @@ public class LinkedList<T> {
     /**
      * Verifica si la lista esta vacia.
      * 
-     * @return boolean
+     * @return true si no hay elementos, false si hay
+     * al menos un elemento.
      */
     public boolean isEmpty() {
         return firstNodo == null;
@@ -125,17 +138,17 @@ public class LinkedList<T> {
     /**
      * Retorna el tamaño de la lista.
      * 
-     * @return iSize
+     * @return iSize, el tamaño de la lista.
      */
     public int size() {
         return iSize;
     }
     
     /**
-     * Metodo que inserta un nodo con la informacion dada a 
-     * insertar en la primera posicion de la lista.
+     * Metodo que inserta un nodo con la informacion dada, 
+     * en la primera posicion de la lista.
      * 
-     * @param tInfo informacion a insertar
+     * @param tInfo, informacion a insertar.
      */
     public void insertFirst(T tInfo) {
         Nodo<T> NodoAux = new Nodo<>(tInfo);
@@ -263,26 +276,6 @@ public class LinkedList<T> {
     public T getInfo(Nodo<T> nodo){
         return nodo.gettInfo();
     }
-
-    /**
-     * Busca un nodo en la lista que este guardando
-     * la informacion dada.
-     * 
-     * @param tInfo informacion dada.
-     * @return auxNodo nodo con la informacion dada.
-     */
-    public Nodo<T> search(T tInfo) {
-        if (!isEmpty()) {
-            Nodo<T> auxNodo;
-            for (auxNodo = first(); auxNodo != null; auxNodo = next(auxNodo)){
-                if (auxNodo.gettInfo().equals(tInfo)){
-                    return auxNodo;
-                }
-            }
-            return null;
-        }
-        return null;    
-    }
     
     /**
      * Procedimiento que elimina el primer nodo de la lista.
@@ -354,20 +347,6 @@ public class LinkedList<T> {
                 iSize--;
             }
         } 
-    }
-    
-    /**
-     * Elimina un nodo que este guardando la informacion dada.
-     * 
-     * @param tInfo informacion dada.
-     */
-    public void delateByInfo(T tInfo) {
-        if (!isEmpty()){
-            Nodo<T> nodo = search(tInfo);
-            if (nodo != null){
-                delate(nodo);
-            }
-        }
     }
     
     /**

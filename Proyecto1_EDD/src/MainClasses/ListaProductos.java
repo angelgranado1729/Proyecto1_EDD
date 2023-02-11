@@ -18,11 +18,11 @@ public class ListaProductos extends LinkedList<Producto> {
     }
 
     /**
-     * Ordena la lista dado dos extremos.
+     * Dado dos nodos, retorna el nodo cabeza de la lista ordenada.
      * 
-     * @param a extremo inferior.
-     * @param b extremo superior.
-     * @return result nuevo nodo inicial
+     * @param a, nodo dado
+     * @param b nodo dado.
+     * @return result, nuevo nodo cabeza.
      */
     public Nodo<Producto> sortedMerge(Nodo<Producto> a, Nodo<Producto> b){
         Nodo<Producto> result;
@@ -47,8 +47,8 @@ public class ListaProductos extends LinkedList<Producto> {
      * A partir de un nodo dado, ordena la lista de forma ascendente,
      * segun los nombres de los productos registrados en la lista.
      * 
-     * @param headNodo nodo de referencia.
-     * @return sortedList nuevo nodo cabeza.
+     * @param headNodo, nodo de referencia.
+     * @return sortedList, el nuevo nodo cabeza.
      */
     public Nodo<Producto> mergeSort(Nodo<Producto> headNodo){
         if (headNodo == null || next(headNodo) == null){
@@ -76,17 +76,19 @@ public class ListaProductos extends LinkedList<Producto> {
     
     /**
      * Metodo que retorna la posicion que ocupa en la lista un nodo
-     * con el nombre del producto dada.
+     * con el nombre del producto dado.
      * 
-     * @param producto nombre del producto dado.
-     * @return auxNodo nodo que guarda el producto dado.
+     * @param producto, el nombre del producto dado.
+     * @return -1 si la lista esta vacia o no hay ningun producto con 
+     * el nombre dado. Si se encontro el producto con el nombre, entonces
+     * retorna su posicion en la lista.
      */
     public int indexOf(String producto) {
         if (!isEmpty()){
             Nodo<Producto> auxNodo = first();
             int count = 0;
             while (auxNodo != null) {
-                if (auxNodo.gettInfo().getProducto().equalsIgnoreCase(producto)) {
+                if (auxNodo.gettInfo().getProducto().equals(producto)) {
                     return count;
                 }
                 auxNodo = next(auxNodo);
@@ -98,16 +100,17 @@ public class ListaProductos extends LinkedList<Producto> {
     }
     
     /**
-     * Retorna un nodo que este guardando un producto con el nombre dado.
+     * Retorna el nodo que guarda el producto con el nombre dado.
      * 
-     * @param producto nombre del producto.
-     * @return auxNodo nodo que esta guardando el producto con el nombre dado.
+     * @param producto, nombre del producto.
+     * @return auxNodo, el nodo que guarda el producto con el 
+     * nombre dado.
      */
-    public Nodo<Producto> getProduct(String producto) {
+    public Nodo<Producto> search(String producto) {
         if (!isEmpty()){
            Nodo<Producto> auxNodo = first();
            while (auxNodo != null) {
-               if (auxNodo.gettInfo().getProducto().equalsIgnoreCase(producto)) {
+               if (auxNodo.gettInfo().getProducto().equals(producto)) {
                    return auxNodo;
                }
                auxNodo = next(auxNodo);
@@ -118,9 +121,30 @@ public class ListaProductos extends LinkedList<Producto> {
     }
     
     /**
+     * Elimina el nodo que guarda el producto con el 
+     * nombre dado.
+     * 
+     * @param producto, el nombre del producto a eliminar.
+     */
+    public void delateProduct(String producto) {
+        if (!isEmpty()){
+            Nodo<Producto> auxNodo = search(producto);
+            while (auxNodo != null){
+                if (next(auxNodo).gettInfo().getProducto().equals(producto)){
+                    auxNodo.setNextNodo(next(next(auxNodo)));
+                    this.setSize(this.size() - 1);
+                    break;
+                }
+                auxNodo = next(auxNodo);
+            }
+        }
+    }
+    
+    /**
      * Retorna todos los nodos de la lista en un array.
      * 
-     * @return arrayOfProducto
+     * @return arrayOfProducto, un array con todos los nodos
+     * de la lista en un array.
      */
     public Producto[] toArray() {
         int len = size();
@@ -152,9 +176,5 @@ public class ListaProductos extends LinkedList<Producto> {
         }
         return string;
     }
-    
-    public void delate(String product){
-        
-    }
-
+   
 }

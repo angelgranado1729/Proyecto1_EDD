@@ -17,6 +17,8 @@ public class Nuevo_pedido extends javax.swing.JFrame {
      */
     public Nuevo_pedido() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
     }
 
     /**

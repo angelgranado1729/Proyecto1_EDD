@@ -17,6 +17,7 @@ public class Nuevas_Rutas extends javax.swing.JFrame {
      */
     public Nuevas_Rutas() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

@@ -17,6 +17,7 @@ public class Cargar_y_Guardar extends javax.swing.JFrame {
      */
     public Cargar_y_Guardar() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

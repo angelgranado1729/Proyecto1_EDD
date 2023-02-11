@@ -17,6 +17,7 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
      */
     public Nuevo_Almacen() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

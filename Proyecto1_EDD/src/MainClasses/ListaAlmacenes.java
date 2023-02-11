@@ -47,8 +47,8 @@ public class ListaAlmacenes extends LinkedList<Almacen> {
      * A partir de un nodo dado, ordena la lista de forma ascendente,
      * segun los nombres de los almacenes registrados en la lista.
      * 
-     * @param headNodo nodo de referencia.
-     * @return sortedList nuevo nodo cabeza.
+     * @param headNodo, nodo de referencia.
+     * @return sortedList, el nuevo nodo cabeza.
      */
     public Nodo<Almacen> mergeSort(Nodo<Almacen> headNodo){
         if (headNodo == null || next(headNodo) == null){
@@ -78,15 +78,15 @@ public class ListaAlmacenes extends LinkedList<Almacen> {
      * Metodo que retorna la posicion que ocupa en la lista un nodo
      * con el nombre del almacen dada.
      * 
-     * @param almacen nombre del almacen dado.
-     * @return index la posicion del nodo que guarda el almacen
+     * @param almacen =, el nombre del almacen dado.
+     * @return index, la posicion del nodo que guarda el almacen
      */
     public int indexOf(String almacen) {
         if (!isEmpty()) {
             Nodo<Almacen> auxNodo = first();
             int count = 0;
             while (auxNodo != null) {
-                if (auxNodo.gettInfo().getAlmacen().equalsIgnoreCase(almacen)) {
+                if (auxNodo.gettInfo().getAlmacen().equals(almacen)) {
                     return count;
                 }
                 auxNodo = next(auxNodo);
@@ -98,17 +98,17 @@ public class ListaAlmacenes extends LinkedList<Almacen> {
     }
     
     /**
-     * Retorna el almacen con el nombre dado.
+     * Busca el almacen con el nombre dado.
      * 
-     * @param almacen nombre del almacen
-     * @return temp el almacen con el nombre dado.
+     * @param almacen, el nombre del almacen.
+     * @return el Almacen con el nombre dado.
      */
-    public Almacen getByAlmacen(String almacen) {
+    public Almacen searh(String almacen) {
         Almacen temp = null;
         if (!isEmpty()) {
             Nodo<Almacen> auxNodo = first();
             while (auxNodo != null) {
-                if (auxNodo.gettInfo().getAlmacen().equalsIgnoreCase(almacen)) {
+                if (auxNodo.gettInfo().getAlmacen().equals(almacen)) {
                     temp = auxNodo.gettInfo();
                     return temp;
                 }
@@ -117,6 +117,24 @@ public class ListaAlmacenes extends LinkedList<Almacen> {
             return temp;
         }
         return temp;
+    }
+    
+    /**
+     * Elimina el almacen con el nombre dado.
+     * 
+     * @param almacen, el nombre del almacen a eliminar.
+     */
+    public void delateAlmacen(String almacen){
+        if (!isEmpty()){
+            Nodo<Almacen> auxNodo = first();
+            while (auxNodo != null){
+                if (next(auxNodo).gettInfo().getAlmacen().equals(almacen)){
+                   auxNodo.setNextNodo(next(next(auxNodo)));
+                   this.setSize(size() - 1);
+                }
+                auxNodo = next(auxNodo);
+            }
+        }
     }
     
     /**
@@ -153,10 +171,5 @@ public class ListaAlmacenes extends LinkedList<Almacen> {
             } 
         }
         return string;              
-    }
-    
-    public void delate(String storageName){
-        
-    }
-    
+    }    
 }

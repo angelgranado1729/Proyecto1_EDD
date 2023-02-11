@@ -17,6 +17,7 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -35,7 +36,6 @@ public class Inicio extends javax.swing.JFrame {
         icono1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btn_cargar_guardar = new javax.swing.JPanel();
-        icono2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         btn_nueva_ruta = new javax.swing.JPanel();
         icono3 = new javax.swing.JLabel();
@@ -109,9 +109,6 @@ public class Inicio extends javax.swing.JFrame {
 
         btn_cargar_guardar.setBackground(new java.awt.Color(55, 71, 90));
 
-        icono2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        icono2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/pedidob.png"))); // NOI18N
-
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Nuevo Pedido");
@@ -121,19 +118,15 @@ public class Inicio extends javax.swing.JFrame {
         btn_cargar_guardarLayout.setHorizontalGroup(
             btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_cargar_guardarLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(icono2)
-                .addGap(18, 18, 18)
+                .addGap(40, 40, 40)
                 .addComponent(jLabel5)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
         btn_cargar_guardarLayout.setVerticalGroup(
             btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_cargar_guardarLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel5)
-                    .addComponent(icono2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel5)
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
@@ -497,7 +490,6 @@ public static void main(String args[]) {
     private javax.swing.JLabel exit;
     private javax.swing.JLabel icono;
     private javax.swing.JLabel icono1;
-    private javax.swing.JLabel icono2;
     private javax.swing.JLabel icono3;
     private javax.swing.JLabel icono4;
     private javax.swing.JLabel icono5;
