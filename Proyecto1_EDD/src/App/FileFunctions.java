@@ -2,7 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package MainClasses;
+package App;
+import MainClasses.Almacen;
+import MainClasses.Grafo;
+import MainClasses.Nodo;
+import MainClasses.Producto;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
