@@ -29,13 +29,13 @@ public class Grafo{
     /**
      * Constructor de la clase.
      * 
-     * @param numMaxVertices, el numero maximo de vertices. 
+     * @param numVertices, cantidad de vertices 
      */
-    public Grafo(int numMaxVertices){
+    public Grafo(int numVertices){
         this.almacenes = new ListaAlmacenes();
-        this.numMaxVertices = numMaxVertices;
-        this.numVertices = 0;
-        this.matrixAdj = new MatrizAdj(numMaxVertices);
+        this.numMaxVertices = numVertices * 2;
+        this.numVertices = numVertices;
+        this.matrixAdj = new MatrizAdj(numVertices);
     }
     
     /**
@@ -97,10 +97,11 @@ public class Grafo{
      * @param source, nombre del almacen origen.
      * @param destination, nombre del almacen destino.
      * @param distance, la distancia de la ruta.
+     * @throws java.lang.Exception
      * @throws "Distancia no valida", si la distancia es negativa.
      * @throws "Vertice no existe", si el almacen no esta registrado.
      */
-    public void addEdge(String source, String destination, double distance) throws Exception{
+    public void addEdge(String source, String destination, int distance) throws Exception{
         int numSource = numAlmacen(source);
         int numDestination = numAlmacen(destination);
         if (numSource < 0 || numDestination < 0) throw new Exception("Vertice no existe");
@@ -115,6 +116,7 @@ public class Grafo{
      * @param destination, el nombre del almacen destino.
      * @return true si hay una ruta que conecte ambos almacenes,
      * false si no hay ninguna ruta que los conecte.
+     * @throws java.lang.Exception
      * @throws "Vertice no existe", si uno de los almacenes no esta registrado 
      * en el grafo.
      */
@@ -305,7 +307,7 @@ public class Grafo{
      * @param target, indice del almacen destino.
      * @return la distancia entre los dos almacenes.
      */
-    public double getPeso(int source, int target){
+    public int getPeso(int source, int target){
         return matrixAdj.getPeso(source, target);
     }
     

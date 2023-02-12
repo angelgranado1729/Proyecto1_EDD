@@ -12,7 +12,7 @@ public class MatrizAdj {
     /**
      * Matriz de adyacencia.
      */
-    private double[][] matrix;
+    private int[][] matrix;
     /**
      * Numero de vertices.
      */
@@ -30,8 +30,8 @@ public class MatrizAdj {
      */
     public MatrizAdj(int numVertices){
         this.numVertices = numVertices;
-        this.numMaxVertices = 30;
-        this.matrix = new double[numMaxVertices][numMaxVertices];
+        this.numMaxVertices = numVertices * 2;
+        this.matrix = new int[numMaxVertices][numMaxVertices];
         for (int i = 0; i < numMaxVertices; i++){
             for (int j = 0; j <  numMaxVertices; j++){
                 matrix[i][j] = 0;
@@ -45,7 +45,7 @@ public class MatrizAdj {
     public MatrizAdj(){
         this.numVertices = 0;
         this.numMaxVertices = 30;
-        this.matrix = new double[numMaxVertices][numMaxVertices];
+        this.matrix = new int[numMaxVertices][numMaxVertices];
         for (int i = 0; i < numMaxVertices; i++){
             for (int j = 0; j <  numMaxVertices; j++){
                 matrix[i][j] = 0;
@@ -58,7 +58,7 @@ public class MatrizAdj {
      * 
      * @return la matriz de adyacencia.
      */
-    public double[][] getMatrix() {
+    public int[][] getMatrix() {
         return matrix;
     }
 
@@ -67,7 +67,7 @@ public class MatrizAdj {
      * 
      * @param matrix, la nueva matriz de adyacencia.
      */
-    public void setMatrix(double[][] matrix) {
+    public void setMatrix(int[][] matrix) {
         this.matrix = matrix;
     }
 
@@ -96,7 +96,7 @@ public class MatrizAdj {
      * @param destination, indice del vertice destino.
      * @param distance , la distancia entre los dos vertices.
      */
-    public void addEdge(int source, int destination, double distance){
+    public void addEdge(int source, int destination, int distance){
         getMatrix()[source][destination] = distance;
     }
     
@@ -137,7 +137,7 @@ public class MatrizAdj {
      * @param destination, indice del vertice destino.
      * @return la distancia entre los dos vertices.
      */
-    public double getPeso(int source, int destination){
+    public int getPeso(int source, int destination){
         if (adjacency(source, destination)){
             return matrix[source][destination];
         } else {
@@ -152,7 +152,7 @@ public class MatrizAdj {
      * @param destination, indice del vertice destino.
      * @param peso, la nueva distancia entre los dos vertices.
      */
-    public void setPeso(int source, int destination, double peso){
+    public void setPeso(int source, int destination, int peso){
         this.matrix[source][destination] = peso;
     }
 }

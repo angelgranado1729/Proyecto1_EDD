@@ -17,8 +17,8 @@ import MainClasses.ListaAlmacenes;
 public class MainFuctions {
     
 
-    public static int getMinDistance(double[] distancias, boolean[] verticesVisitados){
-        double minDistancia = Double.MAX_VALUE;
+    public static int getMinDistance(int[] distancias, boolean[] verticesVisitados){
+        int minDistancia = Integer.MAX_VALUE;
         int verticeDistanciaMin = 1;
         
         for (int i = 0; i < distancias.length; i++){
@@ -31,7 +31,7 @@ public class MainFuctions {
     }
     
     
-    public static Object[] getPath(int[] ultimosVertices, double[] distancias, int origen, int destino){
+    public static Object[] getPath(int[] ultimosVertices, int[] distancias, int origen, int destino){
         int target = destino;
         Object[] rutaYDistancia = new Object[2];
         int[] rutaInvertida = new int[ultimosVertices.length];
@@ -56,11 +56,11 @@ public class MainFuctions {
     
     public static Object[] dijkstra(Grafo grafo, int origen, int destino){
         int[] ultimosVisitados = new int[grafo.getNumVertices()];
-        double[] distancias = new double[grafo.getNumVertices()];
+        int[] distancias = new int[grafo.getNumVertices()];
         boolean[] verticesVisitados = new boolean[grafo.getNumVertices()];
         
         for (int i = 0; i< grafo.getNumVertices(); i++){
-            distancias[i] = Double.MAX_VALUE;
+            distancias[i] = Integer.MAX_VALUE;
             verticesVisitados[i]  = false;
         }
         
@@ -97,7 +97,7 @@ public class MainFuctions {
 	int k = l;
         
 	while (i < n1 && j < n2) {
-            if ((double) ((Object[]) L[i])[1] <= (double) ((Object[]) R[j])[1]) {
+            if ((int) ((Object[]) L[i])[1] <= (int) ((Object[]) R[j])[1]) {
                 rutas[k] = L[i];
                 i++;
             } else {
@@ -136,7 +136,7 @@ public class MainFuctions {
 	}
 	mergeSort(rutas, 0, rutas.length - 1);
         
-        if ((double) ((Object[]) rutas[0])[1] < Double.MAX_VALUE){
+        if ((int) ((Object[]) rutas[0])[1] < Integer.MAX_VALUE){
             return rutas[0];
         } else {
             return null;

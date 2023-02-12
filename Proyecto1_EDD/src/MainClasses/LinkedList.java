@@ -255,14 +255,17 @@ public class LinkedList<T> {
      * @return auxNodo nodo a acceder.
      */
     public Nodo<T> getByIndex(int index) {
-        if (index >= 0 && index < iSize) {
-            int aux = 0;
-            Nodo<T> auxNodo = first();
-            while (aux != index) {
-                auxNodo = next(auxNodo);
-                aux++;
+        if (!isEmpty()){
+            if (index >= 0 && index < iSize) {
+                int aux = 0;
+                Nodo<T> auxNodo = first();
+                while (aux != index) {
+                    auxNodo = next(auxNodo);
+                    aux++;
+                }
+                return auxNodo;
             }
-            return auxNodo;
+            return null;
         }
         return null;
     }
