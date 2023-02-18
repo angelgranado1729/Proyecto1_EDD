@@ -5,11 +5,13 @@
 package App;
 import MainClasses.Almacen;
 import MainClasses.Grafo;
-import MainClasses.Nodo;
+import MainClasses.ListUtilMethods.UtilMethodsPoducts;
+import MainClasses.Node;
 import MainClasses.Producto;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.PrintWriter;
 import javax.swing.JOptionPane;
 /**
@@ -18,60 +20,117 @@ import javax.swing.JOptionPane;
  */
 public class FileFunctions {
     
-    public static void writeTxt(Grafo g){
+    public static void saveTxt(Grafo g){
         String data = "";
         
         if (!g.isEmpty()){
             data += "Almacenes;" + "\n";
-            Nodo<Almacen> pAux = g.getAlmacenes().first();
+            Node<Almacen> pAux = g.getAlmacenes().first();
             
             while (pAux != null){
-                data += "Almacen " + pAux.gettInfo().getAlmacen() + ":" + "\n";
+                data += "Almacen " + pAux.getTInfo().getAlmacen() + ":" + "\n";
                 
-                Nodo<Producto> auxProduct = pAux.gettInfo().getListaProductos().first();
+                Node<Producto> auxProduct = pAux.getTInfo().getListaProductos().first();
                 while (auxProduct != null){
-                    if (pAux.gettInfo().getListaProductos().next(auxProduct) == null){
-                        data += auxProduct.gettInfo().getProducto() + "," + auxProduct.gettInfo().getStock() + ";" + "\n";
+                    if (pAux.getTInfo().getListaProductos().next(auxProduct) == null){
+                        data += auxProduct.getTInfo().getProducto() + "," + auxProduct.getTInfo().getStock() + ";" + "\n";
                     } else {
-                        data += auxProduct.gettInfo().getProducto() + "," + auxProduct.gettInfo().getStock() + "\n";  
+                        data += auxProduct.getTInfo().getProducto() + "," + auxProduct.getTInfo().getStock() + "\n";  
                     }
-                    auxProduct = pAux.gettInfo().getListaProductos().next(auxProduct);
+                    auxProduct = pAux.getTInfo().getListaProductos().next(auxProduct);
                 }
                 
                 pAux = g.getAlmacenes().next(pAux); 
             }
             
             data += "Rutas;" + "\n";
-            int[][] matriz = g.getMatrixAdj().getMatrix();
+            double[][] matriz = g.getMatrixAdj().getMatrix();
             for (int i = 0; i  < g.getNumVertices(); i++){
                 for (int j = 0; j < g.getNumVertices(); j++){
-                    Almacen source = g.getAlmacenes().getByIndex(i).gettInfo();
-                    Almacen target = g.getAlmacenes().getByIndex(j).gettInfo();
+                    Almacen source = g.getAlmacenes().getNode(i).getTInfo();
+                    Almacen target = g.getAlmacenes().getNode(j).getTInfo();
                     if (source != null && target != null){
                         String nameSource = source.getAlmacen();
-                        String nameTarget = source.getAlmacen();
-                        data += nameSource + "," + nameTarget + "," + matriz[i][j] + "\n";
+                        String nameTarget = target.getAlmacen();
+                        if (matriz[i][j] != 0){
+                            if (matriz[i][j] % 1 == 0){
+                                data += nameSource + "," + nameTarget + "," + (int) matriz[i][j] + "\n";  
+                            } else{
+                                data += nameSource + "," + nameTarget + "," +  matriz[i][j] + "\n";     
+                            }
+                        }
                     }
                 }
             }
         }
-        
         try{
-            PrintWriter pw = new PrintWriter("test\\amazon.txt");
-            pw.print(data);
-            pw.close();
+            // Crear un objeto FileWriter para escribir en el archivo
+            FileWriter fileWriter = new FileWriter(App.selectedFile);
+
+            // Crear un objeto PrintWriter para escribir texto en el archivo
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+
+            // Escribir en el archivo utilizando el método print o println
+            printWriter.print(data);
+
+            // Cerrar el archivo para liberar recursos
+            printWriter.close();
+            
             JOptionPane.showMessageDialog(null, "El archivo ha sido guardado exitosamente!");
         } catch (Exception e){
-            JOptionPane.showMessageDialog(null, "Error al escribir el archivo");
-        }
+            JOptionPane.showMessageDialog(null, "Error al escribir el archivo");         
+        } 
     }
     
-    public static Grafo readTxt(){
-        Grafo g = new Grafo();
+    public static void loadData(String data){
+        if (!("".equals(data))){
+            String[] almacenes = data.substring("Almacenes;".length(), data.indexOf("Rutas;") - 1).strip().split(";");
+            String[] rutas = data.substring(data.indexOf("Rutas;") + "Rutas;".length()).strip().split("\n");         
+            Grafo grafo = new Grafo(almacenes.length);
+                    
+            //Llenamos la lista almacenes
+            for (String almacenData: almacenes){
+                String[] dataBruta = almacenData.split(":");   
+                
+                String name = dataBruta[0].replaceAll("Almacen ", "").strip();
+//                System.out.println(dataBruta[1]);
+                String[] productsData = dataBruta[1].split("\n");
+                Almacen almacen = new Almacen(name);
+                almacen.getListaProductos().setMethods(new UtilMethodsPoducts());
+                
+                for (String productData: productsData){
+                    if (!productData.equalsIgnoreCase("")){
+                        String[] productInfo = productData.split(",");
+                        Producto producto = new Producto(productInfo[0], Integer.parseInt(productInfo[1]));
+                        almacen.getListaProductos().addEnd(producto);
+                    }
+                }
+                grafo.getAlmacenes().addEnd(almacen);
+            }
+            
+            
+            //Llenamos la matriz de adyacencia
+            for (String rutaData: rutas){
+//                System.out.println(rutaData);
+                String[] rutaInfo = rutaData.split(",");
+                String source = rutaInfo[0];
+                String target = rutaInfo[1];
+                double distance = Double.parseDouble(rutaInfo[2]);
+                try{
+                    grafo.addEdge(source, target, distance);
+                } catch (Exception e){
+                    
+                }                
+            }
+            //Retornamos grafo con la informacion del txt
+            App.g = grafo;
+        }  
+    }
+    
+    public static void readTxt(){
         String line;
         String data = "";
-        String path = "test\\amazon.txt";
-        File file = new File(path);
+        File file = App.selectedFile;
         
         try{
             if (!file.exists()){
@@ -85,49 +144,15 @@ public class FileFunctions {
                         data += line + "\n";
                     }
                 }
-                
-                if (!("".equals(data))){
-                    String[] almacenes = data.substring("Almacenes;".length(), data.indexOf("Rutas;") - 1).strip().split(";");
-                    String[] rutas = data.substring(data.indexOf("Rutas;") + "Rutas;".length()).strip().split("\n");
-                    Grafo grafo = new Grafo(almacenes.length);
-                    
-                    //Llenamos la lista almacenes
-                    for (int i = 0 ; i < almacenes.length; i++){
-                        String[] almacenInfo = almacenes[i].split("\n");
-                        String name = almacenInfo[0].replaceAll("Almacen ", "").strip().replace(":", "");
-                        Almacen almacen = new Almacen(name);
-                        
-                        for (int j = 1; j < almacenInfo.length; j++ ){
-                            String[] productoInfo = almacenInfo[j].split(",");
-                            Producto producto = new Producto(productoInfo[0], Integer.parseInt(productoInfo[1])); 
-                            almacen.getListaProductos().append(producto);
-                        }
-                        grafo.getAlmacenes().append(almacen);
-                    }
-                    
-                    //Llenamos la matriz de adyacencias
-                    for (String info: rutas){
-                        String[] rutaInfo = info.split(",");
-                        int sourceIndex = grafo.numAlmacen(rutaInfo[0]);
-                        int targetIndex = grafo.numAlmacen(rutaInfo[1]);
-                        int distance = Integer.parseInt(rutaInfo[2]);
-                        grafo.getMatrixAdj().addEdge(sourceIndex, targetIndex, distance); 
-                    }
-                    
-                br.close();
-                //Retornamos grafo con la informacion del txt
-                return grafo;
-                }
-                
                 br.close();
             }
+//            System.out.println(data);
+            loadData(data);
             
         } catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error al leer el archivo");
         }
         
-        //Retornamos grafo vacio
-        return g;
     }
     
 }

@@ -91,16 +91,36 @@ public class Nuevo_pedido extends javax.swing.JFrame {
         SidePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/AmazonLogo.png"))); // NOI18N
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
         SidePanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 280, 80));
 
         btn_Inicio1.setBackground(new java.awt.Color(55, 71, 90));
+        btn_Inicio1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_Inicio1MouseClicked(evt);
+            }
+        });
 
         icono1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         icono1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/amazon_logo_blanco.png"))); // NOI18N
+        icono1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icono1MouseClicked(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Inicio");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_Inicio1Layout = new javax.swing.GroupLayout(btn_Inicio1);
         btn_Inicio1.setLayout(btn_Inicio1Layout);
@@ -317,13 +337,28 @@ public class Nuevo_pedido extends javax.swing.JFrame {
         SidePanel.add(btn_mapa_almacenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 550, 330, 60));
 
         btn_cargar_guardar1.setBackground(new java.awt.Color(55, 71, 90));
+        btn_cargar_guardar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_cargar_guardar1MouseClicked(evt);
+            }
+        });
 
         icono7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         icono7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/cargar y guardar blanco.png"))); // NOI18N
+        icono7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icono7MouseClicked(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Cargar y Guardar");
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_cargar_guardar1Layout = new javax.swing.GroupLayout(btn_cargar_guardar1);
         btn_cargar_guardar1.setLayout(btn_cargar_guardar1Layout);
@@ -588,6 +623,55 @@ public class Nuevo_pedido extends javax.swing.JFrame {
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        Inicio v1 = new Inicio();
+        this.dispose();
+        v1.setVisible(true);
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void btn_Inicio1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Inicio1MouseClicked
+        // TODO add your handling code here:
+        Inicio v1 = new Inicio();
+        this.dispose();
+        v1.setVisible(true);
+    }//GEN-LAST:event_btn_Inicio1MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        Inicio v1 = new Inicio();
+        this.dispose();
+        v1.setVisible(true);
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void icono1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono1MouseClicked
+        // TODO add your handling code here:
+        Inicio v1 = new Inicio();
+        this.dispose();
+        v1.setVisible(true);
+    }//GEN-LAST:event_icono1MouseClicked
+
+    private void btn_cargar_guardar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cargar_guardar1MouseClicked
+        // TODO add your handling code here:
+        Cargar_y_Guardar v3 = new Cargar_y_Guardar();
+        this.dispose();
+        v3.setVisible(true);
+    }//GEN-LAST:event_btn_cargar_guardar1MouseClicked
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        // TODO add your handling code here:
+        Cargar_y_Guardar v3 = new Cargar_y_Guardar();
+        this.dispose();
+        v3.setVisible(true);
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void icono7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono7MouseClicked
+        // TODO add your handling code here:
+        Cargar_y_Guardar v3 = new Cargar_y_Guardar();
+        this.dispose();
+        v3.setVisible(true);
+    }//GEN-LAST:event_icono7MouseClicked
 
 
  

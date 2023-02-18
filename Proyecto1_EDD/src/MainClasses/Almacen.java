@@ -4,28 +4,25 @@
  */
 package MainClasses;
 
+import MainClasses.ListUtilMethods.UtilMethodsPoducts;
+
+
 /**
  *
  * @author Angel Granado
  */
+
 public class Almacen {
-    
-    /**
-     * Nombre del almacen.
-     */
+
     private String almacen;
-    /**
-     * Lista con los productos registrados en el almacen.
-     */
-    private ListaProductos listaProductos;
-    
+    private LinkedList<Producto> listaProductos;
     /**
      * Constructor de la clase.
      * @param almacen, el nombre del almacen
      */
     public Almacen(String almacen){
         this.almacen = almacen;
-        this.listaProductos =  new ListaProductos();        
+        this.listaProductos =  new LinkedList<Producto>(new UtilMethodsPoducts());  
     }
     
     /**
@@ -35,9 +32,10 @@ public class Almacen {
      * @param listaProducts, la lista de los productos 
      * registrados en el almacen.
      */
-    public Almacen(String almacen, ListaProductos listaProducts){
+    public Almacen(String almacen, LinkedList<Producto> listaProducts){
         this.almacen = almacen;
         this.listaProductos = listaProducts;
+        listaProductos.setMethods(new UtilMethodsPoducts());
     }
 
     /**
@@ -62,7 +60,7 @@ public class Almacen {
      * 
      * @return listaProductos.
      */
-    public ListaProductos getListaProductos() {
+    public LinkedList<Producto> getListaProductos() {
         return listaProductos;
     }
 
@@ -71,7 +69,7 @@ public class Almacen {
      * 
      * @param listaProducts, la nueva listaProductos.
      */
-    public void setListaProductos(ListaProductos listaProducts) {
+    public void setListaProductos(LinkedList<Producto> listaProducts) {
         this.listaProductos = listaProducts;
     }
 
@@ -84,10 +82,10 @@ public class Almacen {
     public void addProduct(String producto, int stock) {
         if (stock >= 0){
             Producto newProduct = new Producto(producto, stock);
-            this.listaProductos.append(newProduct);
+            this.listaProductos.addEnd(newProduct);
         } else {
             Producto newProduct = new Producto(producto);
-            this.listaProductos.append(newProduct);
+            this.listaProductos.addEnd(newProduct);
         }
     }
     
@@ -96,9 +94,13 @@ public class Almacen {
      * 
      * @param producto, el nombre del producto que se desea eliminar.
      */
-    public void delateProduct(String producto) {
-        int index = this.listaProductos.indexOf(producto);
-        this.listaProductos.delate(index);
+    public void deleteProduct(String producto) {
+        this.listaProductos.setMethods(new UtilMethodsPoducts());
+        int index = listaProductos.indexOf(new Producto(producto));
+        if (index != -1){
+            this.listaProductos.pop(index);   
+        }  
+        
     }
     
     /**
@@ -109,9 +111,11 @@ public class Almacen {
      */
     public void modifyStock(String producto, int newStock) {
         if (newStock >= 0){
-            Nodo<Producto> productNodo = this.listaProductos.search(producto);
-            Producto newProduct = new Producto(productNodo.gettInfo().getProducto(), newStock);
-            productNodo.settInfo(newProduct);
+            Node<Producto> productNodo = this.listaProductos.search(new Producto(producto));
+            if (productNodo != null){
+                Producto newProduct = new Producto(productNodo.getTInfo().getProducto(), newStock);
+                productNodo.setTInfo(newProduct);      
+            }
         }       
     }
     
@@ -122,9 +126,12 @@ public class Almacen {
      * @return product, el producto encontrado.
      */
     public Producto searchProduct(String producto) {
-        Nodo<Producto> productNodo = this.listaProductos.search(producto);
-        Producto product = productNodo.gettInfo();
-        return product;
+        Node<Producto> productNodo = this.listaProductos.search(new Producto(producto));
+        if (productNodo != null){
+            Producto product = productNodo.getTInfo();
+            return product;    
+        }
+        return null;
     }
     
     /**
@@ -135,10 +142,7 @@ public class Almacen {
     @Override
     public String toString(){
         String string = "";
-        string += this.almacen + "\n";
-        for (int num = 0; num < this.listaProductos.size(); num++) {
-            string += this.listaProductos.getByIndex(num).gettInfo().toString() + "\n";
-        }
+        string += this.almacen + "\n" + listaProductos.toString();
         return string;
     }
 

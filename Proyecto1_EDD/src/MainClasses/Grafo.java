@@ -4,6 +4,10 @@
  */
 package MainClasses;
 
+import App.App;
+import App.Helpers;
+import MainClasses.ListUtilMethods.UtilMethods2;
+
 /**
  *
  * @author Angel Granado & andre
@@ -12,7 +16,7 @@ public class Grafo{
     /**
      * Lista con los almacenes registrados.
      */
-    private ListaAlmacenes almacenes;
+    private LinkedList<Almacen> almacenes;
     /**
      * Numero maximo de vertices.
      */
@@ -32,7 +36,7 @@ public class Grafo{
      * @param numVertices, cantidad de vertices 
      */
     public Grafo(int numVertices){
-        this.almacenes = new ListaAlmacenes();
+        this.almacenes = new LinkedList<Almacen>(new UtilMethods2());
         this.numMaxVertices = numVertices * 2;
         this.numVertices = numVertices;
         this.matrixAdj = new MatrizAdj(numVertices);
@@ -42,7 +46,7 @@ public class Grafo{
      * Constructor de la clase.
      */
     public Grafo(){
-        this.almacenes = new ListaAlmacenes();
+        this.almacenes = new LinkedList<Almacen>(new UtilMethods2());
         this.numMaxVertices = 30;
         this.numVertices = 0;
         this.matrixAdj = new MatrizAdj();
@@ -64,9 +68,6 @@ public class Grafo{
      * @param almacen, el nombre del almacen.
      * @return el indice del almacen.
      */
-    public int numAlmacen(String almacen){
-        return getAlmacenes().indexOf(almacen);
-    }
     
     /**
      * Verifica si un almacen esta registrado en la red de almacenes (grafo).
@@ -75,7 +76,7 @@ public class Grafo{
      * @return true si pertenece a la red, false si no esta registrado.
      */
     public boolean isVertex(String almacen){
-        return numAlmacen(almacen) != -1;
+        return getIndexWarehouse(almacen) != -1;
     }
     
     /**
@@ -86,7 +87,7 @@ public class Grafo{
     public void addAlmacen(String almacen){
         if (!isVertex(almacen) && getAlmacenes().size() < getNumMaxVertices()){
             Almacen newAlmacen = new Almacen(almacen);
-            getAlmacenes().append(newAlmacen);
+            getAlmacenes().addEnd(newAlmacen);
             setNumVertices(getNumVertices() + 1);
         }
     }
@@ -101,9 +102,9 @@ public class Grafo{
      * @throws "Distancia no valida", si la distancia es negativa.
      * @throws "Vertice no existe", si el almacen no esta registrado.
      */
-    public void addEdge(String source, String destination, int distance) throws Exception{
-        int numSource = numAlmacen(source);
-        int numDestination = numAlmacen(destination);
+    public void addEdge(String source, String destination, double distance) throws Exception{
+        int numSource = getIndexWarehouse(source);
+        int numDestination = getIndexWarehouse(destination);
         if (numSource < 0 || numDestination < 0) throw new Exception("Vertice no existe");
         if (distance < 0) throw new Exception("Distancia no valida");
         getMatrixAdj().addEdge(numSource, numDestination, distance);
@@ -121,8 +122,8 @@ public class Grafo{
      * en el grafo.
      */
     public boolean adjacency(String source, String destination) throws Exception{
-        int numSource = numAlmacen(source);
-        int numDestination = numAlmacen(destination);
+        int numSource = getIndexWarehouse(source);
+        int numDestination = getIndexWarehouse(destination);
         if (numSource < 0 || numDestination < 0) throw new Exception("Vertice no existe");
         return getMatrixAdj().adjacency(numSource, numDestination);
     }
@@ -148,10 +149,10 @@ public class Grafo{
      * @throws java.lang.Exception
      * @throws "Grafo vacio" si no hay almacenes registrados.
      */
-    public ListaAlmacenes BFS() throws Exception{
+    public LinkedList<Almacen> BFS() throws Exception{
         if (!isEmpty()){
             Queue<Almacen> cola = new Queue<>();
-            ListaAlmacenes almacenesVisitados = new ListaAlmacenes();
+            LinkedList<Almacen> almacenesVisitados = new LinkedList<Almacen>();
             boolean visitados[] = new boolean[getNumVertices()];
             Almacen almacenActual;
 
@@ -161,18 +162,18 @@ public class Grafo{
             for(int i = 0; i < getNumVertices(); i++){
 
                 if (!visitados[i]){
-                    cola.enqueue(getAlmacenes().getByIndex(i).gettInfo());
+                    cola.enqueue(getAlmacenes().getNode(i).getTInfo());
                     visitados[i] = true;
 
                     while (!cola.isEmpty()){
                         almacenActual = cola.dequeue();
-                        almacenesVisitados.append(almacenActual);
+                        almacenesVisitados.addEnd(almacenActual);
                         System.out.println(almacenActual.getAlmacen());
-                        int numAux = numAlmacen(almacenActual.getAlmacen());
+                        int numAux = getIndexWarehouse(almacenActual.getAlmacen());
 
                         for (int j = 0; j < getNumVertices(); j++){
                             if ((numAux != j) && (adjacency(numAux,j)) && (!visitados[j])){                            
-                                cola.enqueue(getAlmacenes().getByIndex(j).gettInfo());
+                                cola.enqueue(getAlmacenes().getNode(j).getTInfo());
                                 visitados[j] = true;
                             }
                         }   
@@ -191,9 +192,9 @@ public class Grafo{
      * @param almacenesVisitados, lista con los almacenesvisitados.
      * @return Lista con los almacenes recorridos.
      */
-    public ListaAlmacenes deepTraveling(int numVertice, boolean[]visitados, ListaAlmacenes almacenesVisitados){
+    public LinkedList<Almacen> deepTraveling(int numVertice, boolean[]visitados, LinkedList<Almacen> almacenesVisitados){
         visitados[numVertice] = true;
-        almacenesVisitados.append(getAlmacenes().getByIndex(numVertice).gettInfo());
+        almacenesVisitados.addEnd(getAlmacenes().getNode(numVertice).getTInfo());
         
         for (int i = 0; i < getNumVertices(); i++){
             if ((numVertice != i) && (!visitados[i]) && (getMatrixAdj().adjacency(numVertice, i))){
@@ -211,10 +212,10 @@ public class Grafo{
      * @throws java.lang.Exception
      * @throws "Grafo vacio" si no hay almacenes registrados.
      */
-    public ListaAlmacenes DFS() throws Exception{
+    public LinkedList<Almacen> DFS() throws Exception{
         if (!isEmpty()){
             boolean[] visitados = new boolean[getNumVertices()];
-            ListaAlmacenes almacenesVisitados = new ListaAlmacenes();
+            LinkedList<Almacen> almacenesVisitados = new LinkedList<Almacen>();
 
             for (int i = 0; i < getNumVertices(); i++){
                 visitados[i] = false;
@@ -233,7 +234,7 @@ public class Grafo{
      * 
      * @return la lista almacenes.
      */
-    public ListaAlmacenes getAlmacenes() {
+    public LinkedList<Almacen> getAlmacenes() {
         return almacenes;
     }
 
@@ -242,7 +243,7 @@ public class Grafo{
      * 
      * @param almacenes, la nueva lista almacenes.
      */
-    public void setAlmacenes(ListaAlmacenes almacenes) {
+    public void setAlmacenes(LinkedList<Almacen> almacenes) {
         this.almacenes = almacenes;
     }
 
@@ -307,8 +308,35 @@ public class Grafo{
      * @param target, indice del almacen destino.
      * @return la distancia entre los dos almacenes.
      */
-    public int getPeso(int source, int target){
+    public double getPeso(int source, int target){
         return matrixAdj.getPeso(source, target);
+    }
+    
+    public int getIndexWarehouse(String name){
+        if (!(this.getAlmacenes().isEmpty())){
+            int index =0;
+            Node<Almacen> aux = this.getAlmacenes().getpFirst();
+            while (aux != null){
+                if (aux.getTInfo().getAlmacen().equalsIgnoreCase(name)){
+                    break;
+                }
+                aux = this.getAlmacenes().next(aux);
+                index++;  
+            }
+            return index;
+        } 
+        return -1;
+    }
+    
+    @Override
+    public String toString(){
+        String s = "";
+        if(!this.isEmpty()){
+            s = "Numero de Vertices: " + this.getNumVertices() +"\n" +
+                    "Numero Maximo de Vetices: " + this.getNumMaxVertices() + "\n" + "Almacenes\n"+ this.getAlmacenes().toString()+
+                    "Matriz de Adyacencia\n" + this.getMatrixAdj().toString();
+        }
+        return s;
     }
     
 }

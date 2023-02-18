@@ -35,9 +35,6 @@ public class Gestion_Inventario extends javax.swing.JFrame {
         btn_Inicio1 = new javax.swing.JPanel();
         icono1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        btn_cargar_guardar = new javax.swing.JPanel();
-        icono2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         btn_nueva_ruta = new javax.swing.JPanel();
         icono3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -58,6 +55,8 @@ public class Gestion_Inventario extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        btn_Inicio2 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         exit = new javax.swing.JLabel();
@@ -98,16 +97,36 @@ public class Gestion_Inventario extends javax.swing.JFrame {
         SidePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/AmazonLogo.png"))); // NOI18N
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
         SidePanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 280, 80));
 
         btn_Inicio1.setBackground(new java.awt.Color(55, 71, 90));
+        btn_Inicio1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_Inicio1MouseClicked(evt);
+            }
+        });
 
         icono1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         icono1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/amazon_logo_blanco.png"))); // NOI18N
+        icono1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icono1MouseClicked(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Inicio");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_Inicio1Layout = new javax.swing.GroupLayout(btn_Inicio1);
         btn_Inicio1.setLayout(btn_Inicio1Layout);
@@ -118,7 +137,7 @@ public class Gestion_Inventario extends javax.swing.JFrame {
                 .addComponent(icono1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
-                .addContainerGap(195, Short.MAX_VALUE))
+                .addContainerGap(201, Short.MAX_VALUE))
         );
         btn_Inicio1Layout.setVerticalGroup(
             btn_Inicio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,46 +151,29 @@ public class Gestion_Inventario extends javax.swing.JFrame {
 
         SidePanel.add(btn_Inicio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 330, 60));
 
-        btn_cargar_guardar.setBackground(new java.awt.Color(55, 71, 90));
-
-        icono2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        icono2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/pedidob.png"))); // NOI18N
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Nuevo Pedido");
-
-        javax.swing.GroupLayout btn_cargar_guardarLayout = new javax.swing.GroupLayout(btn_cargar_guardar);
-        btn_cargar_guardar.setLayout(btn_cargar_guardarLayout);
-        btn_cargar_guardarLayout.setHorizontalGroup(
-            btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_cargar_guardarLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(icono2)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addContainerGap(99, Short.MAX_VALUE))
-        );
-        btn_cargar_guardarLayout.setVerticalGroup(
-            btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_cargar_guardarLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel5)
-                    .addComponent(icono2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 14, Short.MAX_VALUE))
-        );
-
-        SidePanel.add(btn_cargar_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 330, 60));
-
         btn_nueva_ruta.setBackground(new java.awt.Color(55, 71, 90));
+        btn_nueva_ruta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_nueva_rutaMouseClicked(evt);
+            }
+        });
 
         icono3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         icono3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/nueva ruta blanco.png"))); // NOI18N
+        icono3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icono3MouseClicked(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Nuevas Rutas");
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_nueva_rutaLayout = new javax.swing.GroupLayout(btn_nueva_ruta);
         btn_nueva_ruta.setLayout(btn_nueva_rutaLayout);
@@ -197,13 +199,28 @@ public class Gestion_Inventario extends javax.swing.JFrame {
         SidePanel.add(btn_nueva_ruta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 330, 60));
 
         btn_nuevo_almacen.setBackground(new java.awt.Color(55, 71, 90));
+        btn_nuevo_almacen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_nuevo_almacenMouseClicked(evt);
+            }
+        });
 
         icono4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         icono4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/nuevo almacen blanco.png"))); // NOI18N
+        icono4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icono4MouseClicked(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Nuevo Almacen");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_nuevo_almacenLayout = new javax.swing.GroupLayout(btn_nuevo_almacen);
         btn_nuevo_almacen.setLayout(btn_nuevo_almacenLayout);
@@ -229,13 +246,28 @@ public class Gestion_Inventario extends javax.swing.JFrame {
         SidePanel.add(btn_nuevo_almacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 330, 60));
 
         btn_reporte.setBackground(new java.awt.Color(55, 71, 90));
+        btn_reporte.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_reporteMouseClicked(evt);
+            }
+        });
 
         icono5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         icono5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/reporte blanco.png"))); // NOI18N
+        icono5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icono5MouseClicked(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Reporte");
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_reporteLayout = new javax.swing.GroupLayout(btn_reporte);
         btn_reporte.setLayout(btn_reporteLayout);
@@ -324,13 +356,28 @@ public class Gestion_Inventario extends javax.swing.JFrame {
         SidePanel.add(btn_mapa_almacenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 550, 330, 60));
 
         btn_cargar_guardar1.setBackground(new java.awt.Color(55, 71, 90));
+        btn_cargar_guardar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_cargar_guardar1MouseClicked(evt);
+            }
+        });
 
         icono7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         icono7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/cargar y guardar blanco.png"))); // NOI18N
+        icono7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icono7MouseClicked(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Cargar y Guardar");
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_cargar_guardar1Layout = new javax.swing.GroupLayout(btn_cargar_guardar1);
         btn_cargar_guardar1.setLayout(btn_cargar_guardar1Layout);
@@ -362,6 +409,31 @@ public class Gestion_Inventario extends javax.swing.JFrame {
 
         jSeparator1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         SidePanel.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 260, 26));
+
+        btn_Inicio2.setBackground(new java.awt.Color(55, 71, 90));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Nuevo Pedido");
+
+        javax.swing.GroupLayout btn_Inicio2Layout = new javax.swing.GroupLayout(btn_Inicio2);
+        btn_Inicio2.setLayout(btn_Inicio2Layout);
+        btn_Inicio2Layout.setHorizontalGroup(
+            btn_Inicio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_Inicio2Layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(jLabel5)
+                .addContainerGap(108, Short.MAX_VALUE))
+        );
+        btn_Inicio2Layout.setVerticalGroup(
+            btn_Inicio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_Inicio2Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel5)
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
+        SidePanel.add(btn_Inicio2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 330, 60));
 
         BG.add(SidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 710));
 
@@ -688,6 +760,118 @@ public class Gestion_Inventario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void btn_Inicio1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Inicio1MouseClicked
+        // TODO add your handling code here:
+        Inicio v1 = new Inicio();
+        this.dispose();
+        v1.setVisible(true);
+    }//GEN-LAST:event_btn_Inicio1MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        Inicio v1 = new Inicio();
+        this.dispose();
+        v1.setVisible(true);
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void icono1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono1MouseClicked
+        // TODO add your handling code here:
+        Inicio v1 = new Inicio();
+        this.dispose();
+        v1.setVisible(true);
+    }//GEN-LAST:event_icono1MouseClicked
+
+    private void btn_cargar_guardar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cargar_guardar1MouseClicked
+        // TODO add your handling code here:
+        Cargar_y_Guardar v3 = new Cargar_y_Guardar();
+        this.dispose();
+        v3.setVisible(true);
+    }//GEN-LAST:event_btn_cargar_guardar1MouseClicked
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        // TODO add your handling code here:
+        Cargar_y_Guardar v3 = new Cargar_y_Guardar();
+        this.dispose();
+        v3.setVisible(true);
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void icono7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono7MouseClicked
+        // TODO add your handling code here:
+        Cargar_y_Guardar v3 = new Cargar_y_Guardar();
+        this.dispose();
+        v3.setVisible(true);
+    }//GEN-LAST:event_icono7MouseClicked
+
+    private void btn_nueva_rutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nueva_rutaMouseClicked
+        // TODO add your handling code here:
+        Nuevas_Rutas v3 = new Nuevas_Rutas();
+        this.dispose();
+        v3.setVisible(true);
+    }//GEN-LAST:event_btn_nueva_rutaMouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+        Nuevas_Rutas v3 = new Nuevas_Rutas();
+        this.dispose();
+        v3.setVisible(true);
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void icono3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono3MouseClicked
+        // TODO add your handling code here:
+        Nuevas_Rutas v3 = new Nuevas_Rutas();
+        this.dispose();
+        v3.setVisible(true);
+    }//GEN-LAST:event_icono3MouseClicked
+
+    private void btn_nuevo_almacenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_almacenMouseClicked
+        // TODO add your handling code here:
+        Nuevo_Almacen v4 = new Nuevo_Almacen();
+        this.dispose();
+        v4.setVisible(true);
+    }//GEN-LAST:event_btn_nuevo_almacenMouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+        Nuevo_Almacen v4 = new Nuevo_Almacen();
+        this.dispose();
+        v4.setVisible(true);
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void icono4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono4MouseClicked
+        // TODO add your handling code here:
+        Nuevo_Almacen v4 = new Nuevo_Almacen();
+        this.dispose();
+        v4.setVisible(true);
+    }//GEN-LAST:event_icono4MouseClicked
+
+    private void btn_reporteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_reporteMouseClicked
+        // TODO add your handling code here:
+        Reporte v5 = new Reporte();
+        this.dispose();
+        v5.setVisible(true);
+    }//GEN-LAST:event_btn_reporteMouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        // TODO add your handling code here:
+        Reporte v5 = new Reporte();
+        this.dispose();
+        v5.setVisible(true);
+    }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void icono5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono5MouseClicked
+        // TODO add your handling code here:
+        Reporte v5 = new Reporte();
+        this.dispose();
+        v5.setVisible(true);
+    }//GEN-LAST:event_icono5MouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        Inicio v1 = new Inicio();
+        this.dispose();
+        v1.setVisible(true);
+    }//GEN-LAST:event_jLabel3MouseClicked
+
 
  
 
@@ -770,7 +954,7 @@ public static void main(String args[]) {
     private javax.swing.JComboBox<String> Seleccion_almacenes4;
     private javax.swing.JPanel SidePanel;
     private javax.swing.JPanel btn_Inicio1;
-    private javax.swing.JPanel btn_cargar_guardar;
+    private javax.swing.JPanel btn_Inicio2;
     private javax.swing.JPanel btn_cargar_guardar1;
     private javax.swing.JPanel btn_gest_inventario1;
     private javax.swing.JPanel btn_mapa_almacenes;
@@ -780,7 +964,6 @@ public static void main(String args[]) {
     private javax.swing.JLabel exit;
     private javax.swing.JLabel icono;
     private javax.swing.JLabel icono1;
-    private javax.swing.JLabel icono2;
     private javax.swing.JLabel icono3;
     private javax.swing.JLabel icono4;
     private javax.swing.JLabel icono5;

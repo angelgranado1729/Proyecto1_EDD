@@ -14,11 +14,11 @@ public class Queue<T> {
     /**
      * Primer elemento de la cola, primero en salir.
      */
-    private Nodo<T> front;
+    private Node<T> front;
     /**
      * Ultimo elemento de la cola, ultimo en salir
      */
-    private Nodo<T> back;
+    private Node<T> back;
     
     /**
      * Constructor de la clase.
@@ -52,7 +52,7 @@ public class Queue<T> {
      * 
      * @return front primer nodo en la cola.
      */
-    public Nodo<T> getFront(){
+    public Node<T> getFront(){
         return front;
     }
     
@@ -61,7 +61,7 @@ public class Queue<T> {
      * 
      * @param newFront el nuevo nodo que estara al inicio de la cola.
      */
-    public void setFrond(Nodo<T> newFront){
+    public void setFrond(Node<T> newFront){
         this.front = newFront;
     }
     
@@ -70,7 +70,7 @@ public class Queue<T> {
      * 
      * @return back el ultimo nodo en cola.
      */
-    public Nodo<T> getback(){
+    public Node<T> getback(){
         return back;
     }
     
@@ -79,7 +79,7 @@ public class Queue<T> {
      * 
      * @param newback nuevo nodo que sera el ultimo de la cola.
      */
-    public void setback(Nodo<T> newback){
+    public void setback(Node<T> newback){
         this.back = newback;
     }
     
@@ -89,8 +89,8 @@ public class Queue<T> {
      * @param nodo nodo dado
      * @return nextNodo 
      */
-    public Nodo<T> next(Nodo<T> nodo){
-        return nodo.getNextNodo();
+    public Node<T> next(Node<T> nodo){
+        return nodo.getNextNode();
     }
     
     /**
@@ -111,11 +111,11 @@ public class Queue<T> {
      * @param tInfo informacion a almacenar
      */
     public void enqueue(T tInfo){
-        Nodo<T> newNodo = new Nodo(tInfo);
+        Node<T> newNodo = new Node(tInfo);
         if (isEmpty()){
             front = newNodo;
         } else {
-            back.setNextNodo(newNodo);
+            back.setNextNode(newNodo);
         }
         back = newNodo;
         length++;
@@ -130,7 +130,7 @@ public class Queue<T> {
     public T dequeue(){
         T aux = null;
         if (!isEmpty()){
-            aux = front.gettInfo();
+            aux = front.getTInfo();
             this.front = next(front);
             length--;
         } 
