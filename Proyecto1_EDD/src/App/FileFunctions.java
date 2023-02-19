@@ -20,6 +20,11 @@ import javax.swing.JOptionPane;
  */
 public class FileFunctions {
     
+    /**
+     * Guarda toda la informacion del almacenada en el grafo, en un archivo txt.
+     * 
+     * @param g, el grafo a guardar.
+     */
     public static void saveTxt(Grafo g){
         String data = "";
         
@@ -82,6 +87,12 @@ public class FileFunctions {
         } 
     }
     
+    /**
+     * Carga los datos del string obtenido al leer el txt y los carga en el grafo y
+     * a los TDA asociados.
+     * 
+     * @param data, string con toda la informacion que contiene el txt.
+     */
     public static void loadData(String data){
         if (!("".equals(data))){
             String[] almacenes = data.substring("Almacenes;".length(), data.indexOf("Rutas;") - 1).strip().split(";");
@@ -93,7 +104,6 @@ public class FileFunctions {
                 String[] dataBruta = almacenData.split(":");   
                 
                 String name = dataBruta[0].replaceAll("Almacen ", "").strip();
-//                System.out.println(dataBruta[1]);
                 String[] productsData = dataBruta[1].split("\n");
                 Almacen almacen = new Almacen(name);
                 almacen.getListaProductos().setMethods(new UtilMethodsPoducts());
@@ -111,15 +121,15 @@ public class FileFunctions {
             
             //Llenamos la matriz de adyacencia
             for (String rutaData: rutas){
-//                System.out.println(rutaData);
                 String[] rutaInfo = rutaData.split(",");
                 String source = rutaInfo[0];
                 String target = rutaInfo[1];
                 double distance = Double.parseDouble(rutaInfo[2]);
                 try{
                     grafo.addEdge(source, target, distance);
+                    JOptionPane.showMessageDialog(null, "Carga exitosa!");
                 } catch (Exception e){
-                    
+                    JOptionPane.showMessageDialog(null, "Error al cargar los datos. Revise el archivo .txt seleccionado.");
                 }                
             }
             //Retornamos grafo con la informacion del txt
@@ -127,6 +137,10 @@ public class FileFunctions {
         }  
     }
     
+    /**
+     * Lee la informacion del txt y llama el procedimiento loadData para cargar 
+     * la informacion al grafo y los TDA asociados.
+     */
     public static void readTxt(){
         String line;
         String data = "";
@@ -146,11 +160,10 @@ public class FileFunctions {
                 }
                 br.close();
             }
-//            System.out.println(data);
             loadData(data);
             
         } catch (Exception e){
-            JOptionPane.showMessageDialog(null, "Error al leer el archivo");
+
         }
         
     }

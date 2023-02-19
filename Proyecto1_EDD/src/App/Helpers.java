@@ -7,18 +7,10 @@ package App;
 import MainClasses.Almacen;
 import MainClasses.Grafo;
 import MainClasses.LinkedList;
-import MainClasses.Node;
 import MainClasses.RutaCorta;
 import MainClasses.RutasPosibles;
 import MainClasses.RutasYDistancias;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 
@@ -27,8 +19,17 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Angel Granado
  */
 public class Helpers {  
-
-    public static int getVerticeMinDistance(double[] distancias, boolean[] verticesVisitados){
+    
+    /**
+     * Busca el vertice (indice) con la menor distancia.
+     * 
+     * @param distancias, un array con las distancias desde el vertice origen
+     * hasta el vertice destino.
+     * @param verticesVisitados, un array de booleanos que inidican los vertices
+     * que han sido visitados.
+     * @return el vertice con la menor distancia.
+     */
+    private static int getVerticeMinDistance(double[] distancias, boolean[] verticesVisitados){
         double minDistancia = Double.MAX_VALUE;
         int verticeDistanciaMin = 1;
         
@@ -41,7 +42,15 @@ public class Helpers {
         return verticeDistanciaMin;     
     }
     
-    
+    /**
+     * Reconstruye la ruta obtenida con el algoritmo dijkstra.
+     * 
+     * @param ultimosVertices, un array con los indice de los ultimos vertices visitados.
+     * @param distancias, un array con las distancia desde el vertice origen hasta el vertice destino
+     * @param origen, vertice origen.
+     * @param destino, vertice destino
+     * @return un objeto RutasYDistancias que contiene la ruta mas corta y la distancia.
+     */
     public static RutasYDistancias getPath(int[] ultimosVertices, double[] distancias, int origen, int destino){
         int target = destino;
         RutasYDistancias rutaYDistancia = new RutasYDistancias();
@@ -66,6 +75,15 @@ public class Helpers {
         return rutaYDistancia;
     }
     
+    /**
+     * Determina la ruta mas corta entre dos vertices dados.
+     * 
+     * @param grafo, el grafo donde se va a aplicar dijkstra.
+     * @param origen, el vertice origen.
+     * @param destino, vetice destino.
+     * @return un objeto RutasYDistancias que contiene la ruta mas corta entre
+     * el vertice origen y el vertice destino, y la distancia entre ambos nodos.
+     */
     public static RutasYDistancias dijkstra(Grafo grafo, int origen, int destino){
         int[] ultimosVisitados = new int[grafo.getNumVertices()];
         double[] distancias = new double[grafo.getNumVertices()];
@@ -92,7 +110,16 @@ public class Helpers {
         return getPath(ultimosVisitados, distancias, origen, destino);
     }
     
-    
+    /**
+     * Determina la ruta mas corta que hay entre un vertice destino y un array
+     * con los vertices origen.
+     * 
+     * @param g, el grafo.
+     * @param verticesOrigen, un array con los vertices origen.
+     * @param target, el vertice destino.
+     * @return un objeto RutaCorta, que contiene la ruta mas corta entre las rutas que hay
+     * entre los vertices origen y el vertice destino, y la distancia de esa ruta.
+     */
     public RutaCorta shortestPath(Grafo g, int[] verticesOrigen, int target) {
         RutasPosibles rutasPosibles = new RutasPosibles();
         for (int i = 0; i < verticesOrigen.length; i++) {
@@ -110,7 +137,13 @@ public class Helpers {
             return null;
         }
     }
-     
+    
+    /**
+     * Convierte un string a entero.
+     * 
+     * @param num, el string a convertir. 
+     * @return retorna la conversion a integer.
+     */
     public static int validarNum(String num){
         try{
             return Integer.parseInt(num) ;
@@ -119,30 +152,5 @@ public class Helpers {
         }
         return -1;
     }
-    
-
-    
-//    public static void guardarTXT() throws IOException{
-//        String data = App.getPlaylist().toString().replaceAll(" ", "");
-//        
-//     
-//        try{
-//            // Crear un objeto FileWriter para escribir en el archivo
-//            FileWriter fileWriter = new FileWriter(App.getSelectedFile());
-//
-//            // Crear un objeto PrintWriter para escribir texto en el archivo
-//            PrintWriter printWriter = new PrintWriter(fileWriter);
-//
-//            // Escribir en el archivo utilizando el método print o println
-//            printWriter.println(data);
-//
-//            // Cerrar el archivo para liberar recursos
-//            printWriter.close();
-//            
-//        } catch (Exception e){
-//            
-//        }
-//            
-//    }
                
 }

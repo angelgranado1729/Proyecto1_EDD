@@ -436,45 +436,6 @@ public class LinkedList<T> {
         } 
         return null;
     }
-//
-//    private Node<T> sortedMerge(Node<T> a, Node<T> b){
-//        Node<T> result;
-//        if (a == null){
-//            return b;
-//        } else if (b == null){
-//            return a;
-//        }
-//
-//        if (methods.compareTo(a.getTInfo(), b.getTInfo()) < 0){
-//            result = a;
-//            result.setNextNode(sortedMerge(next(a), b));
-//        } else {
-//            result = b;
-//            result.setNextNode(sortedMerge(a, next(b)));
-//        }
-//        return result;
-//    }
-//
-//    private Node<T> mergeSort(Node<T> head){
-//        if (head == null || next(head) == null){
-//            return head;
-//        }
-//        Node<T> middle = getMiddle();
-//        Node<T> nextOfMiddle = next(middle);
-//        middle.setNextNode(null);
-//        Node<T> left = mergeSort(head);
-//        Node<T> right = mergeSort(nextOfMiddle);
-//        Node<T> sortedList = sortedMerge(left, right);
-//        return sortedList;
-//    }
-//
-//    public void sort(){
-//        pFirst = mergeSort(pFirst);
-//    }
-//
-//    public void sort(Node<T> pNode){
-//        pFirst = mergeSort(pNode);
-//    }
 
     public void reverse(){
         Node<T> pAux = first();
@@ -750,8 +711,6 @@ public class LinkedList<T> {
         return -1;
         
     }
-    
-    
 
     @Override
     public String toString(){

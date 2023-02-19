@@ -18,7 +18,9 @@ public class App {
     public static File selectedFile = new File(selectedPath);
     
     
-    
+    /**
+     * Inicia el programa.
+     */
     public static void start(){
        readTxt();
        Inicio ventanaInicio = new Inicio();

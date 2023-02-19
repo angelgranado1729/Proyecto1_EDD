@@ -12,7 +12,7 @@ import MainClasses.LinkedList;
  *
  * @author Angel Granado
  */
-public class UtilMethods2 implements LinkedList.LinkedListMethods<Almacen>{
+public class UtilMethodsAlmacen implements LinkedList.LinkedListMethods<Almacen>{
 
     @Override
     public int compareTo(Almacen tInfo1, Almacen tInfo2) {

@@ -6,7 +6,7 @@ package MainClasses;
 
 import App.App;
 import App.Helpers;
-import MainClasses.ListUtilMethods.UtilMethods2;
+import MainClasses.ListUtilMethods.UtilMethodsAlmacen;
 
 /**
  *
@@ -36,7 +36,7 @@ public class Grafo{
      * @param numVertices, cantidad de vertices 
      */
     public Grafo(int numVertices){
-        this.almacenes = new LinkedList<Almacen>(new UtilMethods2());
+        this.almacenes = new LinkedList<Almacen>(new UtilMethodsAlmacen());
         this.numMaxVertices = numVertices * 2;
         this.numVertices = numVertices;
         this.matrixAdj = new MatrizAdj(numVertices);
@@ -46,7 +46,7 @@ public class Grafo{
      * Constructor de la clase.
      */
     public Grafo(){
-        this.almacenes = new LinkedList<Almacen>(new UtilMethods2());
+        this.almacenes = new LinkedList<Almacen>(new UtilMethodsAlmacen());
         this.numMaxVertices = 30;
         this.numVertices = 0;
         this.matrixAdj = new MatrizAdj();
