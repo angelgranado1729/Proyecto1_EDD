@@ -192,7 +192,7 @@ public class Grafo{
      * @param almacenesVisitados, lista con los almacenesvisitados.
      * @return Lista con los almacenes recorridos.
      */
-    public LinkedList<Almacen> deepTraveling(int numVertice, boolean[]visitados, LinkedList<Almacen> almacenesVisitados){
+    private LinkedList<Almacen> deepTraveling(int numVertice, boolean[]visitados, LinkedList<Almacen> almacenesVisitados){
         visitados[numVertice] = true;
         almacenesVisitados.addEnd(getAlmacenes().getNode(numVertice).getTInfo());
         

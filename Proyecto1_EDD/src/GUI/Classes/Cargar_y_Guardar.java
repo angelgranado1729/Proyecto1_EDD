@@ -27,6 +27,8 @@ public class Cargar_y_Guardar extends javax.swing.JFrame {
         this.setResizable(false);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de texto (.txt)", "txt");
         this.jFileChooser1.setFileFilter(filter);
+//        JOptionPane.showMessageDialog(null, "Antes de cargar un nuevo archivo .txt, guarde los datos los datos" + 
+//                "\n" + "actualmente cargados en memoria. Presione el boton de Guardar.");
     }
 
     /**

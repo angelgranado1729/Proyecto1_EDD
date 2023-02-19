@@ -5,6 +5,10 @@
 package GUI.Classes;
 
 import java.awt.Point;
+import App.App;
+import MainClasses.Almacen;
+import MainClasses.LinkedList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,6 +23,17 @@ public class Reporte extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.BFS_TextArea.setFocusable(false);
+        this.DFS_TextArea.setFocusable(false);
+        try{
+            LinkedList<Almacen> bfsList= App.g.BFS();
+            LinkedList<Almacen> dfsList= App.g.DFS();            
+            this.BFS_TextArea.setText(bfsList.toString());
+            this.DFS_TextArea.setText(dfsList.toString());
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Reportes no disponibles. El grafo esta vacio!");
+        }
+        
     }
 
     /**
@@ -65,9 +80,9 @@ public class Reporte extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        DFS_TextArea = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        BFS_TextArea = new javax.swing.JTextArea();
         jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -490,19 +505,20 @@ public class Reporte extends javax.swing.JFrame {
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("DFS Recorrido Profundidad:");
+        jLabel15.setText("DFS Recorrido Profundidad");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        DFS_TextArea.setColumns(20);
+        DFS_TextArea.setRows(5);
+        jScrollPane1.setViewportView(DFS_TextArea);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        BFS_TextArea.setColumns(20);
+        BFS_TextArea.setRows(5);
+        jScrollPane2.setViewportView(BFS_TextArea);
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("BFS Recorrido Anchura:");
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("BFS Recorrido Anchura");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -510,10 +526,10 @@ public class Reporte extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -738,7 +754,9 @@ public static void main(String args[]) {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea BFS_TextArea;
     private javax.swing.JPanel BG;
+    private javax.swing.JTextArea DFS_TextArea;
     private javax.swing.JPanel SidePanel;
     private javax.swing.JPanel btn_Inicio1;
     private javax.swing.JPanel btn_Inicio2;
@@ -775,7 +793,5 @@ public static void main(String args[]) {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
     // End of variables declaration//GEN-END:variables
 }
