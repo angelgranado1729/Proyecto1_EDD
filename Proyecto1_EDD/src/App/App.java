@@ -27,7 +27,6 @@ public class App {
        loadData(data);
        Inicio ventanaInicio = new Inicio();
        ventanaInicio.setVisible(true);
-        System.out.println(g.toString());
     }
     
 }

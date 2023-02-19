@@ -579,11 +579,9 @@ public class Cargar_y_Guardar extends javax.swing.JFrame {
         try{
             App.selectedFile = this.jFileChooser1.getSelectedFile();
             App.selectedPath = App.selectedFile.getAbsolutePath();
-            System.out.println(App.selectedPath);
             String newData = FileFunctions.readTxt();
             FileFunctions.loadData(newData);
             JOptionPane.showMessageDialog(null, "Carga Exitosa!");
-            System.out.println(App.g.toString());
         } catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error al cargar los datos. Revise el formato del archivo.");
         }

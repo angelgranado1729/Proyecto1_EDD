@@ -148,7 +148,6 @@ public class Helpers {
         try{
             return Integer.parseInt(num) ;
         } catch (NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "Revise los datos ingresados.");
         }
         return -1;
     }

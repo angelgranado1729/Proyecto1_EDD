@@ -19,6 +19,7 @@ public class Nuevas_Rutas extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.jTextArea1.setFocusable(false);
     }
 
     /**
