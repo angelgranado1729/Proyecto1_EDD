@@ -127,9 +127,7 @@ public class FileFunctions {
                 double distance = Double.parseDouble(rutaInfo[2]);
                 try{
                     grafo.addEdge(source, target, distance);
-                    JOptionPane.showMessageDialog(null, "Carga exitosa!");
                 } catch (Exception e){
-                    JOptionPane.showMessageDialog(null, "Error al cargar los datos. Revise el archivo .txt seleccionado.");
                 }                
             }
             //Retornamos grafo con la informacion del txt
@@ -138,10 +136,9 @@ public class FileFunctions {
     }
     
     /**
-     * Lee la informacion del txt y llama el procedimiento loadData para cargar 
-     * la informacion al grafo y los TDA asociados.
+     * Lee la informacion del txt y lo retorna en un string.
      */
-    public static void readTxt(){
+    public static String readTxt(){
         String line;
         String data = "";
         File file = App.selectedFile;
@@ -159,13 +156,12 @@ public class FileFunctions {
                     }
                 }
                 br.close();
-            }
-            loadData(data);
-            
+            }    
+            return data;   
         } catch (Exception e){
-
         }
-        
+        return data;       
     }
+  
     
 }

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package App;
+import static App.FileFunctions.loadData;
 import static App.FileFunctions.readTxt;
 import GUI.Classes.Inicio;
 import MainClasses.Grafo;
@@ -22,7 +23,8 @@ public class App {
      * Inicia el programa.
      */
     public static void start(){
-       readTxt();
+       String data = readTxt();
+       loadData(data);
        Inicio ventanaInicio = new Inicio();
        ventanaInicio.setVisible(true);
         System.out.println(g.toString());

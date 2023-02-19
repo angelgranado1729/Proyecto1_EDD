@@ -18,7 +18,7 @@ public class Nuevo_pedido extends javax.swing.JFrame {
     public Nuevo_pedido() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     /**
@@ -177,13 +177,28 @@ public class Nuevo_pedido extends javax.swing.JFrame {
         SidePanel.add(btn_cargar_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 330, 60));
 
         btn_nueva_ruta.setBackground(new java.awt.Color(55, 71, 90));
+        btn_nueva_ruta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_nueva_rutaMouseClicked(evt);
+            }
+        });
 
         icono3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         icono3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/nueva ruta blanco.png"))); // NOI18N
+        icono3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icono3MouseClicked(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Nuevas Rutas");
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_nueva_rutaLayout = new javax.swing.GroupLayout(btn_nueva_ruta);
         btn_nueva_ruta.setLayout(btn_nueva_rutaLayout);
@@ -209,13 +224,28 @@ public class Nuevo_pedido extends javax.swing.JFrame {
         SidePanel.add(btn_nueva_ruta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 330, 60));
 
         btn_nuevo_almacen.setBackground(new java.awt.Color(55, 71, 90));
+        btn_nuevo_almacen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_nuevo_almacenMouseClicked(evt);
+            }
+        });
 
         icono4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         icono4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/nuevo almacen blanco.png"))); // NOI18N
+        icono4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icono4MouseClicked(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Nuevo Almacen");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_nuevo_almacenLayout = new javax.swing.GroupLayout(btn_nuevo_almacen);
         btn_nuevo_almacen.setLayout(btn_nuevo_almacenLayout);
@@ -241,13 +271,28 @@ public class Nuevo_pedido extends javax.swing.JFrame {
         SidePanel.add(btn_nuevo_almacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 330, 60));
 
         btn_reporte.setBackground(new java.awt.Color(55, 71, 90));
+        btn_reporte.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_reporteMouseClicked(evt);
+            }
+        });
 
         icono5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         icono5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/reporte blanco.png"))); // NOI18N
+        icono5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icono5MouseClicked(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Reporte");
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_reporteLayout = new javax.swing.GroupLayout(btn_reporte);
         btn_reporte.setLayout(btn_reporteLayout);
@@ -273,13 +318,28 @@ public class Nuevo_pedido extends javax.swing.JFrame {
         SidePanel.add(btn_reporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 330, 60));
 
         btn_gest_inventario1.setBackground(new java.awt.Color(55, 71, 90));
+        btn_gest_inventario1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_gest_inventario1MouseClicked(evt);
+            }
+        });
 
         icono6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         icono6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/gestion_inventario_blanco.png"))); // NOI18N
+        icono6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icono6MouseClicked(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Gestión de Inventario");
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_gest_inventario1Layout = new javax.swing.GroupLayout(btn_gest_inventario1);
         btn_gest_inventario1.setLayout(btn_gest_inventario1Layout);
@@ -672,6 +732,90 @@ public class Nuevo_pedido extends javax.swing.JFrame {
         this.dispose();
         v3.setVisible(true);
     }//GEN-LAST:event_icono7MouseClicked
+
+    private void btn_gest_inventario1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_gest_inventario1MouseClicked
+        // TODO add your handling code here:
+        Gestion_Inventario v6 = new Gestion_Inventario();
+        this.dispose();
+        v6.setVisible(true);
+    }//GEN-LAST:event_btn_gest_inventario1MouseClicked
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        // TODO add your handling code here:
+        Gestion_Inventario v6 = new Gestion_Inventario();
+        this.dispose();
+        v6.setVisible(true);
+    }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void icono6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono6MouseClicked
+        // TODO add your handling code here:
+        Gestion_Inventario v6 = new Gestion_Inventario();
+        this.dispose();
+        v6.setVisible(true);
+    }//GEN-LAST:event_icono6MouseClicked
+
+    private void btn_reporteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_reporteMouseClicked
+        // TODO add your handling code here:
+        Reporte v5 = new Reporte();
+        this.dispose();
+        v5.setVisible(true);
+    }//GEN-LAST:event_btn_reporteMouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        // TODO add your handling code here:
+        Reporte v5 = new Reporte();
+        this.dispose();
+        v5.setVisible(true);
+    }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void icono5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono5MouseClicked
+        // TODO add your handling code here:
+        Reporte v5 = new Reporte();
+        this.dispose();
+        v5.setVisible(true);
+    }//GEN-LAST:event_icono5MouseClicked
+
+    private void btn_nuevo_almacenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_almacenMouseClicked
+        // TODO add your handling code here:
+        Nuevo_Almacen v4 = new Nuevo_Almacen();
+        this.dispose();
+        v4.setVisible(true);
+    }//GEN-LAST:event_btn_nuevo_almacenMouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+        Nuevo_Almacen v4 = new Nuevo_Almacen();
+        this.dispose();
+        v4.setVisible(true);
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void icono4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono4MouseClicked
+        // TODO add your handling code here:
+        Nuevo_Almacen v4 = new Nuevo_Almacen();
+        this.dispose();
+        v4.setVisible(true);
+    }//GEN-LAST:event_icono4MouseClicked
+
+    private void btn_nueva_rutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nueva_rutaMouseClicked
+        // TODO add your handling code here:
+        Nuevas_Rutas v3 = new Nuevas_Rutas();
+        this.dispose();
+        v3.setVisible(true);
+    }//GEN-LAST:event_btn_nueva_rutaMouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+        Nuevas_Rutas v3 = new Nuevas_Rutas();
+        this.dispose();
+        v3.setVisible(true);
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void icono3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono3MouseClicked
+        // TODO add your handling code here:
+        Nuevas_Rutas v3 = new Nuevas_Rutas();
+        this.dispose();
+        v3.setVisible(true);
+    }//GEN-LAST:event_icono3MouseClicked
 
 
  

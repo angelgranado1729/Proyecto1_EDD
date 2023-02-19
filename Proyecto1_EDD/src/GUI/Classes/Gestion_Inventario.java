@@ -18,6 +18,7 @@ public class Gestion_Inventario extends javax.swing.JFrame {
     public Gestion_Inventario() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     /**

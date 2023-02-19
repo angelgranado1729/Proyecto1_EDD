@@ -18,6 +18,7 @@ public class Mapa_Almacenes extends javax.swing.JFrame {
     public Mapa_Almacenes() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     /**

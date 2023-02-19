@@ -9,6 +9,7 @@ import App.FileFunctions;
 import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -23,6 +24,9 @@ public class Cargar_y_Guardar extends javax.swing.JFrame {
     public Cargar_y_Guardar() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de texto (.txt)", "txt");
+        this.jFileChooser1.setFileFilter(filter);
     }
 
     /**
@@ -565,19 +569,28 @@ public class Cargar_y_Guardar extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        FileFunctions.saveTxt(App.g);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
         // TODO add your handling code here:
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de texto (.txt)", "txt");
-        this.jFileChooser1.setFileFilter(filter);
-        App.selectedFile = this.jFileChooser1.getSelectedFile();
-        App.selectedPath = App.selectedFile.getAbsolutePath();
+        try{
+            App.selectedFile = this.jFileChooser1.getSelectedFile();
+            App.selectedPath = App.selectedFile.getAbsolutePath();
+            System.out.println(App.selectedPath);
+            String newData = FileFunctions.readTxt();
+            FileFunctions.loadData(newData);
+            JOptionPane.showMessageDialog(null, "Carga Exitosa!");
+            System.out.println(App.g.toString());
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al cargar los datos. Revise el formato del archivo.");
+        }
+        
     }//GEN-LAST:event_jFileChooser1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        FileFunctions.saveTxt(App.g);
+        
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void btn_Inicio1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Inicio1MouseClicked
