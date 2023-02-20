@@ -83,7 +83,7 @@ public class Producto {
     @Override
     public String toString(){
         String string = "";
-        string += "\n-Producto: " + this.producto + "\n";
+        string += "-Producto: " + this.producto + "\n";
         string += "-Stock: " + String.valueOf(stock);
         return string;
     }

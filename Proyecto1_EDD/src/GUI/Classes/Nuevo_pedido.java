@@ -4,6 +4,10 @@
  */
 package GUI.Classes;
 
+import App.App;
+import MainClasses.Almacen;
+import MainClasses.Node;
+import MainClasses.Producto;
 import java.awt.Point;
 
 /**
@@ -16,6 +20,7 @@ public class Nuevo_pedido extends javax.swing.JFrame {
     private boolean confirmCant = false;
     private boolean confirmAgreg = false;
     
+    private Node<Almacen> almacenOrigen;
     
     
     
@@ -26,7 +31,17 @@ public class Nuevo_pedido extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.listaPedidosTA.setFocusable(false);
+        this.listaProducTA.setFocusable(false);
+        this.siguiente_bt2.setEnabled(false);
+        this.siguiente_bt3.setEnabled(false);
+        this.agregar_bt.setEnabled(false);
+        this.realizarPedido.setEnabled(false);
+        this.jTextArea2.setEnabled(false);
+        Node<Almacen> aux = App.g.getAlmacenes().first();
+        for (int i = 0; i < App.g.getAlmacenes().getiSize(); i++){
+            this.Seleccion_almacenes1.addItem("Almacen " + aux.getTInfo().getAlmacen());
+            aux = App.g.getAlmacenes().next(aux);
+        }
     }
 
     /**
@@ -78,18 +93,18 @@ public class Nuevo_pedido extends javax.swing.JFrame {
         Seleccion_productos = new javax.swing.JComboBox<>();
         CantidadProduc = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        siguiente_bt3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listaPedidosTA = new javax.swing.JTextArea();
+        listaProducTA = new javax.swing.JTextArea();
         jLabel17 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         jLabel18 = new javax.swing.JLabel();
         descartar_bt = new javax.swing.JButton();
         realizarPedido = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        siguiente_bt = new javax.swing.JButton();
+        siguiente_bt2 = new javax.swing.JButton();
+        agregar_bt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -553,12 +568,12 @@ public class Nuevo_pedido extends javax.swing.JFrame {
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel16.setText("Cantidad");
 
-        jButton1.setText("Siguiente");
-        jButton1.setToolTipText("");
+        siguiente_bt3.setText("Siguiente");
+        siguiente_bt3.setToolTipText("");
 
-        listaPedidosTA.setColumns(20);
-        listaPedidosTA.setRows(5);
-        jScrollPane1.setViewportView(listaPedidosTA);
+        listaProducTA.setColumns(20);
+        listaProducTA.setRows(5);
+        jScrollPane1.setViewportView(listaProducTA);
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
@@ -584,14 +599,24 @@ public class Nuevo_pedido extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Siguiente");
-        jButton2.setToolTipText("");
+        siguiente_bt.setText("Siguiente");
+        siguiente_bt.setToolTipText("");
+        siguiente_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                siguiente_btActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Siguiente");
-        jButton3.setToolTipText("");
+        siguiente_bt2.setText("Siguiente");
+        siguiente_bt2.setToolTipText("");
+        siguiente_bt2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                siguiente_bt2ActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Agregar");
-        jButton4.setToolTipText("");
+        agregar_bt.setText("Agregar");
+        agregar_bt.setToolTipText("");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -603,24 +628,24 @@ public class Nuevo_pedido extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(Seleccion_almacenes1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(siguiente_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(Seleccion_productos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(siguiente_bt2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(CantidadProduc)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(siguiente_bt3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(descartar_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(agregar_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(realizarPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -640,18 +665,18 @@ public class Nuevo_pedido extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Seleccion_almacenes1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(siguiente_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(12, 12, 12)
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Seleccion_productos, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(siguiente_bt2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(siguiente_bt3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(CantidadProduc, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel17)
@@ -662,7 +687,7 @@ public class Nuevo_pedido extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(descartar_bt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(agregar_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(realizarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(49, 49, 49))
         );
@@ -843,6 +868,51 @@ public class Nuevo_pedido extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_realizarPedidoMouseClicked
 
+    private void siguiente_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguiente_btActionPerformed
+        // TODO add your handling code here:
+        if (!this.confirmAlmacen){
+            this.almacenOrigen = App.g.getAlmacenes().getNode(this.Seleccion_almacenes1.getSelectedIndex());
+            System.out.println(this.almacenOrigen.toString());
+            
+            Node<Producto> aux = this.almacenOrigen.getTInfo().getListaProductos().getpFirst();
+            String listaP = "";
+            for(int i = 0; i < this.almacenOrigen.getTInfo().getListaProductos().getiSize(); i++){
+                listaP += aux.getTInfo().toString() + "\n\n";
+                this.Seleccion_productos.addItem(aux.getTInfo().getProducto());
+                aux = aux.getNextNode();
+            }
+            this.listaProducTA.setText(listaP);
+            this.confirmAlmacen = true;
+            this.siguiente_bt.setText("Quitar");
+            this.Seleccion_almacenes1.setEnabled(false);
+            this.siguiente_bt2.setEnabled(true);
+            this.siguiente_bt2.setText("Siguiente");
+        } else{
+            this.confirmAlmacen = false;
+            this.listaProducTA.setText("");
+            this.siguiente_bt.setText("Siguiente");
+            this.Seleccion_almacenes1.setEnabled(true);
+            this.Seleccion_productos.removeAllItems();
+            this.siguiente_bt2.setEnabled(false);
+            this.siguiente_bt2.setText("Siguiente");
+            this.siguiente_bt3.setEnabled(false);
+            this.siguiente_bt3.setText("Siguiente");
+            this.CantidadProduc.setEnabled(false);
+            this.CantidadProduc.setText("");
+            this.realizarPedido.setEnabled(false);
+        }
+    }//GEN-LAST:event_siguiente_btActionPerformed
+
+    private void siguiente_bt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguiente_bt2ActionPerformed
+        // TODO add your handling code here:
+        if (!this.confirmProduc){
+            this.confirmProduc = true;
+            
+        } else {
+            this.confirmProduc = false;
+        }
+    }//GEN-LAST:event_siguiente_bt2ActionPerformed
+
 
  
 
@@ -890,6 +960,7 @@ public static void main(String args[]) {
     private javax.swing.JComboBox<String> Seleccion_almacenes1;
     private javax.swing.JComboBox<String> Seleccion_productos;
     private javax.swing.JPanel SidePanel;
+    private javax.swing.JButton agregar_bt;
     private javax.swing.JPanel btn_Inicio1;
     private javax.swing.JPanel btn_cargar_guardar;
     private javax.swing.JPanel btn_cargar_guardar1;
@@ -908,10 +979,6 @@ public static void main(String args[]) {
     private javax.swing.JLabel icono5;
     private javax.swing.JLabel icono6;
     private javax.swing.JLabel icono7;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -935,7 +1002,16 @@ public static void main(String args[]) {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea listaPedidosTA;
+    private javax.swing.JTextArea listaProducTA;
     private javax.swing.JButton realizarPedido;
+    private javax.swing.JButton siguiente_bt;
+    private javax.swing.JButton siguiente_bt2;
+    private javax.swing.JButton siguiente_bt3;
     // End of variables declaration//GEN-END:variables
+
+    private class Seleccion_almacenes {
+
+        public Seleccion_almacenes() {
+        }
+    }
 }

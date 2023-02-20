@@ -763,27 +763,27 @@
                           <Group type="102" attributes="0">
                               <Component id="Seleccion_almacenes1" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton2" min="-2" pref="88" max="-2" attributes="0"/>
+                              <Component id="siguiente_bt" min="-2" pref="88" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jLabel14" max="32767" attributes="0"/>
                           <Component id="jScrollPane2" alignment="0" pref="280" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="Seleccion_productos" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton3" min="-2" pref="88" max="-2" attributes="0"/>
+                              <Component id="siguiente_bt2" min="-2" pref="88" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jLabel18" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="CantidadProduc" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton1" min="-2" pref="88" max="-2" attributes="0"/>
+                              <Component id="siguiente_bt3" min="-2" pref="88" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jLabel16" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel17" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="descartar_bt" min="-2" pref="96" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jButton4" min="-2" pref="96" max="-2" attributes="0"/>
+                              <Component id="agregar_bt" min="-2" pref="96" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -809,20 +809,20 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="Seleccion_almacenes1" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                                  <Component id="jButton2" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Component id="siguiente_bt" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="Seleccion_productos" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                                  <Component id="jButton3" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Component id="siguiente_bt2" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jButton1" max="32767" attributes="0"/>
+                                  <Component id="siguiente_bt3" max="32767" attributes="0"/>
                                   <Component id="CantidadProduc" min="-2" pref="37" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -836,7 +836,7 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="descartar_bt" max="32767" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="jButton4" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
+                              <Component id="agregar_bt" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
                               <Component id="realizarPedido" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -910,7 +910,7 @@
                 <Property name="text" type="java.lang.String" value="Cantidad"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="siguiente_bt3">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Siguiente"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -923,7 +923,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTextArea" name="listaPedidosTA">
+                <Component class="javax.swing.JTextArea" name="listaProducTA">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
@@ -986,19 +986,25 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="realizarPedidoMouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="siguiente_bt">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Siguiente"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="siguiente_btActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton3">
+            <Component class="javax.swing.JButton" name="siguiente_bt2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Siguiente"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="siguiente_bt2ActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton4">
+            <Component class="javax.swing.JButton" name="agregar_bt">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Agregar"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
