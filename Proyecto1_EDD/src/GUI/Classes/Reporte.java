@@ -589,113 +589,113 @@ public class Reporte extends javax.swing.JFrame {
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
         Inicio v1 = new Inicio();
-        this.dispose();
         v1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void btn_Inicio1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Inicio1MouseClicked
         // TODO add your handling code here:
         Inicio v1 = new Inicio();
-        this.dispose();
         v1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btn_Inicio1MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
         Inicio v1 = new Inicio();
-        this.dispose();
         v1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void icono1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono1MouseClicked
         // TODO add your handling code here:
         Inicio v1 = new Inicio();
-        this.dispose();
         v1.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_icono1MouseClicked
 
     private void btn_cargar_guardar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cargar_guardar1MouseClicked
         // TODO add your handling code here:
         Cargar_y_Guardar v3 = new Cargar_y_Guardar();
-        this.dispose();
         v3.setVisible(true);        
+        this.dispose();
     }//GEN-LAST:event_btn_cargar_guardar1MouseClicked
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
         Cargar_y_Guardar v3 = new Cargar_y_Guardar();
-        this.dispose();
         v3.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void icono7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono7MouseClicked
         // TODO add your handling code here:
         Cargar_y_Guardar v3 = new Cargar_y_Guardar();
-        this.dispose();
         v3.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_icono7MouseClicked
 
     private void btn_gest_inventario1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_gest_inventario1MouseClicked
         // TODO add your handling code here:
         Gestion_Inventario v6 = new Gestion_Inventario();
-        this.dispose();
         v6.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btn_gest_inventario1MouseClicked
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
         Gestion_Inventario v6 = new Gestion_Inventario();
-        this.dispose();
         v6.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void icono6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono6MouseClicked
         // TODO add your handling code here:
         Gestion_Inventario v6 = new Gestion_Inventario();
-        this.dispose();
         v6.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_icono6MouseClicked
 
     private void btn_nueva_rutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nueva_rutaMouseClicked
         // TODO add your handling code here:
         Nuevas_Rutas v4 = new Nuevas_Rutas();
-        this.dispose();
         v4.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btn_nueva_rutaMouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
         Nuevas_Rutas v4 = new Nuevas_Rutas();
-        this.dispose();
         v4.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void icono3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono3MouseClicked
         // TODO add your handling code here:
         Nuevas_Rutas v4 = new Nuevas_Rutas();
-        this.dispose();
         v4.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_icono3MouseClicked
 
     private void btn_nuevo_almacenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_almacenMouseClicked
         // TODO add your handling code here:
         Nuevo_Almacen v5 = new Nuevo_Almacen();
-        this.dispose();
         v5.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btn_nuevo_almacenMouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
         Nuevo_Almacen v5 = new Nuevo_Almacen();
-        this.dispose();
         v5.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void icono4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono4MouseClicked
         // TODO add your handling code here:
         Nuevo_Almacen v5 = new Nuevo_Almacen();
-        this.dispose();
         v5.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_icono4MouseClicked
 
 
