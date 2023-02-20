@@ -14,7 +14,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
- * @author andre
+ * @author andre & Angel Granado
  */
 public class Cargar_y_Guardar extends javax.swing.JFrame {
 

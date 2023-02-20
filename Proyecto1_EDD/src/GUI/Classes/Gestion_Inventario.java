@@ -839,6 +839,7 @@ public class Gestion_Inventario extends javax.swing.JFrame {
             this.exis_Stock.setText("");
             this.new_Stock.setText(""); 
             this.new_Product.setText("");
+            this.Seleccion_almacenes.setSelectedIndex(0);
         }
     }//GEN-LAST:event_Confirm1ActionPerformed
 
@@ -869,7 +870,7 @@ public class Gestion_Inventario extends javax.swing.JFrame {
             this.newStock = false;
             this.exis_Stock.setText("");
             this.new_Stock.setText("");
-            
+            this.Seleccion_almacenes.setSelectedIndex(0);            
         }
     }//GEN-LAST:event_Confirm2ActionPerformed
 
@@ -913,6 +914,7 @@ public class Gestion_Inventario extends javax.swing.JFrame {
                 this.exis_Stock.setEnabled(false);
             }catch (Exception e){
                 JOptionPane.showMessageDialog(null, "El stock debe ser un numero entero no negativo");
+                this.exis_Stock.setText("");
             }          
         }else{
             this.exisStock = false;
@@ -1104,6 +1106,7 @@ public class Gestion_Inventario extends javax.swing.JFrame {
         this.jButton2.setText("Siguiente");
         this.jButton3.setText("Siguiente");
         this.exis_Stock.setEnabled(false);
+        this.Seleccion_ProdExis.setSelectedIndex(0);
         
         
     }//GEN-LAST:event_Descartar_btn1ActionPerformed
@@ -1120,7 +1123,6 @@ public class Gestion_Inventario extends javax.swing.JFrame {
         if (!this.newProduc){
             try{
                 this.newProdName = this.new_Product.getText().strip();
-                System.out.println(newProdName);
                 if (this.new_Product.getText().equalsIgnoreCase(""))throw new Exception("Nombre no valido");
                 this.new_Product.setEnabled(false);
                 this.newProduc = true;
@@ -1161,6 +1163,7 @@ public class Gestion_Inventario extends javax.swing.JFrame {
                 this.newStock = true;
             } catch (Exception e){
                 JOptionPane.showMessageDialog(null, "El stock debe ser un numero entero no negativo");
+                this.new_Stock.setText("");
             }   
         }else{
             this.new_Stock.setEnabled(true);

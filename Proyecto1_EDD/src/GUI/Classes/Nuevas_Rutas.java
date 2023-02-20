@@ -4,13 +4,26 @@
  */
 package GUI.Classes;
 
+import App.App;
+import App.Helpers;
+import MainClasses.Almacen;
+import MainClasses.Node;
 import java.awt.Point;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author andre
+ * @author andre & Angel Granado
  */
 public class Nuevas_Rutas extends javax.swing.JFrame {
+    private int vertexSource;
+    private int vertexTarget;
+    private double distance;
+    
+    private boolean confirmSource = false;
+    private boolean confirmTarget = false;
+    private boolean distanceConfirm = false;
+    private boolean auxBoolean = false;
 
     /**
      * Creates new form Inicio
@@ -20,6 +33,16 @@ public class Nuevas_Rutas extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.jTextArea1.setFocusable(false);
+        Node<Almacen> aux = App.g.getAlmacenes().first();
+        for (int i = 0; i < App.g.getAlmacenes().getiSize(); i++){
+            this.Seleccion_almacenes.addItem("Almacen " + aux.getTInfo().getAlmacen());
+            aux = App.g.getAlmacenes().next(aux);
+        }
+        this.Seleccion_almacenes1.setEnabled(false);
+        this.jButton1.setEnabled(false);
+        this.jTextArea1.setEnabled(false);
+        this.Confirmar_bt.setEnabled(false);
+        this.jTextField1.setEnabled(false);
     }
 
     /**
@@ -66,16 +89,19 @@ public class Nuevas_Rutas extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         Seleccion_almacenes = new javax.swing.JComboBox<>();
         Seleccion_almacenes1 = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        Descartar_btn1 = new javax.swing.JButton();
+        Confirmar_bt = new javax.swing.JButton();
         Descartar_btn2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel17 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -501,18 +527,34 @@ public class Nuevas_Rutas extends javax.swing.JFrame {
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Puede modificar las rutas de los almacenes existentes");
 
-        Seleccion_almacenes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jButton1.setText("Siguiente");
+        jButton1.setToolTipText("");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        Seleccion_almacenes1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Seleccion_almacenes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Seleccion_almacenesActionPerformed(evt);
+            }
+        });
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Distancia en Km:");
 
-        jTextField1.setText("(Distancia entre los almacenes en Kilometros)");
+        jTextField1.setText("(Distancia entre los almacenes)");
         jTextField1.setToolTipText("");
+        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField1MouseClicked(evt);
+            }
+        });
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -523,11 +565,21 @@ public class Nuevas_Rutas extends javax.swing.JFrame {
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Almacen de Destino:");
 
-        Descartar_btn1.setText("Agregar Ruta");
-        Descartar_btn1.setToolTipText("");
+        Confirmar_bt.setText("Agregar Ruta");
+        Confirmar_bt.setToolTipText("");
+        Confirmar_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Confirmar_btActionPerformed(evt);
+            }
+        });
 
         Descartar_btn2.setBackground(new java.awt.Color(223, 83, 83));
         Descartar_btn2.setText("Descartar");
+        Descartar_btn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Descartar_btn2ActionPerformed(evt);
+            }
+        });
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -537,62 +589,93 @@ public class Nuevas_Rutas extends javax.swing.JFrame {
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Rutas por agregar:");
 
+        jButton2.setText("Siguiente");
+        jButton2.setToolTipText("");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Siguiente");
+        jButton3.setToolTipText("");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel14)
-                    .addComponent(Seleccion_almacenes, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel13)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Seleccion_almacenes1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel15)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel17)
-                                    .addComponent(jLabel15))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jScrollPane1)))
-                            .addComponent(jLabel16))))
-                .addContainerGap(64, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(129, 129, 129))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(Seleccion_almacenes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Seleccion_almacenes1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(75, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addComponent(Descartar_btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Descartar_btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addComponent(Confirmar_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
                 .addComponent(jLabel14)
-                .addGap(26, 26, 26)
+                .addGap(22, 22, 22)
                 .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Seleccion_almacenes, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel16)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Seleccion_almacenes1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15))
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Seleccion_almacenes, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Descartar_btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Seleccion_almacenes1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel17)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Confirmar_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Descartar_btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         BG.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, 540, 500));
@@ -746,6 +829,186 @@ public class Nuevas_Rutas extends javax.swing.JFrame {
         v2.setVisible(true);
     }//GEN-LAST:event_icono4MouseClicked
 
+    private void Seleccion_almacenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Seleccion_almacenesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Seleccion_almacenesActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if (!this.confirmSource){
+            this.confirmSource = true;
+            this.vertexSource = this.Seleccion_almacenes.getSelectedIndex();
+            System.out.println("Vertice orige: " + this.vertexSource);
+            this.Seleccion_almacenes.setEnabled(false);
+            this.jButton2.setText("Quitar");
+            this.jButton1.setEnabled(true);
+            this.Seleccion_almacenes1.setEnabled(true);
+            for (int i=0; i < this.Seleccion_almacenes.getItemCount(); i++){
+                if (i != this.vertexSource){
+                    this.Seleccion_almacenes1.addItem(this.Seleccion_almacenes.getItemAt(i));
+                }
+            }
+        } else{
+            this.confirmSource = false;
+            this.confirmTarget = false;
+            this.distanceConfirm = false;
+            this.auxBoolean = false;
+            this.Seleccion_almacenes.setEnabled(true);
+            this.jButton2.setText("Siguiente");
+            this.jButton1.setEnabled(false);
+            this.Seleccion_almacenes1.setEnabled(false);
+            this.Seleccion_almacenes1.removeAllItems();
+            this.Seleccion_almacenes1.removeAllItems();
+            this.jButton1.setEnabled(false);
+            this.jButton1.setText("Siguiente");
+            this.jTextArea1.setText("");
+            this.jTextArea1.setEnabled(false);
+            this.jButton3.setText("Siguiente");
+            this.jButton3.setEnabled(false);
+            this.jTextField1.setText("(Distancia entre los almacenes)");
+            this.Confirmar_bt.setEnabled(false);
+            this.jTextField1.setEnabled(false);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if (!this.confirmTarget){
+            this.confirmTarget = true;
+            this.jButton1.setText("Quitar");
+            String warehouseTarget = this.Seleccion_almacenes1.getSelectedItem().toString();
+            for (int i = 0; i < this.Seleccion_almacenes.getItemCount(); i++){
+                if (warehouseTarget.equalsIgnoreCase(this.Seleccion_almacenes.getItemAt(i))){
+                    this.vertexTarget = i;
+                    break;
+                }
+            }
+            this.jTextField1.setEnabled(true);
+            System.out.println("Vertice destino: " + this.vertexTarget);
+            this.jTextField1.setEnabled(true);
+            this.auxBoolean = true;
+            this.Seleccion_almacenes1.setEnabled(false);
+            this.jButton3.setEnabled(true);
+            this.jButton3.setText("Siguiente");
+            this.Confirmar_bt.setEnabled(false);
+        } else{
+            this.confirmTarget = false;
+            this.auxBoolean = false;
+            this.jButton1.setText("Siguiente");
+            this.jTextField1.setEnabled(false);
+            this.jTextField1.setText("(Distancia entre los almacenes en Kilometros)");
+            this.Seleccion_almacenes1.setEnabled(true);
+            this.jButton3.setText("Siguiente");
+            this.jButton3.setEnabled(false);
+            this.jTextArea1.setEnabled(false);
+            this.jTextArea1.setText("");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+        // TODO add your handling code here:
+        if (this.auxBoolean){
+            this.jTextField1.setText("");
+        }
+        
+    }//GEN-LAST:event_jTextField1MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        if (!this.distanceConfirm){
+            try{
+                this.distance = Helpers.validarNumDouble(this.jTextField1.getText().strip());
+                if (this.distance <= 0) throw new Exception("La distancia invalida");
+                System.out.println("Distancia: " + this.distance);
+                this.distanceConfirm = true;
+                this.jButton3.setText("Quitar");
+                this.jTextField1.setEnabled(false);
+                this.jTextArea1.setEnabled(true);
+                this.jTextArea1.setText("-Almacen de Inicio: " + this.Seleccion_almacenes.getItemAt(this.vertexSource) +
+                        "\n-Almacen de Destino: " + this.Seleccion_almacenes.getItemAt(this.vertexTarget) + 
+                        "\n-Distancia entre los almacenes: " + this.distance + "km");
+                this.Confirmar_bt.setEnabled(true);
+            } catch (Exception e){
+                JOptionPane.showMessageDialog(null, "La distancia entre los almacenes debe ser un numero positvo");
+                this.jTextField1.setText("");
+            }
+        }else {
+            this.distanceConfirm = false;
+            this.jButton3.setText("Siguiente");
+            this.jTextField1.setEnabled(true);
+            this.jTextField1.setText("(Distancia entre los almacenes)");
+            this.jTextArea1.setEnabled(false);
+            this.jTextArea1.setText("");
+            
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void Confirmar_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Confirmar_btActionPerformed
+        // TODO add your handling code here:
+        if (this.confirmSource && this.confirmTarget && this.distanceConfirm){
+            this.confirmSource = false;
+            this.confirmTarget = false;
+            this.distanceConfirm = false;
+            this.auxBoolean = false;
+            if (App.g.adjacency(this.vertexSource, this.vertexTarget)){
+                JOptionPane.showMessageDialog(null,"La ruta entre el " + this.Seleccion_almacenes.getItemAt(this.vertexSource) +
+                        " y el " + this.Seleccion_almacenes.getItemAt(this.vertexTarget) + " ha sido modificada.\n"
+                                + "Nueva distancia entre los almacenes: " + this.distance + " km.");
+            } else{
+                JOptionPane.showMessageDialog(null, "Ruta creadada exitosamente!\n\n" + 
+                    "Informacion de la nueva ruta:\n" + "-Almacen de Orige: " + this.Seleccion_almacenes.getItemAt(this.vertexSource) + 
+                        "\n-Almacen de Destino: " + this.Seleccion_almacenes.getItemAt(this.vertexTarget) + "\n- Distancia: "+
+                        this.distance + " km.");  
+            }
+            App.g.getMatrixAdj().addEdge(this.vertexSource, this.vertexTarget, this.distance);
+            System.out.println(App.g.toString());
+            this.jButton1.setText("Siguiente");
+            this.jButton2.setText("Siguiente");
+            this.jButton3.setText("Siguiente");
+            this.jButton2.setEnabled(true);
+            this.jButton1.setEnabled(false);
+            this.jButton3.setEnabled(false);
+            this.jTextArea1.setText("");
+            this.jTextField1.setEnabled(false);
+            this.Seleccion_almacenes1.setEnabled(false);
+            this.Seleccion_almacenes1.removeAllItems();
+            this.jTextField1.setEnabled(false);
+            this.jTextField1.setText("(Distancia entre los almacenes)");
+            this.Confirmar_bt.setEnabled(false);
+            this.Seleccion_almacenes.setEnabled(true);
+            this.vertexSource = -1;
+            this.vertexTarget = -1;
+            this.distance = -1;
+            this.Seleccion_almacenes.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_Confirmar_btActionPerformed
+
+    private void Descartar_btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Descartar_btn2ActionPerformed
+        // TODO add your handling code here:
+        this.confirmSource = false;
+        this.confirmTarget = false;
+        this.distanceConfirm = false;
+        this.auxBoolean = false;
+        this.Confirmar_bt.setEnabled(false);
+        this.jTextArea1.setText("");
+        this.jTextArea1.setEnabled(false);
+        this.jButton3.setText("Siguiente");
+        this.jButton3.setEnabled(false);
+        this.jTextField1.setEnabled(false);
+        this.jTextField1.setText("(Distancia entre los almacenes)");
+        this.jButton1.setEnabled(false);
+        this.jButton1.setText("Siguiente");
+        this.Seleccion_almacenes1.removeAllItems();
+        this.Seleccion_almacenes1.setEnabled(false);
+        this.Seleccion_almacenes.setEnabled(true);
+        this.jButton2.setEnabled(true);
+        this.jButton2.setText("Siguiente");
+        this.vertexSource = -1;
+        this.vertexTarget = -1;
+        this.distance = -1;
+        this.Seleccion_almacenes.setSelectedIndex(0);
+    }//GEN-LAST:event_Descartar_btn2ActionPerformed
+
 
  
 
@@ -791,7 +1054,7 @@ public static void main(String args[]) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BG;
-    private javax.swing.JButton Descartar_btn1;
+    private javax.swing.JButton Confirmar_bt;
     private javax.swing.JButton Descartar_btn2;
     private javax.swing.JComboBox<String> Seleccion_almacenes;
     private javax.swing.JComboBox<String> Seleccion_almacenes1;
@@ -812,6 +1075,9 @@ public static void main(String args[]) {
     private javax.swing.JLabel icono5;
     private javax.swing.JLabel icono6;
     private javax.swing.JLabel icono7;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

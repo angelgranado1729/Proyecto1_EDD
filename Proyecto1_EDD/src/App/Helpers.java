@@ -10,10 +10,6 @@ import MainClasses.LinkedList;
 import MainClasses.RutaCorta;
 import MainClasses.RutasPosibles;
 import MainClasses.RutasYDistancias;
-import javax.swing.JOptionPane;
-
-
-
 /**
  *
  * @author Angel Granado
@@ -147,6 +143,20 @@ public class Helpers {
     public static int validarNum(String num){
         try{
             return Integer.parseInt(num) ;
+        } catch (NumberFormatException e){
+        }
+        return -1;
+    }
+    
+        /**
+     * Convierte un string a double.
+     * 
+     * @param num, el string a convertir. 
+     * @return retorna la conversion a double.
+     */
+    public static double validarNumDouble(String num){
+        try{
+            return Double.parseDouble(num) ;
         } catch (NumberFormatException e){
         }
         return -1;
