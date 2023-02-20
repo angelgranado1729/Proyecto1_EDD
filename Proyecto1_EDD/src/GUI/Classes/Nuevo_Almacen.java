@@ -60,6 +60,7 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         btn_Inicio2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         exit = new javax.swing.JLabel();
@@ -415,12 +416,16 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Nuevo Pedido");
 
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/pedido_blanco.png"))); // NOI18N
+
         javax.swing.GroupLayout btn_Inicio2Layout = new javax.swing.GroupLayout(btn_Inicio2);
         btn_Inicio2.setLayout(btn_Inicio2Layout);
         btn_Inicio2Layout.setHorizontalGroup(
             btn_Inicio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_Inicio2Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
+                .addGap(20, 20, 20)
+                .addComponent(jLabel19)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addContainerGap(108, Short.MAX_VALUE))
         );
@@ -428,7 +433,9 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
             btn_Inicio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_Inicio2Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jLabel5)
+                .addGroup(btn_Inicio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel19)
+                    .addComponent(jLabel5))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -882,6 +889,7 @@ public static void main(String args[]) {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

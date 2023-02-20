@@ -40,6 +40,7 @@ public class Inicio extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         btn_cargar_guardar = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         btn_nueva_ruta = new javax.swing.JPanel();
         icono3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -126,20 +127,26 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/pedido_blanco.png"))); // NOI18N
+
         javax.swing.GroupLayout btn_cargar_guardarLayout = new javax.swing.GroupLayout(btn_cargar_guardar);
         btn_cargar_guardar.setLayout(btn_cargar_guardarLayout);
         btn_cargar_guardarLayout.setHorizontalGroup(
             btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_cargar_guardarLayout.createSequentialGroup()
-                .addGap(78, 78, 78)
+                .addGap(23, 23, 23)
+                .addComponent(jLabel13)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel5)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         btn_cargar_guardarLayout.setVerticalGroup(
             btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_cargar_guardarLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jLabel5)
+                .addGroup(btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
@@ -423,7 +430,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(icono7)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel10)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         btn_cargar_guardar1Layout.setVerticalGroup(
             btn_cargar_guardar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -756,6 +763,7 @@ public static void main(String args[]) {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
