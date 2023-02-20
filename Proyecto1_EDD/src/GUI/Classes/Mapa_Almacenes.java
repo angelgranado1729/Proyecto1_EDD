@@ -33,10 +33,10 @@ public class Mapa_Almacenes extends javax.swing.JFrame {
         BG = new javax.swing.JPanel();
         SidePanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        btn_Inicio1 = new javax.swing.JPanel();
+        btn_Inicio = new javax.swing.JPanel();
         icono1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        btn_cargar_guardar = new javax.swing.JPanel();
+        btn_nuevo_pedido = new javax.swing.JPanel();
         icono2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -49,13 +49,13 @@ public class Mapa_Almacenes extends javax.swing.JFrame {
         btn_reporte = new javax.swing.JPanel();
         icono5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        btn_gest_inventario1 = new javax.swing.JPanel();
+        btn_gest_inventario = new javax.swing.JPanel();
         icono6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         btn_mapa_almacenes = new javax.swing.JPanel();
         icono = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btn_cargar_guardar1 = new javax.swing.JPanel();
+        btn_cargar_guardar = new javax.swing.JPanel();
         icono7 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -78,7 +78,7 @@ public class Mapa_Almacenes extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/AmazonLogo.png"))); // NOI18N
         SidePanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 280, 80));
 
-        btn_Inicio1.setBackground(new java.awt.Color(55, 71, 90));
+        btn_Inicio.setBackground(new java.awt.Color(55, 71, 90));
 
         icono1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         icono1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/amazon_logo_blanco.png"))); // NOI18N
@@ -87,30 +87,30 @@ public class Mapa_Almacenes extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Inicio");
 
-        javax.swing.GroupLayout btn_Inicio1Layout = new javax.swing.GroupLayout(btn_Inicio1);
-        btn_Inicio1.setLayout(btn_Inicio1Layout);
-        btn_Inicio1Layout.setHorizontalGroup(
-            btn_Inicio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_Inicio1Layout.createSequentialGroup()
+        javax.swing.GroupLayout btn_InicioLayout = new javax.swing.GroupLayout(btn_Inicio);
+        btn_Inicio.setLayout(btn_InicioLayout);
+        btn_InicioLayout.setHorizontalGroup(
+            btn_InicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_InicioLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(icono1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addContainerGap(195, Short.MAX_VALUE))
         );
-        btn_Inicio1Layout.setVerticalGroup(
-            btn_Inicio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_Inicio1Layout.createSequentialGroup()
+        btn_InicioLayout.setVerticalGroup(
+            btn_InicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_InicioLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(btn_Inicio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(btn_InicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel4)
                     .addComponent(icono1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
-        SidePanel.add(btn_Inicio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 330, 60));
+        SidePanel.add(btn_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 330, 60));
 
-        btn_cargar_guardar.setBackground(new java.awt.Color(55, 71, 90));
+        btn_nuevo_pedido.setBackground(new java.awt.Color(55, 71, 90));
 
         icono2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         icono2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/pedidob.png"))); // NOI18N
@@ -121,11 +121,11 @@ public class Mapa_Almacenes extends javax.swing.JFrame {
 
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/pedido_blanco.png"))); // NOI18N
 
-        javax.swing.GroupLayout btn_cargar_guardarLayout = new javax.swing.GroupLayout(btn_cargar_guardar);
-        btn_cargar_guardar.setLayout(btn_cargar_guardarLayout);
-        btn_cargar_guardarLayout.setHorizontalGroup(
-            btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_cargar_guardarLayout.createSequentialGroup()
+        javax.swing.GroupLayout btn_nuevo_pedidoLayout = new javax.swing.GroupLayout(btn_nuevo_pedido);
+        btn_nuevo_pedido.setLayout(btn_nuevo_pedidoLayout);
+        btn_nuevo_pedidoLayout.setHorizontalGroup(
+            btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_nuevo_pedidoLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -134,18 +134,18 @@ public class Mapa_Almacenes extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addContainerGap(106, Short.MAX_VALUE))
         );
-        btn_cargar_guardarLayout.setVerticalGroup(
-            btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_cargar_guardarLayout.createSequentialGroup()
+        btn_nuevo_pedidoLayout.setVerticalGroup(
+            btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_nuevo_pedidoLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icono2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel19))
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
-        SidePanel.add(btn_cargar_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 330, 60));
+        SidePanel.add(btn_nuevo_pedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 330, 60));
 
         btn_nueva_ruta.setBackground(new java.awt.Color(55, 71, 90));
 
@@ -243,7 +243,7 @@ public class Mapa_Almacenes extends javax.swing.JFrame {
 
         SidePanel.add(btn_reporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 330, 60));
 
-        btn_gest_inventario1.setBackground(new java.awt.Color(55, 71, 90));
+        btn_gest_inventario.setBackground(new java.awt.Color(55, 71, 90));
 
         icono6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         icono6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/gestion_inventario_blanco.png"))); // NOI18N
@@ -252,28 +252,28 @@ public class Mapa_Almacenes extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Gestión de Inventario");
 
-        javax.swing.GroupLayout btn_gest_inventario1Layout = new javax.swing.GroupLayout(btn_gest_inventario1);
-        btn_gest_inventario1.setLayout(btn_gest_inventario1Layout);
-        btn_gest_inventario1Layout.setHorizontalGroup(
-            btn_gest_inventario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_gest_inventario1Layout.createSequentialGroup()
+        javax.swing.GroupLayout btn_gest_inventarioLayout = new javax.swing.GroupLayout(btn_gest_inventario);
+        btn_gest_inventario.setLayout(btn_gest_inventarioLayout);
+        btn_gest_inventarioLayout.setHorizontalGroup(
+            btn_gest_inventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_gest_inventarioLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(icono6)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        btn_gest_inventario1Layout.setVerticalGroup(
-            btn_gest_inventario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_gest_inventario1Layout.createSequentialGroup()
+        btn_gest_inventarioLayout.setVerticalGroup(
+            btn_gest_inventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_gest_inventarioLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(btn_gest_inventario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(btn_gest_inventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel9)
                     .addComponent(icono6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
-        SidePanel.add(btn_gest_inventario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 330, 60));
+        SidePanel.add(btn_gest_inventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 330, 60));
 
         btn_mapa_almacenes.setBackground(new java.awt.Color(243, 168, 71));
 
@@ -306,7 +306,7 @@ public class Mapa_Almacenes extends javax.swing.JFrame {
 
         SidePanel.add(btn_mapa_almacenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 550, 330, 60));
 
-        btn_cargar_guardar1.setBackground(new java.awt.Color(55, 71, 90));
+        btn_cargar_guardar.setBackground(new java.awt.Color(55, 71, 90));
 
         icono7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         icono7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/cargar y guardar blanco.png"))); // NOI18N
@@ -315,28 +315,28 @@ public class Mapa_Almacenes extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Cargar y Guardar");
 
-        javax.swing.GroupLayout btn_cargar_guardar1Layout = new javax.swing.GroupLayout(btn_cargar_guardar1);
-        btn_cargar_guardar1.setLayout(btn_cargar_guardar1Layout);
-        btn_cargar_guardar1Layout.setHorizontalGroup(
-            btn_cargar_guardar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_cargar_guardar1Layout.createSequentialGroup()
+        javax.swing.GroupLayout btn_cargar_guardarLayout = new javax.swing.GroupLayout(btn_cargar_guardar);
+        btn_cargar_guardar.setLayout(btn_cargar_guardarLayout);
+        btn_cargar_guardarLayout.setHorizontalGroup(
+            btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_cargar_guardarLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(icono7)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel10)
                 .addContainerGap(58, Short.MAX_VALUE))
         );
-        btn_cargar_guardar1Layout.setVerticalGroup(
-            btn_cargar_guardar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_cargar_guardar1Layout.createSequentialGroup()
+        btn_cargar_guardarLayout.setVerticalGroup(
+            btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_cargar_guardarLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(btn_cargar_guardar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel10)
                     .addComponent(icono7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
-        SidePanel.add(btn_cargar_guardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 330, 60));
+        SidePanel.add(btn_cargar_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 330, 60));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -551,13 +551,13 @@ public static void main(String args[]) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BG;
     private javax.swing.JPanel SidePanel;
-    private javax.swing.JPanel btn_Inicio1;
+    private javax.swing.JPanel btn_Inicio;
     private javax.swing.JPanel btn_cargar_guardar;
-    private javax.swing.JPanel btn_cargar_guardar1;
-    private javax.swing.JPanel btn_gest_inventario1;
+    private javax.swing.JPanel btn_gest_inventario;
     private javax.swing.JPanel btn_mapa_almacenes;
     private javax.swing.JPanel btn_nueva_ruta;
     private javax.swing.JPanel btn_nuevo_almacen;
+    private javax.swing.JPanel btn_nuevo_pedido;
     private javax.swing.JPanel btn_reporte;
     private javax.swing.JLabel exit;
     private javax.swing.JLabel icono;

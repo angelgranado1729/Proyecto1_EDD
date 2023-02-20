@@ -35,10 +35,10 @@ public class Inicio extends javax.swing.JFrame {
         BG = new javax.swing.JPanel();
         SidePanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        btn_Inicio1 = new javax.swing.JPanel();
+        btn_Inicio = new javax.swing.JPanel();
         icono1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        btn_cargar_guardar = new javax.swing.JPanel();
+        btn_nuevo_pedido = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         btn_nueva_ruta = new javax.swing.JPanel();
@@ -50,13 +50,13 @@ public class Inicio extends javax.swing.JFrame {
         btn_reporte = new javax.swing.JPanel();
         icono5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        btn_gest_inventario1 = new javax.swing.JPanel();
+        btn_gest_inventario = new javax.swing.JPanel();
         icono6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         btn_mapa_almacenes = new javax.swing.JPanel();
         icono = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btn_cargar_guardar1 = new javax.swing.JPanel();
+        btn_cargar_guardar = new javax.swing.JPanel();
         icono7 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -80,7 +80,7 @@ public class Inicio extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/AmazonLogo.png"))); // NOI18N
         SidePanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 280, 80));
 
-        btn_Inicio1.setBackground(new java.awt.Color(243, 168, 71));
+        btn_Inicio.setBackground(new java.awt.Color(243, 168, 71));
 
         icono1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         icono1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/icons8-amazon-32.png"))); // NOI18N
@@ -88,33 +88,33 @@ public class Inicio extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setText("Inicio");
 
-        javax.swing.GroupLayout btn_Inicio1Layout = new javax.swing.GroupLayout(btn_Inicio1);
-        btn_Inicio1.setLayout(btn_Inicio1Layout);
-        btn_Inicio1Layout.setHorizontalGroup(
-            btn_Inicio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_Inicio1Layout.createSequentialGroup()
+        javax.swing.GroupLayout btn_InicioLayout = new javax.swing.GroupLayout(btn_Inicio);
+        btn_Inicio.setLayout(btn_InicioLayout);
+        btn_InicioLayout.setHorizontalGroup(
+            btn_InicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_InicioLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(icono1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        btn_Inicio1Layout.setVerticalGroup(
-            btn_Inicio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_Inicio1Layout.createSequentialGroup()
+        btn_InicioLayout.setVerticalGroup(
+            btn_InicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_InicioLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(btn_Inicio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(btn_InicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel4)
                     .addComponent(icono1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
-        SidePanel.add(btn_Inicio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 330, 60));
+        SidePanel.add(btn_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 330, 60));
 
-        btn_cargar_guardar.setBackground(new java.awt.Color(55, 71, 90));
-        btn_cargar_guardar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_nuevo_pedido.setBackground(new java.awt.Color(55, 71, 90));
+        btn_nuevo_pedido.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_cargar_guardarMouseClicked(evt);
+                btn_nuevo_pedidoMouseClicked(evt);
             }
         });
 
@@ -129,28 +129,28 @@ public class Inicio extends javax.swing.JFrame {
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/pedido_blanco.png"))); // NOI18N
 
-        javax.swing.GroupLayout btn_cargar_guardarLayout = new javax.swing.GroupLayout(btn_cargar_guardar);
-        btn_cargar_guardar.setLayout(btn_cargar_guardarLayout);
-        btn_cargar_guardarLayout.setHorizontalGroup(
-            btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_cargar_guardarLayout.createSequentialGroup()
+        javax.swing.GroupLayout btn_nuevo_pedidoLayout = new javax.swing.GroupLayout(btn_nuevo_pedido);
+        btn_nuevo_pedido.setLayout(btn_nuevo_pedidoLayout);
+        btn_nuevo_pedidoLayout.setHorizontalGroup(
+            btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_nuevo_pedidoLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel13)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addContainerGap(105, Short.MAX_VALUE))
         );
-        btn_cargar_guardarLayout.setVerticalGroup(
-            btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_cargar_guardarLayout.createSequentialGroup()
+        btn_nuevo_pedidoLayout.setVerticalGroup(
+            btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_nuevo_pedidoLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
-        SidePanel.add(btn_cargar_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 330, 60));
+        SidePanel.add(btn_nuevo_pedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 330, 60));
 
         btn_nueva_ruta.setBackground(new java.awt.Color(55, 71, 90));
         btn_nueva_ruta.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -293,15 +293,15 @@ public class Inicio extends javax.swing.JFrame {
 
         SidePanel.add(btn_reporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 330, 60));
 
-        btn_gest_inventario1.setBackground(new java.awt.Color(55, 71, 90));
-        btn_gest_inventario1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_gest_inventario.setBackground(new java.awt.Color(55, 71, 90));
+        btn_gest_inventario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_gest_inventario1MouseClicked(evt);
+                btn_gest_inventarioMouseClicked(evt);
             }
         });
-        btn_gest_inventario1.addKeyListener(new java.awt.event.KeyAdapter() {
+        btn_gest_inventario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                btn_gest_inventario1KeyPressed(evt);
+                btn_gest_inventarioKeyPressed(evt);
             }
         });
 
@@ -327,28 +327,28 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout btn_gest_inventario1Layout = new javax.swing.GroupLayout(btn_gest_inventario1);
-        btn_gest_inventario1.setLayout(btn_gest_inventario1Layout);
-        btn_gest_inventario1Layout.setHorizontalGroup(
-            btn_gest_inventario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_gest_inventario1Layout.createSequentialGroup()
+        javax.swing.GroupLayout btn_gest_inventarioLayout = new javax.swing.GroupLayout(btn_gest_inventario);
+        btn_gest_inventario.setLayout(btn_gest_inventarioLayout);
+        btn_gest_inventarioLayout.setHorizontalGroup(
+            btn_gest_inventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_gest_inventarioLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(icono6)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        btn_gest_inventario1Layout.setVerticalGroup(
-            btn_gest_inventario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_gest_inventario1Layout.createSequentialGroup()
+        btn_gest_inventarioLayout.setVerticalGroup(
+            btn_gest_inventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_gest_inventarioLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(btn_gest_inventario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(btn_gest_inventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel9)
                     .addComponent(icono6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
-        SidePanel.add(btn_gest_inventario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 330, 60));
+        SidePanel.add(btn_gest_inventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 330, 60));
 
         btn_mapa_almacenes.setBackground(new java.awt.Color(55, 71, 90));
         btn_mapa_almacenes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -397,10 +397,10 @@ public class Inicio extends javax.swing.JFrame {
 
         SidePanel.add(btn_mapa_almacenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 550, 330, 60));
 
-        btn_cargar_guardar1.setBackground(new java.awt.Color(55, 71, 90));
-        btn_cargar_guardar1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_cargar_guardar.setBackground(new java.awt.Color(55, 71, 90));
+        btn_cargar_guardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_cargar_guardar1MouseClicked(evt);
+                btn_cargar_guardarMouseClicked(evt);
             }
         });
 
@@ -421,28 +421,28 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout btn_cargar_guardar1Layout = new javax.swing.GroupLayout(btn_cargar_guardar1);
-        btn_cargar_guardar1.setLayout(btn_cargar_guardar1Layout);
-        btn_cargar_guardar1Layout.setHorizontalGroup(
-            btn_cargar_guardar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_cargar_guardar1Layout.createSequentialGroup()
+        javax.swing.GroupLayout btn_cargar_guardarLayout = new javax.swing.GroupLayout(btn_cargar_guardar);
+        btn_cargar_guardar.setLayout(btn_cargar_guardarLayout);
+        btn_cargar_guardarLayout.setHorizontalGroup(
+            btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_cargar_guardarLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(icono7)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel10)
                 .addContainerGap(79, Short.MAX_VALUE))
         );
-        btn_cargar_guardar1Layout.setVerticalGroup(
-            btn_cargar_guardar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_cargar_guardar1Layout.createSequentialGroup()
+        btn_cargar_guardarLayout.setVerticalGroup(
+            btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_cargar_guardarLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(btn_cargar_guardar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel10)
                     .addComponent(icono7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
-        SidePanel.add(btn_cargar_guardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 330, 60));
+        SidePanel.add(btn_cargar_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 330, 60));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -574,12 +574,12 @@ public class Inicio extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_icono6MouseClicked
 
-    private void btn_gest_inventario1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_gest_inventario1MouseClicked
+    private void btn_gest_inventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_gest_inventarioMouseClicked
         // TODO add your handling code here:
         Gestion_Inventario v6 = new Gestion_Inventario();
         v6.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btn_gest_inventario1MouseClicked
+    }//GEN-LAST:event_btn_gest_inventarioMouseClicked
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
@@ -588,12 +588,12 @@ public class Inicio extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel10MouseClicked
 
-    private void btn_cargar_guardar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cargar_guardar1MouseClicked
+    private void btn_cargar_guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cargar_guardarMouseClicked
         // TODO add your handling code here:
         Cargar_y_Guardar v2= new Cargar_y_Guardar();
         v2.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btn_cargar_guardar1MouseClicked
+    }//GEN-LAST:event_btn_cargar_guardarMouseClicked
 
     private void icono7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono7MouseClicked
         // TODO add your handling code here:
@@ -665,9 +665,9 @@ public class Inicio extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_icono5MouseClicked
 
-    private void btn_gest_inventario1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btn_gest_inventario1KeyPressed
+    private void btn_gest_inventarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btn_gest_inventarioKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_gest_inventario1KeyPressed
+    }//GEN-LAST:event_btn_gest_inventarioKeyPressed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
@@ -697,12 +697,12 @@ public class Inicio extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
 
-    private void btn_cargar_guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cargar_guardarMouseClicked
+    private void btn_nuevo_pedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_pedidoMouseClicked
         // TODO add your handling code here:
         Nuevo_pedido v2 = new Nuevo_pedido();
         v2.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btn_cargar_guardarMouseClicked
+    }//GEN-LAST:event_btn_nuevo_pedidoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -743,13 +743,13 @@ public static void main(String args[]) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BG;
     private javax.swing.JPanel SidePanel;
-    private javax.swing.JPanel btn_Inicio1;
+    private javax.swing.JPanel btn_Inicio;
     private javax.swing.JPanel btn_cargar_guardar;
-    private javax.swing.JPanel btn_cargar_guardar1;
-    private javax.swing.JPanel btn_gest_inventario1;
+    private javax.swing.JPanel btn_gest_inventario;
     private javax.swing.JPanel btn_mapa_almacenes;
     private javax.swing.JPanel btn_nueva_ruta;
     private javax.swing.JPanel btn_nuevo_almacen;
+    private javax.swing.JPanel btn_nuevo_pedido;
     private javax.swing.JPanel btn_reporte;
     private javax.swing.JLabel exit;
     private javax.swing.JLabel icono;

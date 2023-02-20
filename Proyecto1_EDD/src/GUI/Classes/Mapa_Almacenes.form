@@ -74,7 +74,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Container class="javax.swing.JPanel" name="btn_Inicio1">
+            <Container class="javax.swing.JPanel" name="btn_Inicio">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="5a" green="47" red="37" type="rgb"/>
@@ -135,7 +135,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="btn_cargar_guardar">
+            <Container class="javax.swing.JPanel" name="btn_nuevo_pedido">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="5a" green="47" red="37" type="rgb"/>
@@ -389,7 +389,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="btn_gest_inventario1">
+            <Container class="javax.swing.JPanel" name="btn_gest_inventario">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="5a" green="47" red="37" type="rgb"/>
@@ -508,7 +508,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="btn_cargar_guardar1">
+            <Container class="javax.swing.JPanel" name="btn_cargar_guardar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="5a" green="47" red="37" type="rgb"/>
