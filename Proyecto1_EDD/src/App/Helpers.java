@@ -359,7 +359,7 @@ public class Helpers {
 
     /**
      * Registra un almacen en el grafo.
-     * 
+     *
      * @param nuevoAlmacen, nombre del almacen.
      * @param almacenInicioIndex, el indice del almacen inicio.
      * @param almacenDestinoIndex, el indice del almacen destino.
