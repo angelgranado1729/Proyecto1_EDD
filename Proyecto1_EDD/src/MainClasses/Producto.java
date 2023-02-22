@@ -9,7 +9,7 @@ package MainClasses;
  * @author Angel Granado
  */
 public class Producto {
-    
+
     /**
      * Nombre del producto.
      */
@@ -21,6 +21,7 @@ public class Producto {
 
     /**
      * Constructor de la clase.
+     *
      * @param producto nombre del producto.
      * @param stock cantidad disponible.
      */
@@ -28,10 +29,10 @@ public class Producto {
         this.producto = producto;
         this.stock = stock;
     }
-    
+
     /**
      * Constructor de la clase.
-     * 
+     *
      * @param producto nombre del producto.
      */
     public Producto(String producto) {
@@ -41,7 +42,7 @@ public class Producto {
 
     /**
      * Getter para acceder al nombre del producto.
-     * 
+     *
      * @return producto nombre del producto.
      */
     public String getProducto() {
@@ -50,7 +51,7 @@ public class Producto {
 
     /**
      * Setter para modificar el nombre del producto.
-     * 
+     *
      * @param producto nuevo nombre del producto.
      */
     public void setProducto(String producto) {
@@ -59,7 +60,7 @@ public class Producto {
 
     /**
      * Getter para acceder a la cantidad disponible del producto.
-     * 
+     *
      * @return stock cantidad disponible del producto.
      */
     public int getStock() {
@@ -68,20 +69,20 @@ public class Producto {
 
     /**
      * Setter para modificar la cantidad disponible del producto.
-     * 
+     *
      * @param stock nueva cantidad disponible del producto.
      */
     public void setStock(int stock) {
         this.stock = stock;
     }
-    
+
     /**
      * Retorna un string con toda la informacion de la instacia.
-     * 
+     *
      * @return string
      */
     @Override
-    public String toString(){
+    public String toString() {
         String string = "";
         string += "-Producto: " + this.producto + "\n";
         string += "-Stock: " + String.valueOf(stock);

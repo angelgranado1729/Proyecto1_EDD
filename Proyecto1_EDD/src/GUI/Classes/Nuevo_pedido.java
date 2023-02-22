@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
  * @author andre
  */
 public class Nuevo_pedido extends javax.swing.JFrame {
+    
     private boolean confirmAlmacen = false;
     private boolean confirmProduc = false;
     private boolean confirmCant = false;
@@ -26,8 +27,7 @@ public class Nuevo_pedido extends javax.swing.JFrame {
     private Node<Almacen> almacenOrigen;
     private Producto producPedido;
     private LinkedList<Producto> pedidos = new LinkedList();
-    
-    
+
     /**
      * Creates new form Inicio
      */
@@ -41,10 +41,10 @@ public class Nuevo_pedido extends javax.swing.JFrame {
         this.agregar_bt.setEnabled(false);
         this.realizarPedido.setEnabled(false);
         this.jTextArea2.setEnabled(true);
-        Node<Almacen> aux = App.g.getAlmacenes().first();
-        for (int i = 0; i < App.g.getAlmacenes().getiSize(); i++){
+        Node<Almacen> aux = App.getG().getAlmacenes().first();
+        for (int i = 0; i < App.getG().getAlmacenes().getiSize(); i++) {
             this.Seleccion_almacenes1.addItem("Almacen " + aux.getTInfo().getAlmacen());
-            aux = App.g.getAlmacenes().next(aux);
+            aux = App.getG().getAlmacenes().next(aux);
         }
         this.descartar_bt.setEnabled(false);
     }
@@ -749,9 +749,9 @@ public class Nuevo_pedido extends javax.swing.JFrame {
 
     private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
         // TODO add your handling code here:
-            int x = getLocation().x - initialClick.x + evt.getX();
-            int y = getLocation().y - initialClick.y + evt.getY();
-            setLocation(x, y);
+        int x = getLocation().x - initialClick.x + evt.getX();
+        int y = getLocation().y - initialClick.y + evt.getY();
+        setLocation(x, y);
     }//GEN-LAST:event_jPanel4MouseDragged
 
     private void CantidadProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CantidadProducActionPerformed
@@ -897,12 +897,13 @@ public class Nuevo_pedido extends javax.swing.JFrame {
 
     private void siguiente_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguiente_btActionPerformed
         // TODO add your handling code here:
-        if (!this.confirmAlmacen){
-            this.almacenOrigen = App.g.getAlmacenes().getNode(this.Seleccion_almacenes1.getSelectedIndex());
+        this.CantidadProduc.setEnabled(false);
+        if (!this.confirmAlmacen) {
+            this.almacenOrigen = App.getG().getAlmacenes().getNode(this.Seleccion_almacenes1.getSelectedIndex());
             
             Node<Producto> aux = this.almacenOrigen.getTInfo().getListaProductos().getpFirst();
             String listaP = "";
-            for(int i = 0; i < this.almacenOrigen.getTInfo().getListaProductos().getiSize(); i++){
+            for (int i = 0; i < this.almacenOrigen.getTInfo().getListaProductos().getiSize(); i++) {
                 listaP += aux.getTInfo().toString() + "\n\n";
                 this.Seleccion_productos.addItem(aux.getTInfo().getProducto());
                 aux = aux.getNextNode();
@@ -916,7 +917,7 @@ public class Nuevo_pedido extends javax.swing.JFrame {
             this.Seleccion_productos.setEnabled(true);
             this.jTextArea2.setText(this.pedidos.toString());
             this.descartar_bt.setEnabled(true);
-        } else{
+        } else {
             this.confirmAlmacen = false;
             this.confirmProduc = false;
             this.confirmCant = false;
@@ -938,7 +939,9 @@ public class Nuevo_pedido extends javax.swing.JFrame {
     private void siguiente_bt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguiente_bt2ActionPerformed
         // TODO add your handling code here:
         this.realizar_Pedido = false;
-        if (!this.confirmProduc){
+        this.siguiente_bt2.setEnabled(false);
+        this.siguiente_bt2.setText("Siguiente");
+        if (!this.confirmProduc) {
             this.confirmProduc = true;
             this.siguiente_bt2.setText("Quitar");
             this.Seleccion_productos.setEnabled(false);
@@ -961,18 +964,20 @@ public class Nuevo_pedido extends javax.swing.JFrame {
             this.CantidadProduc.setText("");
             this.jTextArea2.setText("");
         }
-        if (this.confirmAlmacen && !this.confirmProduc){
+        if (this.confirmAlmacen && !this.confirmProduc) {
             this.realizarPedido.setEnabled(true);
         }
     }//GEN-LAST:event_siguiente_bt2ActionPerformed
 
     private void siguiente_bt3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguiente_bt3ActionPerformed
         // TODO add your handling code here:
-        if (!this.confirmCant){
-            try{
+        if (!this.confirmCant) {
+            try {
                 this.confirmCant = true;
                 int cantidad = Helpers.validarNum(this.CantidadProduc.getText().strip());
-                if (cantidad <= 0) throw new Exception("Cantidad no valida");
+                if (cantidad <= 0) {
+                    throw new Exception("Cantidad no valida");
+                }
                 this.producPedido.setStock(cantidad);
                 this.jTextArea2.setText("Producto a agregar\n"
                         + "Nombre del producto: " + this.producPedido.getProducto() + "\n"
@@ -981,29 +986,29 @@ public class Nuevo_pedido extends javax.swing.JFrame {
                 this.agregar_bt.setEnabled(true);
                 this.CantidadProduc.setEnabled(false);
                 this.siguiente_bt3.setText("Quitar");
-            } catch (Exception e){
-                JOptionPane.showMessageDialog(null,"El tamaño del pedido debe ser un numero entero positivo");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "El tamaño del pedido debe ser un numero entero positivo");
                 this.CantidadProduc.setText("");
             }
-        }else{
+        } else {
             this.confirmCant = false;
             this.producPedido.setStock(0);
             this.siguiente_bt3.setText("Siguiente");
             this.agregar_bt.setEnabled(false);
             this.CantidadProduc.setEnabled(true);
-            this.jTextArea2.setText(this.pedidos.toString());            
+            this.jTextArea2.setText(this.pedidos.toString());
         }
     }//GEN-LAST:event_siguiente_bt3ActionPerformed
 
     private void agregar_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_btActionPerformed
         // TODO add your handling code here:
-        if (this.pedidos.isEmpty()){
+        if (this.pedidos.isEmpty()) {
             this.pedidos.addEnd(producPedido);
         } else {
             boolean bAux = true;
             Node<Producto> aux = this.pedidos.first();
-            for (int i = 0; i < this.pedidos.size(); i++){
-                if (this.producPedido.getProducto().equalsIgnoreCase(aux.getTInfo().getProducto())){
+            for (int i = 0; i < this.pedidos.size(); i++) {
+                if (this.producPedido.getProducto().equalsIgnoreCase(aux.getTInfo().getProducto())) {
                     int nroProduc = aux.getTInfo().getStock() + this.producPedido.getStock();
                     aux.getTInfo().setStock(nroProduc);
                     bAux = false;
@@ -1011,7 +1016,7 @@ public class Nuevo_pedido extends javax.swing.JFrame {
                 }
                 aux = this.pedidos.next(aux);
             }
-            if (bAux){
+            if (bAux) {
                 this.pedidos.addEnd(producPedido);
             }
         }
@@ -1035,101 +1040,97 @@ public class Nuevo_pedido extends javax.swing.JFrame {
         this.agregar_bt.setEnabled(false);
         this.jTextArea2.setText("Productos agregados al pedido:\n\n" + Helpers.toStringPedido(pedidos));
         this.realizar_Pedido = true;
-
         
+
     }//GEN-LAST:event_agregar_btActionPerformed
 
     private void realizarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_realizarPedidoActionPerformed
         // TODO add your handling code here:
-        if (this.realizar_Pedido){
-           Helpers.realizarPedidoProced(almacenOrigen.getTInfo(), pedidos);
-           this.confirmAlmacen = false;
-           this.confirmProduc = false;
-           this.confirmCant = false;
-           this.realizar_Pedido = false;
-           this.jTextArea2.setText("");
-           this.realizarPedido.setEnabled(false);
-           this.Seleccion_almacenes1.setEnabled(true);
-           this.Seleccion_almacenes1.setSelectedIndex(0);
-           this.siguiente_bt.setEnabled(true);
-           this.siguiente_bt.setText("Siguiente");
-           this.siguiente_bt2.setEnabled(false);
-           this.siguiente_bt2.setText("Siguiente");
-           this.Seleccion_productos.removeAllItems();
-           this.CantidadProduc.setEnabled(false);
-           this.CantidadProduc.setText("");
-           this.siguiente_bt3.setEnabled(false);
-           this.siguiente_bt3.setText("Siguiente");
-           this.listaProducTA.setText("");
-           this.descartar_bt.setEnabled(false);
-           this.pedidos.destroy();
+        if (this.realizar_Pedido) {
+            Helpers.realizarPedidoProced(almacenOrigen.getTInfo(), pedidos);
+            this.confirmAlmacen = false;
+            this.confirmProduc = false;
+            this.confirmCant = false;
+            this.realizar_Pedido = false;
+            this.jTextArea2.setText("");
+            this.realizarPedido.setEnabled(false);
+            this.Seleccion_almacenes1.setEnabled(true);
+            this.Seleccion_almacenes1.setSelectedIndex(0);
+            this.siguiente_bt.setEnabled(true);
+            this.siguiente_bt.setText("Siguiente");
+            this.siguiente_bt2.setEnabled(false);
+            this.siguiente_bt2.setText("Siguiente");
+            this.Seleccion_productos.removeAllItems();
+            this.CantidadProduc.setEnabled(false);
+            this.CantidadProduc.setText("");
+            this.siguiente_bt3.setEnabled(false);
+            this.siguiente_bt3.setText("Siguiente");
+            this.listaProducTA.setText("");
+            this.descartar_bt.setEnabled(false);
+            this.pedidos.destroy();
         }
- 
+
     }//GEN-LAST:event_realizarPedidoActionPerformed
 
     private void descartar_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descartar_btActionPerformed
         // TODO add your handling code here:
         this.confirmAlmacen = false;
-           this.confirmProduc = false;
-           this.confirmCant = false;
-           this.realizar_Pedido = false;
-           this.jTextArea2.setText("");
-           this.realizarPedido.setEnabled(false);
-           this.Seleccion_almacenes1.setEnabled(true);
-           this.Seleccion_almacenes1.setSelectedIndex(0);
-           this.siguiente_bt.setEnabled(true);
-           this.siguiente_bt.setText("Siguiente");
-           this.siguiente_bt2.setEnabled(false);
-           this.siguiente_bt2.setText("Siguiente");
-           this.Seleccion_productos.removeAllItems();
-           this.CantidadProduc.setEnabled(false);
-           this.CantidadProduc.setText("");
-           this.siguiente_bt3.setEnabled(false);
-           this.siguiente_bt3.setText("Siguiente");
-           this.listaProducTA.setText("");
-           this.descartar_bt.setEnabled(false);
-           this.pedidos.destroy();        
+        this.confirmProduc = false;
+        this.confirmCant = false;
+        this.realizar_Pedido = false;
+        this.jTextArea2.setText("");
+        this.realizarPedido.setEnabled(false);
+        this.Seleccion_almacenes1.setEnabled(true);
+        this.Seleccion_almacenes1.setSelectedIndex(0);
+        this.siguiente_bt.setEnabled(true);
+        this.siguiente_bt.setText("Siguiente");
+        this.siguiente_bt2.setEnabled(false);
+        this.siguiente_bt2.setText("Siguiente");
+        this.Seleccion_productos.removeAllItems();
+        this.CantidadProduc.setEnabled(false);
+        this.CantidadProduc.setText("");
+        this.siguiente_bt3.setEnabled(false);
+        this.siguiente_bt3.setText("Siguiente");
+        this.listaProducTA.setText("");
+        this.descartar_bt.setEnabled(false);
+        this.pedidos.destroy();
     }//GEN-LAST:event_descartar_btActionPerformed
-
-
- 
-
 
     /**
      * @param args the command line arguments
      */
-public static void main(String args[]) {
-    /* Set the Nimbus look and feel */
-    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
      * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-     */
-    try {
-        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-            if ("Nimbus".equals(info.getName())) {
-                javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                break;
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
             }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Nuevo_pedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Nuevo_pedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Nuevo_pedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Nuevo_pedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-    } catch (ClassNotFoundException ex) {
-        java.util.logging.Logger.getLogger(Nuevo_pedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (InstantiationException ex) {
-        java.util.logging.Logger.getLogger(Nuevo_pedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (IllegalAccessException ex) {
-        java.util.logging.Logger.getLogger(Nuevo_pedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-        java.util.logging.Logger.getLogger(Nuevo_pedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
-    //</editor-fold>
-    //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
-    /* Create and display the form */
-    java.awt.EventQueue.invokeLater(new Runnable() {
-        public void run() {
-            new Nuevo_pedido().setVisible(true);
-        }
-    });
-}
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Nuevo_pedido().setVisible(true);
+            }
+        });
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1188,7 +1189,7 @@ public static void main(String args[]) {
     // End of variables declaration//GEN-END:variables
 
     private class Seleccion_almacenes {
-
+        
         public Seleccion_almacenes() {
         }
     }

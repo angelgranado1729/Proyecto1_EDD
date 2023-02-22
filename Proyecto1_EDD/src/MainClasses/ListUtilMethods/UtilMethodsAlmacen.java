@@ -7,12 +7,11 @@ package MainClasses.ListUtilMethods;
 import MainClasses.Almacen;
 import MainClasses.LinkedList;
 
-
 /**
  *
  * @author Angel Granado
  */
-public class UtilMethodsAlmacen implements LinkedList.LinkedListMethods<Almacen>{
+public class UtilMethodsAlmacen implements LinkedList.LinkedListMethods<Almacen> {
 
     @Override
     public int compareTo(Almacen tInfo1, Almacen tInfo2) {
@@ -28,5 +27,5 @@ public class UtilMethodsAlmacen implements LinkedList.LinkedListMethods<Almacen>
     public boolean equals(Almacen tInfo1, Almacen tInfo2) {
         return tInfo1.getAlmacen().equalsIgnoreCase(tInfo2.getAlmacen());
     }
-    
+
 }

@@ -16,10 +16,11 @@ import javax.swing.JOptionPane;
  * @author andre & Angel Granado
  */
 public class Nuevas_Rutas extends javax.swing.JFrame {
+
     private int vertexSource;
     private int vertexTarget;
     private double distance;
-    
+
     private boolean confirmSource = false;
     private boolean confirmTarget = false;
     private boolean distanceConfirm = false;
@@ -33,10 +34,10 @@ public class Nuevas_Rutas extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.jTextArea1.setFocusable(false);
-        Node<Almacen> aux = App.g.getAlmacenes().first();
-        for (int i = 0; i < App.g.getAlmacenes().getiSize(); i++){
+        Node<Almacen> aux = App.getG().getAlmacenes().first();
+        for (int i = 0; i < App.getG().getAlmacenes().getiSize(); i++) {
             this.Seleccion_almacenes.addItem("Almacen " + aux.getTInfo().getAlmacen());
-            aux = App.g.getAlmacenes().next(aux);
+            aux = App.getG().getAlmacenes().next(aux);
         }
         this.Seleccion_almacenes1.setEnabled(false);
         this.jButton1.setEnabled(false);
@@ -720,9 +721,9 @@ public class Nuevas_Rutas extends javax.swing.JFrame {
 
     private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
         // TODO add your handling code here:
-            int x = getLocation().x - initialClick.x + evt.getX();
-            int y = getLocation().y - initialClick.y + evt.getY();
-            setLocation(x, y);
+        int x = getLocation().x - initialClick.x + evt.getX();
+        int y = getLocation().y - initialClick.y + evt.getY();
+        setLocation(x, y);
     }//GEN-LAST:event_jPanel4MouseDragged
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -847,19 +848,19 @@ public class Nuevas_Rutas extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        if (!this.confirmSource){
+        if (!this.confirmSource) {
             this.confirmSource = true;
             this.vertexSource = this.Seleccion_almacenes.getSelectedIndex();
             this.Seleccion_almacenes.setEnabled(false);
             this.jButton2.setText("Quitar");
             this.jButton1.setEnabled(true);
             this.Seleccion_almacenes1.setEnabled(true);
-            for (int i=0; i < this.Seleccion_almacenes.getItemCount(); i++){
-                if (i != this.vertexSource){
+            for (int i = 0; i < this.Seleccion_almacenes.getItemCount(); i++) {
+                if (i != this.vertexSource) {
                     this.Seleccion_almacenes1.addItem(this.Seleccion_almacenes.getItemAt(i));
                 }
             }
-        } else{
+        } else {
             this.confirmSource = false;
             this.confirmTarget = false;
             this.distanceConfirm = false;
@@ -884,12 +885,12 @@ public class Nuevas_Rutas extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if (!this.confirmTarget){
+        if (!this.confirmTarget) {
             this.confirmTarget = true;
             this.jButton1.setText("Quitar");
             String warehouseTarget = this.Seleccion_almacenes1.getSelectedItem().toString();
-            for (int i = 0; i < this.Seleccion_almacenes.getItemCount(); i++){
-                if (warehouseTarget.equalsIgnoreCase(this.Seleccion_almacenes.getItemAt(i))){
+            for (int i = 0; i < this.Seleccion_almacenes.getItemCount(); i++) {
+                if (warehouseTarget.equalsIgnoreCase(this.Seleccion_almacenes.getItemAt(i))) {
                     this.vertexTarget = i;
                     break;
                 }
@@ -901,7 +902,7 @@ public class Nuevas_Rutas extends javax.swing.JFrame {
             this.jButton3.setEnabled(true);
             this.jButton3.setText("Siguiente");
             this.Confirmar_bt.setEnabled(false);
-        } else{
+        } else {
             this.confirmTarget = false;
             this.auxBoolean = false;
             this.jButton1.setText("Siguiente");
@@ -917,59 +918,61 @@ public class Nuevas_Rutas extends javax.swing.JFrame {
 
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
         // TODO add your handling code here:
-        if (this.auxBoolean){
+        if (this.auxBoolean) {
             this.jTextField1.setText("");
         }
-        
+
     }//GEN-LAST:event_jTextField1MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        if (!this.distanceConfirm){
-            try{
+        if (!this.distanceConfirm) {
+            try {
                 this.distance = Helpers.validarNumDouble(this.jTextField1.getText().strip());
-                if (this.distance <= 0) throw new Exception("La distancia invalida");
+                if (this.distance <= 0) {
+                    throw new Exception("La distancia invalida");
+                }
                 this.distanceConfirm = true;
                 this.jButton3.setText("Quitar");
                 this.jTextField1.setEnabled(false);
                 this.jTextArea1.setEnabled(true);
-                this.jTextArea1.setText("-Almacen de Inicio: " + this.Seleccion_almacenes.getItemAt(this.vertexSource) +
-                        "\n-Almacen de Destino: " + this.Seleccion_almacenes.getItemAt(this.vertexTarget) + 
-                        "\n-Distancia entre los almacenes: " + this.distance + "km");
+                this.jTextArea1.setText("-Almacen de Inicio: " + this.Seleccion_almacenes.getItemAt(this.vertexSource)
+                        + "\n-Almacen de Destino: " + this.Seleccion_almacenes.getItemAt(this.vertexTarget)
+                        + "\n-Distancia entre los almacenes: " + this.distance + "km");
                 this.Confirmar_bt.setEnabled(true);
-            } catch (Exception e){
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "La distancia entre los almacenes debe ser un numero positvo");
                 this.jTextField1.setText("");
             }
-        }else {
+        } else {
             this.distanceConfirm = false;
             this.jButton3.setText("Siguiente");
             this.jTextField1.setEnabled(true);
             this.jTextField1.setText("(Distancia entre los almacenes)");
             this.jTextArea1.setEnabled(false);
             this.jTextArea1.setText("");
-            
+
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void Confirmar_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Confirmar_btActionPerformed
         // TODO add your handling code here:
-        if (this.confirmSource && this.confirmTarget && this.distanceConfirm){
+        if (this.confirmSource && this.confirmTarget && this.distanceConfirm) {
             this.confirmSource = false;
             this.confirmTarget = false;
             this.distanceConfirm = false;
             this.auxBoolean = false;
-            if (App.g.adjacency(this.vertexSource, this.vertexTarget)){
-                JOptionPane.showMessageDialog(null,"La ruta entre el " + this.Seleccion_almacenes.getItemAt(this.vertexSource) +
-                        " y el " + this.Seleccion_almacenes.getItemAt(this.vertexTarget) + " ha sido modificada.\n"
-                                + "Nueva distancia entre los almacenes: " + this.distance + " km");
-            } else{
-                JOptionPane.showMessageDialog(null, "Ruta creadada exitosamente!\n\n" + 
-                    "Informacion de la nueva ruta:\n" + "-Almacen de Orige: " + this.Seleccion_almacenes.getItemAt(this.vertexSource) + 
-                        "\n-Almacen de Destino: " + this.Seleccion_almacenes.getItemAt(this.vertexTarget) + "\n- Distancia: "+
-                        this.distance + " km");  
+            if (App.getG().adjacency(this.vertexSource, this.vertexTarget)) {
+                JOptionPane.showMessageDialog(null, "La ruta entre el " + this.Seleccion_almacenes.getItemAt(this.vertexSource)
+                        + " y el " + this.Seleccion_almacenes.getItemAt(this.vertexTarget) + " ha sido modificada.\n"
+                        + "Nueva distancia entre los almacenes: " + this.distance + " km");
+            } else {
+                JOptionPane.showMessageDialog(null, "Ruta creadada exitosamente!\n\n"
+                        + "Informacion de la nueva ruta:\n" + "-Almacen de Orige: " + this.Seleccion_almacenes.getItemAt(this.vertexSource)
+                        + "\n-Almacen de Destino: " + this.Seleccion_almacenes.getItemAt(this.vertexTarget) + "\n- Distancia: "
+                        + this.distance + " km");
             }
-            App.g.getMatrixAdj().addEdge(this.vertexSource, this.vertexTarget, this.distance);
+            App.getG().getMatrixAdj().addEdge(this.vertexSource, this.vertexTarget, this.distance);
             this.jButton1.setText("Siguiente");
             this.jButton2.setText("Siguiente");
             this.jButton3.setText("Siguiente");
@@ -1019,64 +1022,62 @@ public class Nuevas_Rutas extends javax.swing.JFrame {
 
     private void btn_nuevo_pedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_pedidoMouseClicked
         // TODO add your handling code here:
-          Nuevo_pedido v2 = new Nuevo_pedido();
+        Nuevo_pedido v2 = new Nuevo_pedido();
         v2.setVisible(true);
-        this.dispose(); 
+        this.dispose();
     }//GEN-LAST:event_btn_nuevo_pedidoMouseClicked
-                    
-                                         
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {                                     
-        // TODO add your handling code here:
-         Nuevo_pedido v2 = new Nuevo_pedido();
-        v2.setVisible(true);
-        this.dispose();  
-    }                                    
 
-    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {                                      
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
-         Nuevo_pedido v2 = new Nuevo_pedido();
+        Nuevo_pedido v2 = new Nuevo_pedido();
         v2.setVisible(true);
-        this.dispose();  
-    }  
+        this.dispose();
+    }
 
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {
+        // TODO add your handling code here:
+        Nuevo_pedido v2 = new Nuevo_pedido();
+        v2.setVisible(true);
+        this.dispose();
+    }
 
     /**
      * @param args the command line arguments
      */
-public static void main(String args[]) {
-    /* Set the Nimbus look and feel */
-    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
      * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-     */
-    try {
-        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-            if ("Nimbus".equals(info.getName())) {
-                javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                break;
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
             }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Nuevas_Rutas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Nuevas_Rutas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Nuevas_Rutas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Nuevas_Rutas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-    } catch (ClassNotFoundException ex) {
-        java.util.logging.Logger.getLogger(Nuevas_Rutas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (InstantiationException ex) {
-        java.util.logging.Logger.getLogger(Nuevas_Rutas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (IllegalAccessException ex) {
-        java.util.logging.Logger.getLogger(Nuevas_Rutas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-        java.util.logging.Logger.getLogger(Nuevas_Rutas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
-    //</editor-fold>
-    //</editor-fold>
-    //</editor-fold>
-    //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
-    /* Create and display the form */
-    java.awt.EventQueue.invokeLater(new Runnable() {
-        public void run() {
-            new Nuevas_Rutas().setVisible(true);
-        }
-    });
-}
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Nuevas_Rutas().setVisible(true);
+            }
+        });
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

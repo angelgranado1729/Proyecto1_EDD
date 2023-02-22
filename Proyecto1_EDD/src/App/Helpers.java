@@ -19,6 +19,16 @@ import javax.swing.JOptionPane;
  */
 public class Helpers {
 
+    /**
+     * Determina la ruta mas corta mas corta entre dos vertices usando el
+     * algoritmo de Dijkstra.
+     *
+     * @param graph, el grafo donde se va a aplicar Dijkstra.
+     * @param source, el inidice del vertice inicio de la ruta.
+     * @param target, el indice del vertice destino de la ruta.
+     * @return una instancia del objeto RutaYDistancia, que contiene la ruta mas
+     * corta y la distancia.
+     */
     public static RutaYDistancia dijkstra(Grafo graph, int source, int target) {
         int[] ultimos = new int[graph.getNumVertices()];
         double[] distancias = new double[graph.getNumVertices()];
@@ -45,7 +55,15 @@ public class Helpers {
         return path(ultimos, distancias, source, target);
     }
 
-    // Finding the minimum distance
+    /**
+     * Determina el vertice con la menor distancia a un vertice dado.
+     *
+     * @param distance, un array con las distancias que hay desde el vertice
+     * origen y los demas vertices del grafo.
+     * @param visitedVertex, un array de boolean que indica los vertices que ya
+     * han sido vesitados.
+     * @return el indice del vertice con menor distancia.
+     */
     private static int findMinDistance(double[] distance, boolean[] visitedVertex) {
         double minDistance = Double.MAX_VALUE;
         int minDistanceVertex = 1;
@@ -58,6 +76,18 @@ public class Helpers {
         return minDistanceVertex;
     }
 
+    /**
+     * Reconstruye la ruta minima que resulta de implementar Dijkstra.
+     *
+     * @param ultimos, un array con los inidices de los ultimos vertices
+     * visitados en la ruta.
+     * @param distancias, un array con las distancias de las rutas que parten
+     * del vertice origen a los otros vertices del grafo.
+     * @param source, indice del vertice origen.
+     * @param target, indice del vertice destino.
+     * @return una instancia de la clase RutaYDistancia que contiene la ruta
+     * minima y la distancia.
+     */
     public static RutaYDistancia path(int[] ultimos, double[] distancias, int source, int target) {
         int finalPoint = target;
         RutaYDistancia result = new RutaYDistancia();
@@ -79,6 +109,16 @@ public class Helpers {
         return result;
     }
 
+    /**
+     * Dado un array de vertices, determina la ruta mas corta posible que tiene
+     * como origen a uno de los vertices del array y el vertice destino dado.
+     *
+     * @param graph, el grafo donde se desea determinar la ruta corta.
+     * @param sources, el array con los indices de los vertices origen.
+     * @param target, el indice del vertice destino.
+     * @return retorna una instancia de la clase RutaYDistancia que contiene la
+     * ruta minima y la distancia.
+     */
     public static RutaYDistancia shortestPath(Grafo graph, int[] sources, int target) {
         double minDistance = Double.MAX_VALUE;
         RutasPosibles rutas = new RutasPosibles();
@@ -123,6 +163,12 @@ public class Helpers {
         return -1;
     }
 
+    /**
+     * Retorna un string con los productos del pedido realizado.
+     *
+     * @param pedido, una lista con los productos del pedido.
+     * @return un string con la informacion de los productos del pedido.
+     */
     public static String toStringPedido(LinkedList<Producto> pedido) {
         String s = "";
         Node<Producto> aux = pedido.first();
@@ -134,6 +180,14 @@ public class Helpers {
         return s;
     }
 
+    /**
+     * Busca el nodo que contiene a un producto dado.
+     *
+     * @param list, la lista de productos donde se desea realizar la busqueda.
+     * @param product, el nombre del producto a buscar.
+     * @return si el producto existe entonces retorna el nodo, si no entonces
+     * retorna null.
+     */
     public static Node<Producto> searchProduct(LinkedList<Producto> list, String product) {
         if (!list.isEmpty()) {
             Node<Producto> aux = list.first();
@@ -148,6 +202,14 @@ public class Helpers {
         return null;
     }
 
+    /**
+     * Determina si el pedido se puede realizar, si se puede lo realiza, y en
+     * caso de ser necesario, determina el almacen mas cercano que permita
+     * completar los productos faltantes para realizar el pedido.
+     *
+     * @param almacenOrigen, el almacen donde se va a realizar el pedido
+     * @param pedido, la lista de productos que conforman el pedido.
+     */
     public static void realizarPedidoProced(Almacen almacenOrigen, LinkedList<Producto> pedido) {
         if (!pedido.isEmpty()) {
             boolean pedido_realizable = true;
@@ -176,17 +238,19 @@ public class Helpers {
                     producEnAlmacen.setStock(producEnAlmacen.getStock() - producto_pedido.getTInfo().getStock());
                     producto_pedido = pedido.next(producto_pedido);
                 }
-               
+
                 //Mostramos un mensaje con el resumen de la compra
-                JOptionPane.showMessageDialog(null, "Pedido realizado exitosamente!\n\n"
-                        + "Resumen del pedido:\n" + productosPedidos);
-                
-                
+                JOptionPane.showMessageDialog(null, """
+                                                    Pedido realizado exitosamente!
+                                                    
+                                                    Resumen del pedido:
+                                                    """ + productosPedidos);
+
                 //Si no, se busca los productos restantes en los otros almacenes de la red
             } else {
                 //Primero buscamos los almacenes de la red que tienen los productos faltantes
-                Node<Almacen> almacenActual = App.g.getAlmacenes().getpFirst();
-                for (int i = 0; i < App.g.getAlmacenes().getiSize(); i++) {
+                Node<Almacen> almacenActual = App.getG().getAlmacenes().getpFirst();
+                for (int i = 0; i < App.getG().getAlmacenes().getiSize(); i++) {
                     if (!almacenActual.getTInfo().getAlmacen().equalsIgnoreCase(almacenOrigen.getAlmacen())) {
 
                         boolean almacenAux = true;
@@ -206,7 +270,7 @@ public class Helpers {
                             almacenesAux.addEnd(almacenActual.getTInfo());
                         }
                     }
-                    almacenActual = App.g.getAlmacenes().next(almacenActual);
+                    almacenActual = App.getG().getAlmacenes().next(almacenActual);
                 }
 
                 //Si la lista de almacenesAux no es vacia, entonces aplicamos dijsktra para encontrar el almacen mas cercano.
@@ -216,44 +280,44 @@ public class Helpers {
 
                     Node<Almacen> aux = almacenesAux.getpFirst();
                     for (int w = 0; w < indexAlmacen.length; w++) {
-                        indexAlmacen[w] = App.g.getIndexWarehouse(aux.getTInfo().getAlmacen());
+                        indexAlmacen[w] = App.getG().getIndexWarehouse(aux.getTInfo().getAlmacen());
                         aux = almacenesAux.next(aux);
                     }
-                    
+
                     //Buscamos el almacen mas cercano que permita completar el pedido
-                    RutaYDistancia rutaCorta = Helpers.shortestPath(App.g, indexAlmacen, App.g.getIndexWarehouse(almacenOrigen.getAlmacen()));
-                    
+                    RutaYDistancia rutaCorta = Helpers.shortestPath(App.getG(), indexAlmacen, App.getG().getIndexWarehouse(almacenOrigen.getAlmacen()));
+
                     //Si rutaCorta es null, enotnces no hay almacenes que puedan completar el pedido
-                    if (rutaCorta == null){
-                        JOptionPane.showMessageDialog(null,"""
+                    if (rutaCorta == null) {
+                        JOptionPane.showMessageDialog(null, """
                                                            No hay productos suficientes en los almacenes 
                                                            de la red para realizar el pedido
                                                            """);
                     } //En caso contrario, se hace el pdedido.
-                    else{
+                    else {
                         //Le descontamos los productos al almacen origen
                         Node<Producto> producto_pedido = pedido.getpFirst();
                         for (int i = 0; i < pedido.size(); i++) {
                             Producto producEnAlmacen = Helpers.searchProduct(almacenOrigen.getListaProductos(), producto_pedido.getTInfo().getProducto()).getTInfo();
                             //Si el almacen origen tiene suficientes unidades, se le resta lo pedido
-                            if (producEnAlmacen.getStock() >= producto_pedido.getTInfo().getStock()){
-                                producEnAlmacen.setStock(producEnAlmacen.getStock() - producto_pedido.getTInfo().getStock());  
-                            //Si no, se toma todas las unidades y el restante se le resta al almacen auxiliar
-                            } else{
-                               producEnAlmacen.setStock(0); 
+                            if (producEnAlmacen.getStock() >= producto_pedido.getTInfo().getStock()) {
+                                producEnAlmacen.setStock(producEnAlmacen.getStock() - producto_pedido.getTInfo().getStock());
+                                //Si no, se toma todas las unidades y el restante se le resta al almacen auxiliar
+                            } else {
+                                producEnAlmacen.setStock(0);
                             }
                             producto_pedido = pedido.next(producto_pedido);
                         }
-                        
+
                         //Buscamos los almacenes que forman la ruta minima y almacenamos los nombres en un string
                         String rutaASeguir = "";
                         Almacen[] ruta = new Almacen[rutaCorta.ruta.length];
                         int count = 0;
-                        for (int i : rutaCorta.ruta){
-                            ruta[count] = App.g.getAlmacenes().getNode(i).getTInfo();
-                            if (count < rutaCorta.ruta.length - 1){
-                                rutaASeguir += "Almacen " + ruta[count].getAlmacen() + ", ";  
-                            } else{
+                        for (int i : rutaCorta.ruta) {
+                            ruta[count] = App.getG().getAlmacenes().getNode(i).getTInfo();
+                            if (count < rutaCorta.ruta.length - 1) {
+                                rutaASeguir += "Almacen " + ruta[count].getAlmacen() + ", ";
+                            } else {
                                 rutaASeguir += "Almacen " + ruta[count].getAlmacen();
                             }
                             count++;
@@ -262,22 +326,21 @@ public class Helpers {
                         //Almacenamos los nombres de los productos faltantes en un string  
                         String productosFaltantes = "";
                         Node<Producto> productoFaltante = productosNoDisponibles.getpFirst();
-                        for (int i =0 ; i < productosNoDisponibles.getiSize(); i++){
-                            productosFaltantes += "-" + productoFaltante.getTInfo().getProducto() + " (" + productoFaltante.getTInfo().getStock() +")\n";
+                        for (int i = 0; i < productosNoDisponibles.getiSize(); i++) {
+                            productosFaltantes += "-" + productoFaltante.getTInfo().getProducto() + " (" + productoFaltante.getTInfo().getStock() + ")\n";
                             Producto productoEnAlmacenAux = Helpers.searchProduct(ruta[0].getListaProductos(), productoFaltante.getTInfo().getProducto()).getTInfo();
                             int newStock = productoEnAlmacenAux.getStock() - productoFaltante.getTInfo().getStock();
                             productoEnAlmacenAux.setStock(newStock);
                             productoFaltante = productosNoDisponibles.next(productoFaltante);
                         }
-                        
+
                         //Mostramos en un JOptionPane la ruta a seguir:
                         JOptionPane.showMessageDialog(null, """
                                                             Pedido realizado exitosamente!
                                                             El almacen """ + almacenOrigen.getAlmacen() + " no cuenta con la cantidad suficiente de los siguientes productos:\n"
-                                        + productosFaltantes +"\nLos productos faltantes seran pedidos al almacen mas cercano: Almacen " + ruta[0].getAlmacen() + 
-                                "\n-La ruta a seguir sera la siguiente: " + rutaASeguir +"\n-La distancia a recorrer sera de " + rutaCorta.distancia + " km");
-                                        
-                        
+                                + productosFaltantes + "\nLos productos faltantes seran pedidos al almacen mas cercano: Almacen " + ruta[0].getAlmacen()
+                                + "\n-La ruta a seguir sera la siguiente: " + rutaASeguir + "\n-La distancia a recorrer sera de " + rutaCorta.distancia + " km");
+
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, """
@@ -288,4 +351,3 @@ public class Helpers {
         }
     }
 }
-

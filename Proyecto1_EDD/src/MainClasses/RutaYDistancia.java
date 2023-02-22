@@ -9,14 +9,30 @@ package MainClasses;
  * @author Angel Granado
  */
 public class RutaYDistancia {
-        public int[] ruta;
+
+    /**
+     * Un array con los indices que conforman la ruta.
+     */
+    public int[] ruta;
+    /**
+     * La distancia total de la ruta.
+     */
     public double distancia;
 
-    public RutaYDistancia (int[] ruta, double distancia) {
+    /**
+     * Constructor de la clase.
+     *
+     * @param ruta, un array con los los indices que conforman la ruta.
+     * @param distancia, la distancia total de la ruta.
+     */
+    public RutaYDistancia(int[] ruta, double distancia) {
         this.ruta = ruta;
         this.distancia = distancia;
     }
 
-    public RutaYDistancia (){
+    /**
+     * Constructor de la clase.
+     */
+    public RutaYDistancia() {
     }
 }

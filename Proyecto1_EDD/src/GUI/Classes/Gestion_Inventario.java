@@ -18,18 +18,19 @@ import javax.swing.JOptionPane;
  * @author andre & Angel Granado
  */
 public class Gestion_Inventario extends javax.swing.JFrame {
+    
     private boolean almacenSeleccionado = false;
     private boolean exisProduc = false;
     private boolean exisStock = false;
     private boolean newProduc = false;
     private boolean newStock = false;
     
-           
     private Node<Almacen> almacenSelecc;
     private int selecProdIndex;
     private int selecStock;
     private String newProdName;
     private int stockNewProd;
+
     /**
      * Creates new form Inicio
      */
@@ -37,10 +38,10 @@ public class Gestion_Inventario extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        Node<Almacen> aux = App.g.getAlmacenes().first();
-        for (int i = 0; i < App.g.getAlmacenes().getiSize(); i++){
+        Node<Almacen> aux = App.getG().getAlmacenes().first();
+        for (int i = 0; i < App.getG().getAlmacenes().getiSize(); i++) {
             this.Seleccion_almacenes.addItem("Almacen " + aux.getTInfo().getAlmacen());
-            aux = App.g.getAlmacenes().next(aux);
+            aux = App.getG().getAlmacenes().next(aux);
         }
         this.Seleccion_ProdExis.setEnabled(false);
         this.new_Product.setEnabled(false);
@@ -54,7 +55,6 @@ public class Gestion_Inventario extends javax.swing.JFrame {
         this.jButton3.setEnabled(false);
         this.jButton4.setEnabled(false);
         this.jButton7.setEnabled(false);
-        
         
     }
 
@@ -815,22 +815,22 @@ public class Gestion_Inventario extends javax.swing.JFrame {
 
     private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
         // TODO add your handling code here:
-            int x = getLocation().x - initialClick.x + evt.getX();
-            int y = getLocation().y - initialClick.y + evt.getY();
-            setLocation(x, y);
+        int x = getLocation().x - initialClick.x + evt.getX();
+        int y = getLocation().y - initialClick.y + evt.getY();
+        setLocation(x, y);
     }//GEN-LAST:event_jPanel4MouseDragged
 
     private void Confirm1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Confirm1ActionPerformed
         // TODO add your handling code here:
-        if (this.almacenSeleccionado && this.exisProduc && this.exisStock){
+        if (this.almacenSeleccionado && this.exisProduc && this.exisStock) {
             this.exisProduc = false;
             this.exisStock = false;
             Node<Producto> producSelecc = almacenSelecc.getTInfo().getListaProductos().getNode(selecProdIndex);
             int prevStock = producSelecc.getTInfo().getStock();
             producSelecc.getTInfo().setStock(selecStock);
-            JOptionPane.showMessageDialog(null, "El stock de " + producSelecc.getTInfo().getProducto() +
-                    ", perteneciente al almacen " + almacenSelecc.getTInfo().getAlmacen() +", se ha modificado correctamente.\n" +
-                    "\n-Stock anterior: " + prevStock + "\n-Nuevo stock: " + selecStock);
+            JOptionPane.showMessageDialog(null, "El stock de " + producSelecc.getTInfo().getProducto()
+                    + ", perteneciente al almacen " + almacenSelecc.getTInfo().getAlmacen() + ", se ha modificado correctamente.\n"
+                    + "\n-Stock anterior: " + prevStock + "\n-Nuevo stock: " + selecStock);
             this.Seleccion_almacenes.setEnabled(true);
             this.seleccionarAlmacen.setText("Siguiente");
             this.almacenSeleccionado = false;
@@ -849,7 +849,7 @@ public class Gestion_Inventario extends javax.swing.JFrame {
             this.newProduc = false;
             this.newStock = false;
             this.exis_Stock.setText("");
-            this.new_Stock.setText(""); 
+            this.new_Stock.setText("");
             this.new_Product.setText("");
             this.Seleccion_almacenes.setSelectedIndex(0);
         }
@@ -857,13 +857,21 @@ public class Gestion_Inventario extends javax.swing.JFrame {
 
     private void Confirm2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Confirm2ActionPerformed
         // TODO add your handling code here:
-        if (this.almacenSeleccionado && this.newProduc && this.newStock){
-            this.almacenSelecc.getTInfo().getListaProductos().addEnd(new Producto(this.newProdName, this.stockNewProd));
-            JOptionPane.showMessageDialog(null, this.newProdName + " ha sido registrado exitosamente en el almacen " +
-                    this.almacenSelecc.getTInfo().getAlmacen() + ".\n\n" + String.format("%" + 48 + "s", "Informacion del producto") + "\n"
-                            + "-Nombre del producto: " + this.newProdName + "\n"
-                                    + "-Stock del producto: " + this.stockNewProd);
-                        this.Seleccion_almacenes.setEnabled(true);
+        if (this.almacenSeleccionado && this.newProduc && this.newStock) {
+            Producto producEnAlmacen = Helpers.searchProduct(this.almacenSelecc.getTInfo().getListaProductos(), this.newProdName).getTInfo();
+            if (producEnAlmacen == null) {
+                this.almacenSelecc.getTInfo().getListaProductos().addEnd(new Producto(this.newProdName, this.stockNewProd));
+                JOptionPane.showMessageDialog(null, this.newProdName + " ha sido registrado exitosamente en el almacen "
+                        + this.almacenSelecc.getTInfo().getAlmacen() + ".\n\n" + String.format("%" + 48 + "s", "Informacion del producto") + "\n"
+                        + "-Nombre del producto: " + this.newProdName + "\n"
+                        + "-Stock del producto: " + this.stockNewProd);
+            } else {
+                JOptionPane.showMessageDialog(null, "El stock de " + producEnAlmacen.getProducto()
+                        + ", perteneciente al almacen " + almacenSelecc.getTInfo().getAlmacen() + ", se ha modificado correctamente.\n"
+                        + "\n-Stock anterior: " + producEnAlmacen.getStock() + "\n-Nuevo stock: " + this.stockNewProd);
+                producEnAlmacen.setStock(this.stockNewProd);
+            }
+            this.Seleccion_almacenes.setEnabled(true);
             this.seleccionarAlmacen.setText("Siguiente");
             this.almacenSeleccionado = false;
             this.Seleccion_ProdExis.setEnabled(false);
@@ -882,13 +890,14 @@ public class Gestion_Inventario extends javax.swing.JFrame {
             this.newStock = false;
             this.exis_Stock.setText("");
             this.new_Stock.setText("");
-            this.Seleccion_almacenes.setSelectedIndex(0);            
+            this.Seleccion_almacenes.setSelectedIndex(0);
+            this.Confirm2.setEnabled(false);
         }
     }//GEN-LAST:event_Confirm2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        if (!this.exisProduc){
+        if (!this.exisProduc) {
             this.exis_Stock.setEnabled(true);
             this.exis_Stock.setFocusable(true);
             this.Seleccion_ProdExis.setEnabled(false);
@@ -901,7 +910,7 @@ public class Gestion_Inventario extends javax.swing.JFrame {
             this.Descartar_btn2.setEnabled(false);
             this.jButton3.setEnabled(true);
             this.Descartar_btn1.setEnabled(true);
-        }else{
+        } else {
             this.Seleccion_ProdExis.setEnabled(true);
             this.exisProduc = false;
             this.jButton2.setText("Siguiente");
@@ -909,30 +918,32 @@ public class Gestion_Inventario extends javax.swing.JFrame {
             this.new_Product.setEnabled(true);
             this.jButton7.setEnabled(true);
             this.Descartar_btn2.setEnabled(true);
-            this.exis_Stock.setEnabled(false);            
+            this.exis_Stock.setEnabled(false);
             this.jButton3.setEnabled(false);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        if (!exisStock){
-            try{
+        if (!exisStock) {
+            try {
                 this.selecStock = Helpers.validarNum(this.exis_Stock.getText().strip());
-                if (this.selecStock <0 || this.selecStock % 1 != 0) throw new Exception("Stock no valido"); 
+                if (this.selecStock < 0 || this.selecStock % 1 != 0) {
+                    throw new Exception("Stock no valido");
+                }
                 this.exisStock = true;
                 this.jButton3.setText("Quitar");
                 this.Confirm1.setEnabled(true);
                 this.exis_Stock.setEnabled(false);
-            }catch (Exception e){
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "El stock debe ser un numero entero no negativo");
                 this.exis_Stock.setText("");
-            }          
-        }else{
+            }
+        } else {
             this.exisStock = false;
             this.exis_Stock.setEnabled(true);
             this.jButton3.setText("Siguiente");
-            this.Confirm1.setEnabled(false);            
+            this.Confirm1.setEnabled(false);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -1054,7 +1065,7 @@ public class Gestion_Inventario extends javax.swing.JFrame {
 
     private void seleccionarAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarAlmacenActionPerformed
         // TODO add your handling code here:
-        if (!almacenSeleccionado){
+        if (!almacenSeleccionado) {
             this.Seleccion_almacenes.setEnabled(false);
             this.seleccionarAlmacen.setText("Quitar");
             almacenSeleccionado = true;
@@ -1064,11 +1075,11 @@ public class Gestion_Inventario extends javax.swing.JFrame {
             this.new_Stock.setEnabled(false);
             this.Seleccion_ProdExis.removeAllItems();
             
-            this.almacenSelecc = App.g.getAlmacenes().getNode(this.Seleccion_almacenes.getSelectedIndex());
+            this.almacenSelecc = App.getG().getAlmacenes().getNode(this.Seleccion_almacenes.getSelectedIndex());
             LinkedList<Producto> listaProductos = this.almacenSelecc.getTInfo().getListaProductos();
             
             Node<Producto> aux = listaProductos.getpFirst();
-            for (int i=0; i < listaProductos.getiSize(); i++){
+            for (int i = 0; i < listaProductos.getiSize(); i++) {
                 this.Seleccion_ProdExis.addItem(aux.getTInfo().getProducto());
                 aux = listaProductos.next(aux);
             }
@@ -1077,8 +1088,9 @@ public class Gestion_Inventario extends javax.swing.JFrame {
             this.Descartar_btn1.setEnabled(false);
             this.Descartar_btn2.setEnabled(false);
             this.Confirm1.setEnabled(false);
-    
-        } else{
+            this.Confirm2.setEnabled(false);
+            
+        } else {
             this.Seleccion_almacenes.setEnabled(true);
             this.seleccionarAlmacen.setText("Siguiente");
             almacenSeleccionado = false;
@@ -1120,7 +1132,7 @@ public class Gestion_Inventario extends javax.swing.JFrame {
         this.exis_Stock.setEnabled(false);
         this.Seleccion_ProdExis.setSelectedIndex(0);
         
-        
+
     }//GEN-LAST:event_Descartar_btn1ActionPerformed
 
     private void new_StockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_new_StockActionPerformed
@@ -1132,10 +1144,12 @@ public class Gestion_Inventario extends javax.swing.JFrame {
         this.jButton2.setText("Siguiente");
         this.Descartar_btn1.setEnabled(false);
         this.jButton3.setEnabled(false);
-        if (!this.newProduc){
-            try{
+        if (!this.newProduc) {
+            try {
                 this.newProdName = this.new_Product.getText().strip();
-                if (this.new_Product.getText().equalsIgnoreCase(""))throw new Exception("Nombre no valido");
+                if (this.new_Product.getText().equalsIgnoreCase("")) {
+                    throw new Exception("Nombre no valido");
+                }
                 this.new_Product.setEnabled(false);
                 this.newProduc = true;
                 this.new_Stock.setEnabled(true);
@@ -1147,17 +1161,17 @@ public class Gestion_Inventario extends javax.swing.JFrame {
                 this.newProdName = this.new_Product.getText().strip();
                 this.jButton4.setEnabled(true);
                 this.Descartar_btn2.setEnabled(true);
-            }catch (Exception e){
-                JOptionPane.showMessageDialog(null,"El nombre del nuevo producto no puede ser vacio");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "El nombre del nuevo producto no puede ser vacio");
             }
-        }else{
+        } else {
             this.new_Stock.setEnabled(false);
             this.new_Product.setEnabled(true);
             this.Seleccion_ProdExis.setEnabled(true);
             this.newProduc = false;
             this.jButton7.setText("Siguiente");
             this.jButton2.setEnabled(true);
-            this.exis_Stock.setEnabled(false);            
+            this.exis_Stock.setEnabled(false);
             this.jButton4.setEnabled(false);
             this.Descartar_btn2.setEnabled(false);
         }
@@ -1165,26 +1179,28 @@ public class Gestion_Inventario extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        if (!this.newStock){
-            try{
+        if (!this.newStock) {
+            try {
                 this.stockNewProd = Helpers.validarNum(this.new_Stock.getText().strip());
-                if (this.stockNewProd <0 || this.stockNewProd % 1 != 0) throw new Exception("Stock no valido");
+                if (this.stockNewProd < 0 || this.stockNewProd % 1 != 0) {
+                    throw new Exception("Stock no valido");
+                }
                 this.Confirm2.setEnabled(true);
                 this.jButton4.setText("Quitar");
                 this.new_Stock.setEnabled(false);
                 this.newStock = true;
-            } catch (Exception e){
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "El stock debe ser un numero entero no negativo");
                 this.new_Stock.setText("");
-            }   
-        }else{
+            }
+        } else {
             this.new_Stock.setEnabled(true);
             this.jButton4.setText("Siguiente");
             this.stockNewProd = -1;
             this.Confirm2.setEnabled(false);
             this.Confirm2.setText("Siguiente");
-            this.newStock = false;        
-        }    
+            this.newStock = false;
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void Descartar_btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Descartar_btn2ActionPerformed
@@ -1200,68 +1216,64 @@ public class Gestion_Inventario extends javax.swing.JFrame {
         this.newStock = false;
         this.jButton4.setText("Siguiente");
         this.jButton4.setEnabled(false);
-        this.Confirm2.setEnabled(false);        
+        this.Confirm2.setEnabled(false);
     }//GEN-LAST:event_Descartar_btn2ActionPerformed
 
     private void btn_nuevo_pedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_pedidoMouseClicked
         // TODO add your handling code here:
-          Nuevo_pedido v2 = new Nuevo_pedido();
+        Nuevo_pedido v2 = new Nuevo_pedido();
         v2.setVisible(true);
-        this.dispose();   
+        this.dispose();
     }//GEN-LAST:event_btn_nuevo_pedidoMouseClicked
-                                         
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {                                     
+    
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
-         Nuevo_pedido v2 = new Nuevo_pedido();
+        Nuevo_pedido v2 = new Nuevo_pedido();
         v2.setVisible(true);
-        this.dispose();  
-    }                                    
-
-    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {                                      
+        this.dispose();
+    }
+    
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
-         Nuevo_pedido v2 = new Nuevo_pedido();
+        Nuevo_pedido v2 = new Nuevo_pedido();
         v2.setVisible(true);
-        this.dispose();  
-    }                                     
-
-
- 
-
+        this.dispose();
+    }
 
     /**
      * @param args the command line arguments
      */
-public static void main(String args[]) {
-    /* Set the Nimbus look and feel */
-    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
      * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-     */
-    try {
-        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-            if ("Nimbus".equals(info.getName())) {
-                javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                break;
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
             }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Gestion_Inventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Gestion_Inventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Gestion_Inventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Gestion_Inventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-    } catch (ClassNotFoundException ex) {
-        java.util.logging.Logger.getLogger(Gestion_Inventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (InstantiationException ex) {
-        java.util.logging.Logger.getLogger(Gestion_Inventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (IllegalAccessException ex) {
-        java.util.logging.Logger.getLogger(Gestion_Inventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-        java.util.logging.Logger.getLogger(Gestion_Inventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
-   
 
-    /* Create and display the form */
-    java.awt.EventQueue.invokeLater(new Runnable() {
-        public void run() {
-            new Gestion_Inventario().setVisible(true);
-        }
-    });
-}
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Gestion_Inventario().setVisible(true);
+            }
+        });
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
