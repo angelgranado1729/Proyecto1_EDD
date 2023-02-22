@@ -8,14 +8,14 @@ package MainClasses;
  *
  * @author Angel Granado
  */
-public class RutasPosibles extends LinkedList<RutasYDistancias>{
+public class RutasPosibles extends LinkedList<RutaYDistancia>{
     
-    public void addAfter(Node<RutasYDistancias> node, RutasYDistancias tInfo){
+    public void addAfter(Node<RutaYDistancia> node, RutaYDistancia tInfo){
         if (node != null){
             if (node == last()){
                 addEnd(tInfo);
             } else {
-                Node<RutasYDistancias> pAux = new Node<>(tInfo);
+                Node<RutaYDistancia> pAux = new Node<>(tInfo);
                 pAux.setNextNode(next(node));
                 node.setNextNode(pAux);
                 this.setiSize(this.getiSize() + 1);
@@ -24,13 +24,13 @@ public class RutasPosibles extends LinkedList<RutasYDistancias>{
     }
 
     //insertar de forma ordenada, suponiendo que la lista esta ordenada
-    public void insertOrdered(RutasYDistancias tInfo, int target){
+    public void insertOrdered(RutaYDistancia tInfo){
         if (!isEmpty()){
-            Node<RutasYDistancias> pAux = first();
-            if (pAux.getTInfo().getDistancias()[target] >  tInfo.getDistancias()[target]){
+            Node<RutaYDistancia> pAux = first();
+            if (pAux.getTInfo().distancia>  tInfo.distancia){
                 addFirst(tInfo);
             } else {
-                while (next(pAux) != null && next(pAux).getTInfo().getDistancias()[target] < tInfo.getDistancias()[target] ){
+                while (pAux.getTInfo().distancia < tInfo.distancia && pAux != last()){
                     pAux = next(pAux);
                 }
                 addAfter(pAux, tInfo);
@@ -39,7 +39,7 @@ public class RutasPosibles extends LinkedList<RutasYDistancias>{
             addFirst(tInfo);
         }
     }
-    
+       
 
    
 }

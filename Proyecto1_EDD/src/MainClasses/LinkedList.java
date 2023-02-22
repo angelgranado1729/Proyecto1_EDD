@@ -718,7 +718,7 @@ public class LinkedList<T> {
         if (!isEmpty()){
             Node<T> pAux = first();
             while (pAux != null){
-                s += pAux.getTInfo() + "\n";
+                s += pAux.getTInfo().toString() + "\n";
                 pAux = next(pAux);
             }
         }
@@ -752,4 +752,5 @@ public class LinkedList<T> {
     public void setiSize(int iSize) {
         this.iSize = iSize;
     }
+   
 }
