@@ -850,7 +850,6 @@ public class Nuevas_Rutas extends javax.swing.JFrame {
         if (!this.confirmSource){
             this.confirmSource = true;
             this.vertexSource = this.Seleccion_almacenes.getSelectedIndex();
-            System.out.println("Vertice orige: " + this.vertexSource);
             this.Seleccion_almacenes.setEnabled(false);
             this.jButton2.setText("Quitar");
             this.jButton1.setEnabled(true);
@@ -896,7 +895,6 @@ public class Nuevas_Rutas extends javax.swing.JFrame {
                 }
             }
             this.jTextField1.setEnabled(true);
-            System.out.println("Vertice destino: " + this.vertexTarget);
             this.jTextField1.setEnabled(true);
             this.auxBoolean = true;
             this.Seleccion_almacenes1.setEnabled(false);
@@ -931,7 +929,6 @@ public class Nuevas_Rutas extends javax.swing.JFrame {
             try{
                 this.distance = Helpers.validarNumDouble(this.jTextField1.getText().strip());
                 if (this.distance <= 0) throw new Exception("La distancia invalida");
-                System.out.println("Distancia: " + this.distance);
                 this.distanceConfirm = true;
                 this.jButton3.setText("Quitar");
                 this.jTextField1.setEnabled(false);
@@ -973,7 +970,6 @@ public class Nuevas_Rutas extends javax.swing.JFrame {
                         this.distance + " km");  
             }
             App.g.getMatrixAdj().addEdge(this.vertexSource, this.vertexTarget, this.distance);
-            System.out.println(App.g.toString());
             this.jButton1.setText("Siguiente");
             this.jButton2.setText("Siguiente");
             this.jButton3.setText("Siguiente");

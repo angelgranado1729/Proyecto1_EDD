@@ -5,6 +5,7 @@
 package MainClasses.ListUtilMethods;
 
 import MainClasses.LinkedList;
+import MainClasses.Node;
 import MainClasses.Producto;
 
 /**

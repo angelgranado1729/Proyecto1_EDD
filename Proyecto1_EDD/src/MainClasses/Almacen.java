@@ -142,7 +142,7 @@ public class Almacen {
     @Override
     public String toString(){
         String string = "";
-        string += "Almacen " + this.almacen + "\n" + listaProductos.toString() + "----------------------------------------------\n";
+        string += "Almacen " + this.almacen + "\n\n" + listaProductos.toString() + "----------------------------------------------\n";
         return string;
     }
 
