@@ -169,16 +169,23 @@ public class Helpers {
             //Si el pedido se puede realizar con los productos que hay en el almacen origen, entonces se hace el pedido.
             if (pedido_realizable) {
                 Node<Producto> producto_pedido = pedido.getpFirst();
+                String productosPedidos = "";
                 for (int i = 0; i < pedido.size(); i++) {
+                    productosPedidos += "-" + producto_pedido.getTInfo().getProducto() + " (" + producto_pedido.getTInfo().getStock() + ")";
                     Producto producEnAlmacen = Helpers.searchProduct(almacenOrigen.getListaProductos(), producto_pedido.getTInfo().getProducto()).getTInfo();
                     producEnAlmacen.setStock(producEnAlmacen.getStock() - producto_pedido.getTInfo().getStock());
                     producto_pedido = pedido.next(producto_pedido);
                 }
+               
+                //Mostramos un mensaje con el resumen de la compra
+                JOptionPane.showMessageDialog(null, "Pedido realizado exitosamente!\n\n"
+                        + "Resumen del pedido:\n" + productosPedidos);
+                
+                
                 //Si no, se busca los productos restantes en los otros almacenes de la red
             } else {
                 //Primero buscamos los almacenes de la red que tienen los productos faltantes
                 Node<Almacen> almacenActual = App.g.getAlmacenes().getpFirst();
-
                 for (int i = 0; i < App.g.getAlmacenes().getiSize(); i++) {
                     if (!almacenActual.getTInfo().getAlmacen().equalsIgnoreCase(almacenOrigen.getAlmacen())) {
 
@@ -210,7 +217,6 @@ public class Helpers {
                     Node<Almacen> aux = almacenesAux.getpFirst();
                     for (int w = 0; w < indexAlmacen.length; w++) {
                         indexAlmacen[w] = App.g.getIndexWarehouse(aux.getTInfo().getAlmacen());
-                        System.out.println(indexAlmacen[w]);
                         aux = almacenesAux.next(aux);
                     }
                     
@@ -250,7 +256,6 @@ public class Helpers {
                             } else{
                                 rutaASeguir += "Almacen " + ruta[count].getAlmacen();
                             }
-                            System.out.println(ruta[count].toString());
                             count++;
                         }
                         //Tomamos el almacen auxiliar (el primero del array ruta) y le descontamos los productos restantes. 
@@ -267,9 +272,9 @@ public class Helpers {
                         
                         //Mostramos en un JOptionPane la ruta a seguir:
                         JOptionPane.showMessageDialog(null, "Pedido realizado exitosamente!\n"+
-                                "El almacen " + almacenOrigen.getAlmacen() + "no cuenta con la cantidad suficiente de los siguientes productos:\n"
+                                "El almacen " + almacenOrigen.getAlmacen() + " no cuenta con la cantidad suficiente de los siguientes productos:\n"
                                         + productosFaltantes +"\nLos productos faltantes seran pedidos al almacen mas cercano: Almacen " + ruta[0].getAlmacen() + 
-                                "\n-La ruta a seguir sera la siguiente: " + rutaASeguir +"\n-La distancia a recorrer sera de" + rutaCorta.distancia + " km");
+                                "\n-La ruta a seguir sera la siguiente: " + rutaASeguir +"\n-La distancia a recorrer sera de " + rutaCorta.distancia + " km");
                                         
                         
                     }
@@ -278,10 +283,8 @@ public class Helpers {
                                                         No hay suficientes productos en los almacenes 
                                                         de la red para realizar el pedido!""");
                 }
-//                
-
             }
         }
     }
-
 }
+

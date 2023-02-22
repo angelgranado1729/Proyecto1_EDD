@@ -8,7 +8,6 @@ import App.App;
 import App.Helpers;
 import MainClasses.Almacen;
 import MainClasses.LinkedList;
-import MainClasses.ListUtilMethods.UtilMethodsPoducts;
 import MainClasses.Node;
 import MainClasses.Producto;
 import java.awt.Point;
@@ -47,6 +46,7 @@ public class Nuevo_pedido extends javax.swing.JFrame {
             this.Seleccion_almacenes1.addItem("Almacen " + aux.getTInfo().getAlmacen());
             aux = App.g.getAlmacenes().next(aux);
         }
+        this.descartar_bt.setEnabled(false);
     }
 
     /**
@@ -600,6 +600,11 @@ public class Nuevo_pedido extends javax.swing.JFrame {
 
         descartar_bt.setBackground(new java.awt.Color(223, 83, 83));
         descartar_bt.setText("Descartar");
+        descartar_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                descartar_btActionPerformed(evt);
+            }
+        });
 
         realizarPedido.setText("Realizar Pedido");
         realizarPedido.setToolTipText("");
@@ -910,6 +915,7 @@ public class Nuevo_pedido extends javax.swing.JFrame {
             this.siguiente_bt2.setText("Siguiente");
             this.Seleccion_productos.setEnabled(true);
             this.jTextArea2.setText(this.pedidos.toString());
+            this.descartar_bt.setEnabled(true);
         } else{
             this.confirmAlmacen = false;
             this.confirmProduc = false;
@@ -1037,9 +1043,53 @@ public class Nuevo_pedido extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (this.realizar_Pedido){
            Helpers.realizarPedidoProced(almacenOrigen.getTInfo(), pedidos);
+           this.confirmAlmacen = false;
+           this.confirmProduc = false;
+           this.confirmCant = false;
+           this.realizar_Pedido = false;
+           this.jTextArea2.setText("");
+           this.realizarPedido.setEnabled(false);
+           this.Seleccion_almacenes1.setEnabled(true);
+           this.Seleccion_almacenes1.setSelectedIndex(0);
+           this.siguiente_bt.setEnabled(true);
+           this.siguiente_bt.setText("Siguiente");
+           this.siguiente_bt2.setEnabled(false);
+           this.siguiente_bt2.setText("Siguiente");
+           this.Seleccion_productos.removeAllItems();
+           this.CantidadProduc.setEnabled(false);
+           this.CantidadProduc.setText("");
+           this.siguiente_bt3.setEnabled(false);
+           this.siguiente_bt3.setText("Siguiente");
+           this.listaProducTA.setText("");
+           this.descartar_bt.setEnabled(false);
+           this.pedidos.destroy();
         }
  
     }//GEN-LAST:event_realizarPedidoActionPerformed
+
+    private void descartar_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descartar_btActionPerformed
+        // TODO add your handling code here:
+        this.confirmAlmacen = false;
+           this.confirmProduc = false;
+           this.confirmCant = false;
+           this.realizar_Pedido = false;
+           this.jTextArea2.setText("");
+           this.realizarPedido.setEnabled(false);
+           this.Seleccion_almacenes1.setEnabled(true);
+           this.Seleccion_almacenes1.setSelectedIndex(0);
+           this.siguiente_bt.setEnabled(true);
+           this.siguiente_bt.setText("Siguiente");
+           this.siguiente_bt2.setEnabled(false);
+           this.siguiente_bt2.setText("Siguiente");
+           this.Seleccion_productos.removeAllItems();
+           this.CantidadProduc.setEnabled(false);
+           this.CantidadProduc.setText("");
+           this.siguiente_bt3.setEnabled(false);
+           this.siguiente_bt3.setText("Siguiente");
+           this.listaProducTA.setText("");
+           this.descartar_bt.setEnabled(false);
+           this.pedidos.destroy();        
+    }//GEN-LAST:event_descartar_btActionPerformed
 
 
  
