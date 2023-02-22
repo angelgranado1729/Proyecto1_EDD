@@ -271,8 +271,9 @@ public class Helpers {
                         }
                         
                         //Mostramos en un JOptionPane la ruta a seguir:
-                        JOptionPane.showMessageDialog(null, "Pedido realizado exitosamente!\n"+
-                                "El almacen " + almacenOrigen.getAlmacen() + " no cuenta con la cantidad suficiente de los siguientes productos:\n"
+                        JOptionPane.showMessageDialog(null, """
+                                                            Pedido realizado exitosamente!
+                                                            El almacen """ + almacenOrigen.getAlmacen() + " no cuenta con la cantidad suficiente de los siguientes productos:\n"
                                         + productosFaltantes +"\nLos productos faltantes seran pedidos al almacen mas cercano: Almacen " + ruta[0].getAlmacen() + 
                                 "\n-La ruta a seguir sera la siguiente: " + rutaASeguir +"\n-La distancia a recorrer sera de " + rutaCorta.distancia + " km");
                                         

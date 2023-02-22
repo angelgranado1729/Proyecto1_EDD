@@ -1,10 +1,10 @@
 Almacenes;
 Almacen A:
-Pantalla,5
+Pantalla,3
 RAM,2
 Procesador,1;
 Almacen B:
-Pantalla,1
+Pantalla,3
 Grafica,5;
 Almacen C:
 Placa,7
