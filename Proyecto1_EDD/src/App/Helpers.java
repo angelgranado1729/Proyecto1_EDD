@@ -7,6 +7,7 @@ package App;
 import MainClasses.Almacen;
 import MainClasses.Grafo;
 import MainClasses.LinkedList;
+import MainClasses.MatrizAdj;
 import MainClasses.Node;
 import MainClasses.Producto;
 import MainClasses.RutasPosibles;
@@ -257,7 +258,12 @@ public class Helpers {
                         Node<Producto> producNoDisponible = productosNoDisponibles.getpFirst();
                         for (int j = 0; j < productosNoDisponibles.size(); j++) {
                             Node<Producto> prodEnAlmacen = Helpers.searchProduct(almacenActual.getTInfo().getListaProductos(), producNoDisponible.getTInfo().getProducto());
+
+                            //Verificamos que el almacen tenga la cantidad suficiente para realizar el pedido
                             if (prodEnAlmacen == null) {
+                                almacenAux = false;
+                                break;
+                            } else if (prodEnAlmacen.getTInfo().getStock() < producNoDisponible.getTInfo().getStock()) {
                                 almacenAux = false;
                                 break;
                             } else {
@@ -350,4 +356,76 @@ public class Helpers {
             }
         }
     }
+
+    /**
+     * Registra un almacen en el grafo.
+     * 
+     * @param nuevoAlmacen, nombre del almacen.
+     * @param almacenInicioIndex, el indice del almacen inicio.
+     * @param almacenDestinoIndex, el indice del almacen destino.
+     * @param distancia1, distancia entre el almacen inicio y el nuevo almacen.
+     * @param distancia2, distancia entre el nuevo almacen y el almacen destino.
+     */
+    public static void registrarNuevoAlmacen(String nuevoAlmacen, int almacenInicioIndex, int almacenDestinoIndex, double distancia1, double distancia2) {
+        if (nuevoAlmacen != null) {
+            //Primero verificamos si el almacen ya esta registrado
+            boolean almacenRegistrado = false;
+            Node<Almacen> currentAlmacen = App.getG().getAlmacenes().getpFirst();
+            for (int i = 0; i < App.getG().getNumVertices(); i++) {
+                if (currentAlmacen.getTInfo().getAlmacen().equalsIgnoreCase(nuevoAlmacen)) {
+                    almacenRegistrado = true;
+                    break;
+                }
+                currentAlmacen = App.getG().getAlmacenes().next(currentAlmacen);
+            }
+
+            //Si no esta registrado, entonces se registra en el grafo.
+            if (!almacenRegistrado) {
+                //Si no hay espacio, se crea una nueva matriz de adyacencia y luego se registra el almacen
+                if (App.getG().getNumVertices() >= App.getG().getNumMaxVertices()) {
+                    //Creamos la nueva matriz de adyacencia
+                    MatrizAdj newMatrix = new MatrizAdj(App.getG().getNumMaxVertices());
+
+                    //Pasamos la informacion anterior a la matriz
+                    for (int i = 0; i < App.getG().getNumVertices(); i++) {
+                        for (int j = 0; j < App.getG().getNumVertices(); j++) {
+                            newMatrix.getMatrix()[i][j] = App.getG().getMatrixAdj().getMatrix()[i][j];
+                        }
+                    }
+
+                    //Colocamos la nueva matriz en el grafo
+                    App.getG().setMatrixAdj(newMatrix);
+
+                    //Colocamos el nuevo numero maximo de vertices
+                    App.getG().setNumMaxVertices(newMatrix.getNumMaxVertices());
+                }
+
+                //Registramos el almacen en la lista de almacenes (el procedimiento ya modifica el numero de vertices
+                App.getG().addAlmacen(nuevoAlmacen);
+
+                //Ahora registramos la rutas asociadas al nuevo almacen.
+                //Primero buscamos el indice del nuevo almacen, que justamente coincide con el numero de vertices del grafo.
+                int nuevoAlmacenIndex = App.getG().getNumVertices();
+
+                //Luego registramos s rutas en la matriz de adyacencia
+                App.getG().getMatrixAdj().addEdge(almacenInicioIndex, nuevoAlmacenIndex, distancia1);
+                App.getG().getMatrixAdj().addEdge(nuevoAlmacenIndex, almacenDestinoIndex, distancia2);
+
+                //Mostramos un mensaje que indica que el almacen ha sido registrado exitosamente.
+                JOptionPane.showMessageDialog(null, "El almacen " + nuevoAlmacen
+                        + " ha sido registrado exitosamente!\n\n"
+                        + "-Ruta 1: Almacen " + App.getG().getAlmacenes().getNode(almacenInicioIndex).getTInfo().getAlmacen()
+                        + " ----> Almacen " + nuevoAlmacen + "(" + distancia1 + " km)\n" + "\n-Ruta 2: Almacen " + nuevoAlmacen + " ----> "
+                        + "Almacen " + App.getG().getAlmacenes().getNode(almacenDestinoIndex).getTInfo().getAlmacen() + " (" + distancia2 + "km).");
+
+                //Si ya hay un almacen con el mismo nombre entonces no se registra el almacen.
+            } else {
+                JOptionPane.showMessageDialog(null, "El almacen " + nuevoAlmacen
+                        + " ya esta registrado en la red de almacenes");
+
+            }
+        }
+
+    }
+
 }
