@@ -926,7 +926,6 @@ public class Nuevas_Rutas extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        this.jButton1.setEnabled(true);
         if (!this.distanceConfirm) {
             try {
                 this.distance = Helpers.validarNumDouble(this.jTextField1.getText().strip());
