@@ -16,6 +16,13 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import javax.swing.JOptionPane;
 
+import org.graphstream.graph.Graph;
+import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.graph.Graph;
+import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.ui.view.Viewer;
+
+
 /**
  *
  * @author Angel Granado
