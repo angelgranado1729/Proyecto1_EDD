@@ -13,6 +13,13 @@ import MainClasses.Producto;
 import MainClasses.RutasPosibles;
 import MainClasses.RutaYDistancia;
 import javax.swing.JOptionPane;
+import org.graphstream.graph.Graph;
+import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.graph.Graph;
+import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.ui.view.Viewer;
+
+
 
 /**
  *
