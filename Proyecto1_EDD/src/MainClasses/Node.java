@@ -3,43 +3,79 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package MainClasses;
+
 /**
  *
  * @author Angel Granado
  * @param <T>
  */
 public class Node<T> {
+
+    /**
+     * La infomacion a guardad en el nodo.
+     */
     private T tInfo;
+    /**
+     * El siguiente nodo.
+     */
     private Node<T> pNextNode;
 
-    public Node(T tInfo){
+    /**
+     * Constructor de la clase.
+     *
+     * @param tInfo, la informacion a almacenar en el nodo.
+     */
+    public Node(T tInfo) {
         this.tInfo = tInfo;
         this.pNextNode = null;
     }
 
-    public Node(){
+    /**
+     * Constructor de la clase.
+     */
+    public Node() {
         this.tInfo = null;
         this.pNextNode = null;
     }
 
-    public T getTInfo(){
+    /**
+     * Getter para acceder a la informacion que guarda el nodo.
+     *
+     * @return
+     */
+    public T getTInfo() {
         return this.tInfo;
     }
 
-    public void setTInfo(T tInfo){
+    /**
+     * Setter para modificar la informacion que guarda el nodo.
+     *
+     * @param tInfo
+     */
+    public void setTInfo(T tInfo) {
         this.tInfo = tInfo;
     }
 
-    public Node<T> getNextNode(){
+    /**
+     * Getter para acceder al siguiente nodo enlazado.
+     *
+     * @return el nodo siguiente que esta enlazado.
+     */
+    public Node<T> getNextNode() {
         return this.pNextNode;
     }
 
-    public void setNextNode(Node<T> pNextNode){
+    /**
+     * Setter para nodo siguiente que esta enlazado.
+     *
+     * @param pNextNode
+     */
+    public void setNextNode(Node<T> pNextNode) {
         this.pNextNode = pNextNode;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return this.tInfo.toString();
     }
 

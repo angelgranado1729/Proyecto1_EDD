@@ -7,8 +7,6 @@ package GUI.Classes;
 import App.App;
 import App.FileFunctions;
 import java.awt.Point;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -586,33 +584,33 @@ public class Cargar_y_Guardar extends javax.swing.JFrame {
 
     private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
         // TODO add your handling code here:
-            int x = getLocation().x - initialClick.x + evt.getX();
-            int y = getLocation().y - initialClick.y + evt.getY();
-            setLocation(x, y);
+        int x = getLocation().x - initialClick.x + evt.getX();
+        int y = getLocation().y - initialClick.y + evt.getY();
+        setLocation(x, y);
     }//GEN-LAST:event_jPanel4MouseDragged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        FileFunctions.saveTxt(App.g);
+        FileFunctions.saveTxt(App.getG());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
         // TODO add your handling code here:
-        try{
-            App.selectedFile = this.jFileChooser1.getSelectedFile();
-            App.selectedPath = App.selectedFile.getAbsolutePath();
+        try {
+            App.setSelectedFile(this.jFileChooser1.getSelectedFile());
+            App.setSelectedPath(App.getSelectedFile().getAbsolutePath());
             String newData = FileFunctions.readTxt();
             FileFunctions.loadData(newData);
             JOptionPane.showMessageDialog(null, "Carga Exitosa!");
-        } catch (Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al cargar los datos. Revise el formato del archivo.");
         }
-        
+
     }//GEN-LAST:event_jFileChooser1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void btn_InicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_InicioMouseClicked
@@ -731,59 +729,58 @@ public class Cargar_y_Guardar extends javax.swing.JFrame {
         // TODO add your handling code here:                                                
         Nuevo_pedido v2 = new Nuevo_pedido();
         v2.setVisible(true);
-        this.dispose();                
+        this.dispose();
     }//GEN-LAST:event_btn_nuevo_pedidoMouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
-         Nuevo_pedido v2 = new Nuevo_pedido();
+        Nuevo_pedido v2 = new Nuevo_pedido();
         v2.setVisible(true);
-        this.dispose();  
+        this.dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
         // TODO add your handling code here:
-         Nuevo_pedido v2 = new Nuevo_pedido();
+        Nuevo_pedido v2 = new Nuevo_pedido();
         v2.setVisible(true);
-        this.dispose();  
+        this.dispose();
     }//GEN-LAST:event_jLabel13MouseClicked
-
 
     /**
      * @param args the command line arguments
      */
-public static void main(String args[]) {
-    /* Set the Nimbus look and feel */
-    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
      * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-     */
-    try {
-        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-            if ("Nimbus".equals(info.getName())) {
-                javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                break;
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
             }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Cargar_y_Guardar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Cargar_y_Guardar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Cargar_y_Guardar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Cargar_y_Guardar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-    } catch (ClassNotFoundException ex) {
-        java.util.logging.Logger.getLogger(Cargar_y_Guardar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (InstantiationException ex) {
-        java.util.logging.Logger.getLogger(Cargar_y_Guardar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (IllegalAccessException ex) {
-        java.util.logging.Logger.getLogger(Cargar_y_Guardar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-        java.util.logging.Logger.getLogger(Cargar_y_Guardar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
-    //</editor-fold>
-    //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
-    /* Create and display the form */
-    java.awt.EventQueue.invokeLater(new Runnable() {
-        public void run() {
-            new Cargar_y_Guardar().setVisible(true);
-        }
-    });
-}
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Cargar_y_Guardar().setVisible(true);
+            }
+        });
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

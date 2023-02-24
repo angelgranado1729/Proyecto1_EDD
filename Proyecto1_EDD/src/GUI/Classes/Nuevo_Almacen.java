@@ -687,9 +687,9 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
 
     private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
         // TODO add your handling code here:
-            int x = getLocation().x - initialClick.x + evt.getX();
-            int y = getLocation().y - initialClick.y + evt.getY();
-            setLocation(x, y);
+        int x = getLocation().x - initialClick.x + evt.getX();
+        int y = getLocation().y - initialClick.y + evt.getY();
+        setLocation(x, y);
     }//GEN-LAST:event_jPanel4MouseDragged
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -754,7 +754,7 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
         Nuevas_Rutas v4 = new Nuevas_Rutas();
         v4.setVisible(true);
         this.dispose();
-        
+
     }//GEN-LAST:event_btn_nueva_rutaMouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
@@ -819,67 +819,62 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
         v2.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_nuevo_pedidoMouseClicked
-                                             
-                                                          
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {                                     
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
-         Nuevo_pedido v2 = new Nuevo_pedido();
+        Nuevo_pedido v2 = new Nuevo_pedido();
         v2.setVisible(true);
-        this.dispose();  
-    }                                    
+        this.dispose();
+    }
 
-    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {                                      
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
-         Nuevo_pedido v2 = new Nuevo_pedido();
+        Nuevo_pedido v2 = new Nuevo_pedido();
         v2.setVisible(true);
-        this.dispose();  
-    }  
-
-
- 
-
+        this.dispose();
+    }
 
     /**
      * @param args the command line arguments
      */
-public static void main(String args[]) {
-    /* Set the Nimbus look and feel */
-    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
      * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-     */
-    try {
-        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-            if ("Nimbus".equals(info.getName())) {
-                javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                break;
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
             }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Nuevo_Almacen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Nuevo_Almacen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Nuevo_Almacen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Nuevo_Almacen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-    } catch (ClassNotFoundException ex) {
-        java.util.logging.Logger.getLogger(Nuevo_Almacen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (InstantiationException ex) {
-        java.util.logging.Logger.getLogger(Nuevo_Almacen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (IllegalAccessException ex) {
-        java.util.logging.Logger.getLogger(Nuevo_Almacen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-        java.util.logging.Logger.getLogger(Nuevo_Almacen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
-    //</editor-fold>
-    //</editor-fold>
-    //</editor-fold>
-    //</editor-fold>
-    //</editor-fold>
-    //</editor-fold>
-    //</editor-fold>
-    //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
-    /* Create and display the form */
-    java.awt.EventQueue.invokeLater(new Runnable() {
-        public void run() {
-            new Nuevo_Almacen().setVisible(true);
-        }
-    });
-}
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Nuevo_Almacen().setVisible(true);
+            }
+        });
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

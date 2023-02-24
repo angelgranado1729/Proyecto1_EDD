@@ -9,18 +9,20 @@ package MainClasses;
  * @author Angel Granado
  * @param <T>
  */
-
 public class LinkedList<T> {
-    
+
     // Interfaz para definir los métodos que se pueden sobreescribir
-    public interface LinkedListMethods<T>{
+    public interface LinkedListMethods<T> {
+
         int compareTo(T tInfo1, T tInfo2);
+
         int hashCode(T tInfo);
+
         boolean equals(T tInfo1, T tInfo2);
     }
-    
+
     // Clase privada para definir los métodos por defecto
-    private class DefaultMethods implements LinkedListMethods<T>{
+    private class DefaultMethods implements LinkedListMethods<T> {
 
         @Override
         public int compareTo(T tInfo1, T tInfo2) {
@@ -30,11 +32,13 @@ public class LinkedList<T> {
         public void print(T tInfo) {
             System.out.println(tInfo.toString());
         }
-        
+
         public Node<T> search(T tInfo) {
             Node<T> pAux = getpFirst();
-            while (pAux != null){
-                if (getMethods().equals(pAux.getTInfo(), tInfo)) return pAux;
+            while (pAux != null) {
+                if (getMethods().equals(pAux.getTInfo(), tInfo)) {
+                    return pAux;
+                }
                 pAux = pAux.getNextNode();
             }
             return null;
@@ -49,7 +53,7 @@ public class LinkedList<T> {
         public boolean equals(T tInfo1, T tInfo2) {
             return tInfo1.equals(tInfo2);
         }
-        
+
     }
 
     // Atributos de la clase
@@ -60,33 +64,47 @@ public class LinkedList<T> {
     /**
      * Constructor de la clase
      */
-    public LinkedList(){
+    public LinkedList() {
         this.pFirst = null;
-        this.iSize = 0; 
+        this.iSize = 0;
         this.methods = new DefaultMethods();
     }
 
     /**
      * Constructor de la clase
-     * @param methods 
+     *
+     * @param methods
      */
-    public LinkedList(LinkedListMethods<T> methods){
+    public LinkedList(LinkedListMethods<T> methods) {
         this.pFirst = null;
-        this.iSize = 0; 
+        this.iSize = 0;
         this.methods = methods;
     }
 
+    /**
+     * Getter para acceder a los metodos utilies de la lista.
+     *
+     * @return la clase de los metodos de la lista.
+     */
     public LinkedListMethods<T> getMethods() {
         return methods;
     }
 
+    /**
+     * Setter para modificar los metodos utilies de la lista.
+     *
+     * @param methods, los nuevos metodos utilies de la lista.
+     */
     public void setMethods(LinkedListMethods<T> methods) {
         this.methods = methods;
     }
 
-    public void destroy(){
+    /**
+     * Destruye la lista completamente.
+     */
+    public void destroy() {
         Node<T> pAux = getpFirst();
-        while (pAux != null){
+        while (pAux != null) {
             pAux = getpFirst();
             setpFirst(next(pAux));
             pAux = null;
@@ -95,66 +113,114 @@ public class LinkedList<T> {
         System.gc();
     }
 
-    public Node<T> next(Node<T> pNode){
-        if (pNode != null){
+    /**
+     * Dado un nodo de la lista, retorna el siguiente nodo enlazado.
+     *
+     * @param pNode, un nodo que pertenece a la lista.
+     * @return null si el nodo dado no pertenece a la lista o si es el ultimo,
+     * en caso contrario retorna el siguiente nodo enlazado.
+     */
+    public Node<T> next(Node<T> pNode) {
+        if (pNode != null) {
             return pNode.getNextNode();
         } else {
             return null;
         }
     }
 
-    public boolean isEmpty(){
+    /**
+     * Verifica si la lista es vacia.
+     *
+     * @return retorna true si la lista esta vacia, en caso contrario retorna
+     * false.
+     */
+    public boolean isEmpty() {
         return getpFirst() == null;
     }
 
-    public int size(){
+    /**
+     * Retorna el numero de nodos que conforman la lista.
+     *
+     * @return el tamaño de la lista.
+     */
+    public int size() {
         return getiSize();
     }
 
-    public Node<T> first(){
+    /**
+     * Retorna el primer nodo de la lista.
+     *
+     * @return el primer nodo.
+     */
+    public Node<T> first() {
         return getpFirst();
     }
 
-    public Node<T> last(){
-        if (!isEmpty()){
+    /**
+     * Retorna el ultimo nodo de la lista.
+     *
+     * @return el ultimo nodo.
+     */
+    public Node<T> last() {
+        if (!isEmpty()) {
             Node<T> pAux = getpFirst();
-            while (next(pAux) != null){
+            while (next(pAux) != null) {
                 pAux = next(pAux);
             }
             return pAux;
         }
         return null;
     }
-    
 
-    public T getData(Node<T> pNode){
-        if (pNode != null){
+    /**
+     * Dado un nodo de la lista, retorna el contenido que guarda.
+     *
+     * @param pNode, el nodo dado.
+     * @return null si el nodo es null, en caso contrario retorna el contenido
+     * que guarda.
+     */
+    public T getData(Node<T> pNode) {
+        if (pNode != null) {
             return pNode.getTInfo();
         } else {
             return null;
         }
     }
 
-    public Node<T> getNode(int index){
-        if (!isEmpty()){
-            if (index >= 0 && index < getiSize()){
+    /**
+     * Retorna el nodo a traves de la posicion que ocupa en la lista.
+     *
+     * @param index, la posicion que ocupa el nodo.
+     * @return el nodo en la posicion dada, en caso contrario retorna null.
+     */
+    public Node<T> getNode(int index) {
+        if (!isEmpty()) {
+            if (index >= 0 && index < getiSize()) {
                 Node<T> pAux = getpFirst();
-                for (int i = 0; i < index; i++){
+                for (int i = 0; i < index; i++) {
                     pAux = next(pAux);
                 }
-                return pAux;            
+                return pAux;
             }
             return null;
         }
         return null;
     }
 
-    public int indexOf(Node<T> pNode){
-        if (!isEmpty() && pNode != null){
+    /**
+     * Retorna la posicion del nodo dado.
+     *
+     * @param pNode, el nodo dado.
+     * @return retorna la posicion que ocupa el nodo en la lista. Si el nodo es
+     * null, la lista esta vacia o si el nodo no pertence a la lista, retorna
+     * -1.
+     */
+    public int indexOf(Node<T> pNode) {
+        if (!isEmpty() && pNode != null) {
             Node<T> pAux = getpFirst();
             int index = 0;
-            while (pAux != null){
-                if (pAux.equals(pNode)){
+            while (pAux != null) {
+                if (pAux.equals(pNode)) {
                     return index;
                 }
                 pAux = next(pAux);
@@ -165,16 +231,29 @@ public class LinkedList<T> {
         return -1;
     }
 
-    public boolean isElement(Node<T> Node){
+    /**
+     * Verifica si un nodo pertenece a la lista.
+     *
+     * @param Node, el nodo dado.
+     * @return
+     */
+    public boolean isElement(Node<T> Node) {
         int index = indexOf(Node);
         return index != -1;
     }
 
-    public Node<T> search(T tInfo){
-        if (!isEmpty()){
+    /**
+     * Retorna el nodo que guarda la informacion dada.
+     *
+     * @param tInfo, la informacion dada.
+     * @return el nodo que guarda la informacion, en caso contrario retorna
+     * null.
+     */
+    public Node<T> search(T tInfo) {
+        if (!isEmpty()) {
             Node<T> pAux = getpFirst();
-            while (pAux != null){
-                if (pAux.getTInfo().equals(tInfo)){
+            while (pAux != null) {
+                if (pAux.getTInfo().equals(tInfo)) {
                     return pAux;
                 }
                 pAux = next(pAux);
@@ -184,20 +263,26 @@ public class LinkedList<T> {
         return null;
     }
 
-    public void deleteFirst(){
-        if (!isEmpty()){
+    /**
+     * Elimina el primer nodo de la lista.
+     */
+    public void deleteFirst() {
+        if (!isEmpty()) {
             Node<T> pAux = getpFirst();
             setpFirst(next(pAux));
             pAux = null;
             setiSize(getiSize() - 1);
         }
     }
-    
-    public void deleteLast(){
-        if (!isEmpty()){
+
+    /**
+     * Elimina el ultimo nodo de la lista.
+     */
+    public void deleteLast() {
+        if (!isEmpty()) {
             Node<T> pAux = getpFirst();
             Node<T> pAux2;
-            while (next(next(pAux)) != null){
+            while (next(next(pAux)) != null) {
                 pAux = next(pAux);
             }
             pAux2 = next(pAux);
@@ -208,18 +293,23 @@ public class LinkedList<T> {
         }
     }
 
-    public void delete(Node<T> pNode){
-        if (!isEmpty() && pNode != null){
+    /**
+     * Elimina el nodo dado.
+     *
+     * @param pNode, el nodo a eliminar.
+     */
+    public void delete(Node<T> pNode) {
+        if (!isEmpty() && pNode != null) {
             Node<T> pAux = getpFirst();
-            if (pNode.equals(getpFirst())){
+            if (pNode.equals(getpFirst())) {
                 setpFirst(next(pAux));
                 pNode = null;
                 setiSize(getiSize() - 1);
             } else {
-                while (next(pAux) != null && !(next(pAux).equals(pNode))){
+                while (next(pAux) != null && !(next(pAux).equals(pNode))) {
                     pAux = next(pAux);
                 }
-                if (next(pAux) != null){
+                if (next(pAux) != null) {
                     pAux.setNextNode(next(pNode));
                     pNode = null;
                     setiSize(getiSize() - 1);
@@ -228,33 +318,20 @@ public class LinkedList<T> {
         }
     }
 
-    public void delete(T tInfo){
-        if (!isEmpty()){
-            Node<T> pAux = getpFirst();
-            if (getpFirst().getTInfo().equals(tInfo)){
-                setpFirst(next(pAux));
-                setiSize(getiSize() - 1);
-            } else {
-                while (next(pAux) != null && !(next(pAux).getTInfo().equals(tInfo))){
-                    pAux = next(pAux);
-                }
-                if (next(pAux) != null){
-                    pAux.setNextNode(next(next(pAux)));
-                    setiSize(getiSize() - 1);
-                }
-            }
-        }
-    }
-
-    public void pop(int index){
-        if (!isEmpty()){
-            if (index >= 0 && index < getiSize()){
+    /**
+     * Elimina el nodo que ocupa la posicion dada.
+     *
+     * @param index, la posicion dada.
+     */
+    public void pop(int index) {
+        if (!isEmpty()) {
+            if (index >= 0 && index < getiSize()) {
                 Node<T> pAux = getpFirst();
-                if (index == 0){
+                if (index == 0) {
                     setpFirst(next(pAux));
                 } else {
                     Node<T> pAux2;
-                    for (int i = 0; i < index-1; i++){
+                    for (int i = 0; i < index - 1; i++) {
                         pAux = next(pAux);
                     }
                     pAux2 = next(pAux);
@@ -266,22 +343,29 @@ public class LinkedList<T> {
         }
     }
 
-    public Node<T> deleteAndReturn(Node<T> pNode){
-        if (!isEmpty()){
-            if (pNode != null){
+    /**
+     * Elimina el nodo dado y lo retorna.
+     *
+     * @param pNode, el nodo a eliminar.
+     * @return retorna el nodo que ha sido eliminado, si el nodo no pertenece a
+     * la lista entonces retorna null.
+     */
+    public Node<T> deleteAndReturn(Node<T> pNode) {
+        if (!isEmpty()) {
+            if (pNode != null) {
                 Node<T> pAux = getpFirst();
-                if (pNode.equals(getpFirst())){
+                if (pNode.equals(getpFirst())) {
                     setpFirst(next(pAux));
                     setiSize(getiSize() - 1);
                     return pNode;
                 } else {
-                    while (next(pAux) != null && !(next(pAux).equals(pNode))){
+                    while (next(pAux) != null && !(next(pAux).equals(pNode))) {
                         pAux = next(pAux);
                     }
-                    if (next(pAux) != null){
+                    if (next(pAux) != null) {
                         pAux.setNextNode(next(next(pAux)));
                         setiSize(getiSize() - 1);
-                        return  pNode;
+                        return pNode;
                     }
                     return null;
                 }
@@ -291,16 +375,23 @@ public class LinkedList<T> {
         return null;
     }
 
-    public Node<T> deleteAndReturn(int index){
-        if (!isEmpty()){
-            if (index >= 0 && index < getiSize()){
+    /**
+     * Elimina el nodo de la posicion dada y lo retorna.
+     *
+     * @param index, la posicion dada.
+     * @return el nodo que ha sido eliminado, si no pertenece a la lista
+     * entonces retorna null.
+     */
+    public Node<T> deleteAndReturn(int index) {
+        if (!isEmpty()) {
+            if (index >= 0 && index < getiSize()) {
                 Node<T> pAux = getpFirst();
-                if (index == 0){
+                if (index == 0) {
                     setpFirst(next(pAux));
                     setiSize(getiSize() - 1);
                     return pAux;
                 } else {
-                    for (int i = 0; i < index - 1; i++){
+                    for (int i = 0; i < index - 1; i++) {
                         pAux = next(pAux);
                     }
                     pAux.setNextNode(next(next(pAux)));
@@ -313,29 +404,44 @@ public class LinkedList<T> {
         return null;
     }
 
-
-    public void addFirst(Node<T> pNode){
-        if (pNode != null){
+    /**
+     * Agrega el nodo dado en la primera posicion de la lista.
+     *
+     * @param pNode, el nodo a insertar.
+     */
+    public void addFirst(Node<T> pNode) {
+        if (pNode != null) {
             pNode.setNextNode(getpFirst());
             setpFirst(pNode);
             setiSize(getiSize() + 1);
         }
     }
 
-    public void addFirst(T tInfo){
+    /**
+     * Guarda la informacion dada en un nuevo nodo que ocupara la primera
+     * posicion de la lista.
+     *
+     * @param tInfo, la informacion a guardar.
+     */
+    public void addFirst(T tInfo) {
         Node<T> pNode = new Node<>(tInfo);
         pNode.setNextNode(getpFirst());
         setpFirst(pNode);
         setiSize(getiSize() + 1);
     }
 
-    public void addEnd(Node<T> pNode){
-        if (pNode != null){
-            if (isEmpty()){
+    /**
+     * Agrega el nodo dado en la ultima posicion de la lista.
+     *
+     * @param pNode, el nodo a insertar.
+     */
+    public void addEnd(Node<T> pNode) {
+        if (pNode != null) {
+            if (isEmpty()) {
                 setpFirst(pNode);
             } else {
                 Node<T> pAux = first();
-                while (next(pAux) != null){
+                while (next(pAux) != null) {
                     pAux = next(pAux);
                 }
                 pAux.setNextNode(pNode);
@@ -343,14 +449,20 @@ public class LinkedList<T> {
             setiSize(getiSize() + 1);
         }
     }
-    
-    public void addEnd(T tInfo){
+
+    /**
+     * Guarda la informacion dada en un nuevo nodo que sera insertado en la
+     * ultima posicion de la lista.
+     *
+     * @param tInfo, la informacion a guardar.
+     */
+    public void addEnd(T tInfo) {
         Node<T> pNode = new Node<>(tInfo);
-        if (isEmpty()){
+        if (isEmpty()) {
             setpFirst(pNode);
         } else {
             Node<T> pAux = first();
-            while (next(pAux) != null){
+            while (next(pAux) != null) {
                 pAux = next(pAux);
             }
             pAux.setNextNode(pNode);
@@ -358,315 +470,82 @@ public class LinkedList<T> {
         setiSize(getiSize() + 1);
     }
 
-    public void insertByIndex(Node<T> pNode, int index){
-        if (!isEmpty()){
-           if (index == 0){
+    /**
+     * Inserta un nodo dado en la posicion dada.
+     *
+     * @param pNode, el nodo a insertar.
+     * @param index , la posicion que ocupara en la lista.
+     */
+    public void insertByIndex(Node<T> pNode, int index) {
+        if (!isEmpty()) {
+            if (index == 0) {
                 addFirst(pNode);
-           } else if (index == getiSize() -1) {
+            } else if (index == getiSize() - 1) {
                 addEnd(pNode);
-           } else if (index > 0 && index < getiSize() - 1){
+            } else if (index > 0 && index < getiSize() - 1) {
                 Node<T> pAux = getpFirst();
-                for (int i = 0; i < index - 1; i++){
+                for (int i = 0; i < index - 1; i++) {
                     pAux = next(pAux);
                 }
                 pNode.setNextNode(next(pAux));
                 pAux.setNextNode(pNode);
                 setiSize(getiSize() + 1);
-           }
-        } else{
-            if (index == 0){
+            }
+        } else {
+            if (index == 0) {
                 addFirst(pNode);
             }
         }
     }
 
-    public void insertByIndex(T tInfo, int index){
+    /**
+     * Guarda la informacion dada en un nuevo nodo que ocupara la posicion dada.
+     *
+     * @param tInfo, la informacion a guardar.
+     * @param index, la posicion dada.
+     */
+    public void insertByIndex(T tInfo, int index) {
         Node<T> pNode = new Node<>(tInfo);
-        if (!isEmpty()){
-           if (index == 0){
+        if (!isEmpty()) {
+            if (index == 0) {
                 addFirst(pNode);
-           } else if (index == getiSize() -1) {
+            } else if (index == getiSize() - 1) {
                 addEnd(pNode);
-           } else if (index > 0 && index < getiSize() - 1){
+            } else if (index > 0 && index < getiSize() - 1) {
                 Node<T> pAux = getpFirst();
-                for (int i = 0; i < index - 1; i++){
+                for (int i = 0; i < index - 1; i++) {
                     pAux = next(pAux);
                 }
                 pNode.setNextNode(next(pAux));
                 pAux.setNextNode(pNode);
                 setiSize(getiSize() + 1);
-           }
-        } else{
-            if (index == 0){
+            }
+        } else {
+            if (index == 0) {
                 addFirst(pNode);
             }
         }
     }
 
-    public void toCircularList(){
-        if (!isEmpty()){
-            Node<T> pAux = first();
-            while (next(pAux) != null){
-                pAux = next(pAux);
-            }
-            pAux.setNextNode(getpFirst());
-        }
-    }
-
-    public void toSimpleList(){
-        if (!isEmpty()){
-            Node<T> pAux = first();
-            while (next(pAux) != first()){
-                pAux = next(pAux);
-            }
-            pAux.setNextNode(null);
-        }
-    }
-
-    public Node<T> getMiddle(){
-        if (!isEmpty()){
-            Node<T> pAux = first();
-            Node<T> pMiddle = first();
-
-            while (next(pAux) != null && next(next(pAux)) != null){
-                pAux = next(next(pAux));
-                pMiddle = next(pMiddle);
-            }
-            return pMiddle;
-        } 
-        return null;
-    }
-
-    public void reverse(){
-        Node<T> pAux = first();
-        if (pAux != null){
-            deleteFirst();
-            reverse();
-            addEnd(pAux.getTInfo());
-        }
-    }
-    
-    public LinkedList<T> returnReverse(){
-        LinkedList<T> reverse = new LinkedList<>();
-        Node<T> current = first();
-        if (current != null){
-            deleteFirst();
-            reverse = returnReverse();
-            reverse.addEnd(current.getTInfo());
-            addFirst(current.getTInfo());
-        }
-        return reverse;
-    }
-
-    public LinkedList<T> copy(){
-        LinkedList<T> copy = new LinkedList<>();
-        Node<T> pAux = first();
-        if (pAux != null){
-            deleteFirst();
-            copy = copy();
-            copy.addFirst(pAux.getTInfo());
-            addFirst(pAux.getTInfo());
-        }
-        return copy;
-    }
-
-    public void eliminateRepetitions(){
-        if (!isEmpty()){
-            Node<T> pAux = first();
-            Node<T> pAux2;
-            while (next(pAux) != null){
-                pAux2 = next(pAux);
-                while (pAux2 != null){
-                    if (pAux.getTInfo().equals(pAux2.getTInfo())){
-                        delete(pAux2);
-                    }
-                    pAux2 = next(pAux2);
-                }
-                pAux = next(pAux);
-            }
-        }
-    }
-
-
-    public LinkedList<T> returnWithoutRepetitions(){
-        LinkedList<T> withoutRepetitions = copy();
-        withoutRepetitions.eliminateRepetitions();
-        return withoutRepetitions;
-    }
-
-    public void addFirstWithoutRepetitions(T tInfo){
-        addFirst(tInfo);
-        eliminateRepetitions();
-    }
-
-    // AGREGAR EL METODO compareTo
-    public void addEndWithoutRepetitions(T tInfo){
-        addEnd(tInfo);
-        eliminateRepetitions();
-    }
-
-    public LinkedList<T> filter(T tInfo){
-        LinkedList<T> filter = new LinkedList<>();
-        if (!isEmpty()){
-            Node<T> pAux = first();
-            deleteFirst();
-            filter = filter(tInfo);
-            if (getMethods().equals(pAux.getTInfo(), tInfo)){
-                filter.addEnd(pAux.getTInfo());
-            }
-            addFirst(pAux);
-        }
-        return filter;
-    }
-
-    //A methods that returns the number of times that a element is repeated in the list
-    public int repeated(T tInfo){
-        int repeated = 0;
-        if (!isEmpty()){
-            Node<T> pAux = first();
-            deleteFirst();
-            repeated = repeated(tInfo);
-            if (getMethods().compareTo(pAux.getTInfo(), tInfo) == 0){
-                repeated++;
-            }
-            addFirst(pAux);
-        }
-        return repeated;
-    }
-    
-
-    //A method that returns the nodes that are repeated in the list
-    public LinkedList<T> repeatedNodes(){
-        LinkedList<T> repeatedNodes = new LinkedList<>();
-        if (!isEmpty()){
-            Node<T> pAux = first();
-            deleteFirst();
-            repeatedNodes = repeatedNodes();
-            if (repeated(pAux.getTInfo()) > 1){
-                repeatedNodes.addFirst(pAux);
-            }
-            addFirst(pAux);
-        }
-        return repeatedNodes;
-    }
-            
-
-    public void replace(Node<T> node, Node<T> newNode){
-        if (node != null && newNode != null){
-            if (node == first()){
-                deleteFirst();
-                addFirst(newNode.getTInfo());
-            } else if (node == last()){
-                deleteLast();
-                addEnd(newNode.getTInfo());
-            } else {
-                Node<T> pAux = first();
-                while (next(pAux) != node){
-                    pAux = next(pAux);
-                }
-                pAux.setNextNode(newNode);
-                newNode.setNextNode(next(node));
-            }
-        }
-    }
-
-    public boolean detectLoop(){
-        if (!isEmpty()){
-            Node<T> pSlow = first();
-            Node<T> pFast = first();
-            while (pSlow != null && pFast != null && next(pFast) != null){
-                pSlow = next(pSlow);
-                pFast = next(next(pFast));
-                if (pSlow == pFast){
-                    return true;
-                }
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public Node<T> findLoopStart(){
-        boolean loop = detectLoop();
-        if (loop){
-            Node<T> pSlow = first();
-            Node<T> pFast = first();
-            while (pSlow != null && pFast != null && next(pFast) != null){
-                pSlow = next(pSlow);
-                pFast = next(next(pFast));
-                if (pSlow == pFast){
-                    pSlow = first();
-                    while (pSlow != pFast){
-                        pSlow = next(pSlow);
-                        pFast = next(pFast);
-                    }
-                    return pSlow;
-                }
-            }
-        }
-        return null;
-    }
-
-    public void detectAndRemoveLoop(){
-        Node<T> loopStart = findLoopStart();
-        if (loopStart != null){
-            Node<T> pAux = loopStart;
-            while (next(pAux) != loopStart){
-                pAux = next(pAux);
-            }
-            pAux.setNextNode(null);
-        }
-    }
-
-    public int nodesInLoop(){
-        Node<T> loopStart = findLoopStart();
-        if (loopStart != null){
-            Node<T> pAux = loopStart;
-            int nodes = 1;
-            while (next(pAux) != loopStart){
-                pAux = next(pAux);
-                nodes++;
-            }
-            return nodes;
-        }
-        return 0;
-    }
-    
-    public void addAndSetNext(Node<T> node, Node<T> nextNode){
-        if (node != null && nextNode != null){
-            if (node == first()){
-                deleteFirst();
-                addFirst(node.getTInfo());
-                node.setNextNode(nextNode);
-            } else if (node == last()){
-                deleteLast();
-                addEnd(node.getTInfo());
-                node.setNextNode(nextNode);
-            } else {
-                Node<T> pAux = first();
-                while (next(pAux) != node){
-                    pAux = next(pAux);
-                }
-                pAux.setNextNode(node);
-                node.setNextNode(nextNode);
-            }
-        }
-    }
-
-    public void delateAll(){
+    /**
+     * Elimina la lista.
+     */
+    public void delateAll() {
         setpFirst(null);
         setiSize(0);
         System.gc();
     }
 
-    // sort a linked list using bublle sort 
-    public void bubleSort(){
-        if (!isEmpty()){
+    /**
+     * Ordena la lista usando el metodo de buble sort.
+     */
+    public void bubleSort() {
+        if (!isEmpty()) {
             Node<T> pAux = first();
-            while (pAux != null){
+            while (pAux != null) {
                 Node<T> pAux2 = next(pAux);
-                while (pAux2 != null){
-                    if (getMethods().compareTo(pAux.getTInfo(), pAux2.getTInfo()) > 0){
+                while (pAux2 != null) {
+                    if (getMethods().compareTo(pAux.getTInfo(), pAux2.getTInfo()) > 0) {
                         T aux = pAux.getTInfo();
                         pAux.setTInfo(pAux2.getTInfo());
                         pAux2.setTInfo(aux);
@@ -678,14 +557,16 @@ public class LinkedList<T> {
         }
     }
 
-    // sort a linked list using insertion sort
-    public void insertionSort(){
-        if (!isEmpty()){
+    /**
+     * Ordena la lista usando el metodo insertion sort
+     */
+    public void insertionSort() {
+        if (!isEmpty()) {
             Node<T> pAux = first();
-            while (pAux != null){
+            while (pAux != null) {
                 Node<T> pAux2 = next(pAux);
-                while (pAux2 != null){
-                    if (getMethods().compareTo(pAux.getTInfo(), pAux2.getTInfo()) > 0){
+                while (pAux2 != null) {
+                    if (getMethods().compareTo(pAux.getTInfo(), pAux2.getTInfo()) > 0) {
                         T aux = pAux.getTInfo();
                         pAux.setTInfo(pAux2.getTInfo());
                         pAux2.setTInfo(aux);
@@ -696,28 +577,35 @@ public class LinkedList<T> {
             }
         }
     }
-    
-    public int indexOf(T data){
-        if (!isEmpty()){
-          int index = 0;
-          Node<T> aux = this.getpFirst();
-          while (aux != null){
-              if (methods.equals(data, data)){
-                  return index;
-              }
-              index++;
-          }
+
+    /**
+     * Retorna la posicion del nodo que guarda la informacion dada.
+     *
+     * @param data, la informacion a buscar.
+     * @return el indice del nodo que guarda la informacion, en caso de no
+     * existir el nodo entonces retorna -1.
+     */
+    public int indexOf(T data) {
+        if (!isEmpty()) {
+            int index = 0;
+            Node<T> aux = this.getpFirst();
+            while (aux != null) {
+                if (methods.equals(data, data)) {
+                    return index;
+                }
+                index++;
+            }
         }
         return -1;
-        
+
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         String s = "";
-        if (!isEmpty()){
+        if (!isEmpty()) {
             Node<T> pAux = first();
-            while (pAux != null){
+            while (pAux != null) {
                 s += pAux.getTInfo().toString() + "\n";
                 pAux = next(pAux);
             }
@@ -752,5 +640,5 @@ public class LinkedList<T> {
     public void setiSize(int iSize) {
         this.iSize = iSize;
     }
-   
+
 }
