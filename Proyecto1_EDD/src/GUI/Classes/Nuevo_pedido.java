@@ -939,7 +939,7 @@ public class Nuevo_pedido extends javax.swing.JFrame {
     private void siguiente_bt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguiente_bt2ActionPerformed
         // TODO add your handling code here:
         this.realizar_Pedido = false;
-        this.siguiente_bt2.setEnabled(false);
+        this.siguiente_bt2.setEnabled(true);
         this.siguiente_bt2.setText("Siguiente");
         if (!this.confirmProduc) {
             this.confirmProduc = true;
@@ -971,6 +971,7 @@ public class Nuevo_pedido extends javax.swing.JFrame {
 
     private void siguiente_bt3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguiente_bt3ActionPerformed
         // TODO add your handling code here:
+        
         if (!this.confirmCant) {
             try {
                 this.confirmCant = true;

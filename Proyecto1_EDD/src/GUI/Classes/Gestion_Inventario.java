@@ -857,8 +857,10 @@ public class Gestion_Inventario extends javax.swing.JFrame {
 
     private void Confirm2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Confirm2ActionPerformed
         // TODO add your handling code here:
+        this.new_Stock.setText("");
+        this.new_Product.setText("");
         if (this.almacenSeleccionado && this.newProduc && this.newStock) {
-            Producto producEnAlmacen = Helpers.searchProduct(this.almacenSelecc.getTInfo().getListaProductos(), this.newProdName).getTInfo();
+            Node<Producto> producEnAlmacen = Helpers.searchProduct(this.almacenSelecc.getTInfo().getListaProductos(), this.newProdName);
             if (producEnAlmacen == null) {
                 this.almacenSelecc.getTInfo().getListaProductos().addEnd(new Producto(this.newProdName, this.stockNewProd));
                 JOptionPane.showMessageDialog(null, this.newProdName + " ha sido registrado exitosamente en el almacen "
@@ -866,10 +868,10 @@ public class Gestion_Inventario extends javax.swing.JFrame {
                         + "-Nombre del producto: " + this.newProdName + "\n"
                         + "-Stock del producto: " + this.stockNewProd);
             } else {
-                JOptionPane.showMessageDialog(null, "El stock de " + producEnAlmacen.getProducto()
+                JOptionPane.showMessageDialog(null, "El stock de " + producEnAlmacen.getTInfo().getProducto()
                         + ", perteneciente al almacen " + almacenSelecc.getTInfo().getAlmacen() + ", se ha modificado correctamente.\n"
-                        + "\n-Stock anterior: " + producEnAlmacen.getStock() + "\n-Nuevo stock: " + this.stockNewProd);
-                producEnAlmacen.setStock(this.stockNewProd);
+                        + "\n-Stock anterior: " + producEnAlmacen.getTInfo().getStock() + "\n-Nuevo stock: " + this.stockNewProd);
+                producEnAlmacen.getTInfo().setStock(this.stockNewProd);
             }
             this.Seleccion_almacenes.setEnabled(true);
             this.seleccionarAlmacen.setText("Siguiente");
@@ -1174,6 +1176,10 @@ public class Gestion_Inventario extends javax.swing.JFrame {
             this.exis_Stock.setEnabled(false);
             this.jButton4.setEnabled(false);
             this.Descartar_btn2.setEnabled(false);
+            this.newStock = false;
+            this.new_Stock.setText("");
+            this.jButton4.setEnabled(true);
+            this.jButton4.setText("Siguiente");
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
