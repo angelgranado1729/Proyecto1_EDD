@@ -763,7 +763,7 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Seleccion_almacenes2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="ComboAlmacenDestino" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -793,7 +793,7 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jTextField2" min="-2" pref="249" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="Seleccion_almacenes1" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="ComboAlmacenInicio" alignment="1" max="32767" attributes="0"/>
                                       <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -818,7 +818,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="Seleccion_almacenes1" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="ComboAlmacenInicio" min="-2" pref="38" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jTextField2" alignment="0" max="32767" attributes="0"/>
@@ -832,7 +832,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="Seleccion_almacenes2" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="ComboAlmacenDestino" min="-2" pref="38" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel16" alignment="0" max="32767" attributes="0"/>
@@ -876,7 +876,7 @@
                 <Property name="text" type="java.lang.String" value="Almacen de inicio:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="Seleccion_almacenes1">
+            <Component class="javax.swing.JComboBox" name="ComboAlmacenInicio">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>
@@ -913,7 +913,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField3ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JComboBox" name="Seleccion_almacenes2">
+            <Component class="javax.swing.JComboBox" name="ComboAlmacenDestino">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>

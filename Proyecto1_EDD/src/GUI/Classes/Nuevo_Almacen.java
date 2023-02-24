@@ -4,6 +4,9 @@
  */
 package GUI.Classes;
 
+import App.App;
+import MainClasses.Almacen;
+import MainClasses.Node;
 import java.awt.Point;
 
 /**
@@ -21,6 +24,15 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
         this.setResizable(false);
         this.jTextArea1.setFocusable(false);
         this.jTextArea2.setFocusable(false);
+        Node<Almacen> aux = App.getG().getAlmacenes().first();
+        for (int i = 0; i < App.getG().getAlmacenes().getiSize(); i++) {
+            this.ComboAlmacenInicio.addItem("Almacen " + aux.getTInfo().getAlmacen());
+            aux = App.getG().getAlmacenes().next(aux);
+        }
+        //for (int i = 0; i < App.getG().getAlmacenes().getiSize(); i++) {
+       //     this.ComboAlmacenDestino.addItem("Almacen " + aux.getTInfo().getAlmacen());
+       //     aux = App.getG().getAlmacenes().next(aux);
+      //  }
     }
 
     /**
@@ -69,11 +81,11 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        Seleccion_almacenes1 = new javax.swing.JComboBox<>();
+        ComboAlmacenInicio = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        Seleccion_almacenes2 = new javax.swing.JComboBox<>();
+        ComboAlmacenDestino = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -589,7 +601,7 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel14)
                             .addComponent(jLabel17)
-                            .addComponent(Seleccion_almacenes2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ComboAlmacenDestino, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel16)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -612,7 +624,7 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
                                     .addComponent(jLabel15)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(Seleccion_almacenes1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ComboAlmacenInicio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jButton1))))
@@ -630,7 +642,7 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Seleccion_almacenes1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ComboAlmacenInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField2)
@@ -642,7 +654,7 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Seleccion_almacenes2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ComboAlmacenDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -879,10 +891,10 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BG;
+    private javax.swing.JComboBox<String> ComboAlmacenDestino;
+    private javax.swing.JComboBox<String> ComboAlmacenInicio;
     private javax.swing.JButton Descartar_btn1;
     private javax.swing.JButton Descartar_btn2;
-    private javax.swing.JComboBox<String> Seleccion_almacenes1;
-    private javax.swing.JComboBox<String> Seleccion_almacenes2;
     private javax.swing.JPanel SidePanel;
     private javax.swing.JPanel btn_Inicio;
     private javax.swing.JPanel btn_cargar_guardar;
