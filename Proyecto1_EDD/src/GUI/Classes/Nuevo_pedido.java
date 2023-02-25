@@ -396,13 +396,28 @@ public class Nuevo_pedido extends javax.swing.JFrame {
         SidePanel.add(btn_gest_inventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 330, 60));
 
         btn_mapa_almacenes.setBackground(new java.awt.Color(55, 71, 90));
+        btn_mapa_almacenes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_mapa_almacenesMouseClicked(evt);
+            }
+        });
 
         icono.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/mapa blanco.png"))); // NOI18N
+        icono.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iconoMouseClicked(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Mapa de Almacenes");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_mapa_almacenesLayout = new javax.swing.GroupLayout(btn_mapa_almacenes);
         btn_mapa_almacenes.setLayout(btn_mapa_almacenesLayout);
@@ -1096,6 +1111,18 @@ public class Nuevo_pedido extends javax.swing.JFrame {
         this.descartar_bt.setEnabled(false);
         this.pedidos.destroy();
     }//GEN-LAST:event_descartar_btActionPerformed
+
+    private void btn_mapa_almacenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_mapa_almacenesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_mapa_almacenesMouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void iconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_iconoMouseClicked
 
     /**
      * @param args the command line arguments

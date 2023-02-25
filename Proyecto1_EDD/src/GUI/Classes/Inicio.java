@@ -4,6 +4,7 @@
  */
 package GUI.Classes;
 
+import App.Helpers;
 import java.awt.Point;
 
 /**
@@ -670,23 +671,14 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
-        Mapa_Almacenes v7 = new Mapa_Almacenes();
-        v7.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void btn_mapa_almacenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_mapa_almacenesMouseClicked
         // TODO add your handling code here:
-        Mapa_Almacenes v7 = new Mapa_Almacenes();
-        v7.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_btn_mapa_almacenesMouseClicked
 
     private void iconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconoMouseClicked
         // TODO add your handling code here:
-        Mapa_Almacenes v7 = new Mapa_Almacenes();
-        v7.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_iconoMouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
