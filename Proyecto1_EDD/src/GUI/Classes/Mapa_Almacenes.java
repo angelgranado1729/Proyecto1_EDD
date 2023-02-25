@@ -11,16 +11,16 @@ import java.awt.Point;
  *
  * @author andre
  */
-public class PlotGraph extends javax.swing.JFrame {
+public class Mapa_Almacenes extends javax.swing.JFrame {
 
     /**
      * Creates new form Inicio
      */
-    public PlotGraph() {
+    public Mapa_Almacenes() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        Helpers.plotGraph();
+
     }
 
     /**
@@ -54,7 +54,6 @@ public class PlotGraph extends javax.swing.JFrame {
         icono6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         btn_mapa_almacenes = new javax.swing.JPanel();
-        icono = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btn_cargar_guardar = new javax.swing.JPanel();
         icono7 = new javax.swing.JLabel();
@@ -65,7 +64,6 @@ public class PlotGraph extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         exit = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -83,10 +81,9 @@ public class PlotGraph extends javax.swing.JFrame {
         btn_Inicio.setBackground(new java.awt.Color(55, 71, 90));
 
         icono1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        icono1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/amazon_logo_blanco.png"))); // NOI18N
+        icono1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/icons8-amazon-32.png"))); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Inicio");
 
         javax.swing.GroupLayout btn_InicioLayout = new javax.swing.GroupLayout(btn_Inicio);
@@ -358,14 +355,6 @@ public class PlotGraph extends javax.swing.JFrame {
             }
         });
 
-        icono.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/mapa blanco.png"))); // NOI18N
-        icono.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                iconoMouseClicked(evt);
-            }
-        });
-
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Mapa de Almacenes");
@@ -380,19 +369,15 @@ public class PlotGraph extends javax.swing.JFrame {
         btn_mapa_almacenesLayout.setHorizontalGroup(
             btn_mapa_almacenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_mapa_almacenesLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(icono)
-                .addGap(18, 18, 18)
+                .addGap(72, 72, 72)
                 .addComponent(jLabel2)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         btn_mapa_almacenesLayout.setVerticalGroup(
             btn_mapa_almacenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_mapa_almacenesLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(btn_mapa_almacenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel2)
-                    .addComponent(icono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel2)
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
@@ -518,9 +503,6 @@ public class PlotGraph extends javax.swing.JFrame {
         );
 
         BG.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 650, 190));
-
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/fondo_inicio.png"))); // NOI18N
-        BG.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -692,10 +674,6 @@ public class PlotGraph extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btn_nuevo_pedidoMouseClicked
 
-    private void iconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconoMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_iconoMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -713,21 +691,23 @@ public class PlotGraph extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PlotGraph.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Mapa_Almacenes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PlotGraph.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Mapa_Almacenes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PlotGraph.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Mapa_Almacenes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PlotGraph.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Mapa_Almacenes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PlotGraph().setVisible(true);
+                new Mapa_Almacenes().setVisible(true);
             }
         });
     }
@@ -745,7 +725,6 @@ public class PlotGraph extends javax.swing.JFrame {
     private javax.swing.JPanel btn_nuevo_pedido;
     private javax.swing.JPanel btn_reporte;
     private javax.swing.JLabel exit;
-    private javax.swing.JLabel icono;
     private javax.swing.JLabel icono1;
     private javax.swing.JLabel icono3;
     private javax.swing.JLabel icono4;
@@ -755,7 +734,6 @@ public class PlotGraph extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

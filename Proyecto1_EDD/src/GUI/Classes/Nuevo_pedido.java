@@ -80,7 +80,6 @@ public class Nuevo_pedido extends javax.swing.JFrame {
         icono6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         btn_mapa_almacenes = new javax.swing.JPanel();
-        icono = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btn_cargar_guardar = new javax.swing.JPanel();
         icono7 = new javax.swing.JLabel();
@@ -402,14 +401,6 @@ public class Nuevo_pedido extends javax.swing.JFrame {
             }
         });
 
-        icono.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/mapa blanco.png"))); // NOI18N
-        icono.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                iconoMouseClicked(evt);
-            }
-        });
-
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Mapa de Almacenes");
@@ -424,19 +415,15 @@ public class Nuevo_pedido extends javax.swing.JFrame {
         btn_mapa_almacenesLayout.setHorizontalGroup(
             btn_mapa_almacenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_mapa_almacenesLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(icono)
-                .addGap(18, 18, 18)
+                .addGap(72, 72, 72)
                 .addComponent(jLabel2)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         btn_mapa_almacenesLayout.setVerticalGroup(
             btn_mapa_almacenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_mapa_almacenesLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(btn_mapa_almacenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel2)
-                    .addComponent(icono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel2)
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
@@ -1120,10 +1107,6 @@ public class Nuevo_pedido extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel2MouseClicked
 
-    private void iconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconoMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_iconoMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -1178,7 +1161,6 @@ public class Nuevo_pedido extends javax.swing.JFrame {
     private javax.swing.JPanel btn_reporte;
     private javax.swing.JButton descartar_bt;
     private javax.swing.JLabel exit;
-    private javax.swing.JLabel icono;
     private javax.swing.JLabel icono1;
     private javax.swing.JLabel icono2;
     private javax.swing.JLabel icono3;

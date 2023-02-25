@@ -435,7 +435,7 @@ public class Helpers {
      * Grafica el grafo, donde los vertices son los almacenes registrados.
      */
 
-   public static void plotGraph() {
+    public static void plotGraph() {
         // Crear un objeto Graph vacío
         Graph graph = new SingleGraph("Mi grafo");
 
@@ -444,6 +444,9 @@ public class Helpers {
         for (int i = 0; i < App.getG().getNumVertices(); i++) {
             String nombre = aux.getTInfo().getAlmacen();
             graph.addNode(aux.getTInfo().getAlmacen());
+            graph.getNode(nombre).setAttribute("ui.label", nombre);
+            graph.getNode(nombre).setAttribute("ui.style", "shape: circle; size: 25px; fill-color: #ffcc00;");
+
             aux = App.getG().getAlmacenes().next(aux);
         }
 
@@ -456,15 +459,18 @@ public class Helpers {
                     String nombreNodo2 = App.getG().getAlmacenes().getNode(j).getTInfo().getAlmacen();
                     Edge edge = graph.addEdge(nombreNodo1 + nombreNodo2, nombreNodo1, nombreNodo2);
                     edge.setAttribute("ui.label", peso);
-                    edge.setAttribute("ui.style", "arrow-shape: arrow; size: 3px, 3px;");
+                    edge.setAttribute("ui.style", "arrow-shape: arrow; size: 1px, 6px; shape: line; stroke-mode: plain;");
                 }
             }
         }
+        // Establecer el tamaño de las etiquetas de los nodos
+        graph.setAttribute("ui.stylesheet", "node { text-size: 20; }");
+
 
         System.setProperty("org.graphstream.ui", "swing");
 
         // Crear un viewer y mostrar el grafo
         Viewer viewer = graph.display();
         viewer.enableAutoLayout();
-}
+    }
 }
