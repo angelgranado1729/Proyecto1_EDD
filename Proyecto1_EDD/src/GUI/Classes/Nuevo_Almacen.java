@@ -29,10 +29,6 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
             this.ComboAlmacenInicio.addItem("Almacen " + aux.getTInfo().getAlmacen());
             aux = App.getG().getAlmacenes().next(aux);
         }
-        //for (int i = 0; i < App.getG().getAlmacenes().getiSize(); i++) {
-       //     this.ComboAlmacenDestino.addItem("Almacen " + aux.getTInfo().getAlmacen());
-       //     aux = App.getG().getAlmacenes().next(aux);
-      //  }
     }
 
     /**

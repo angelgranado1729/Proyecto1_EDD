@@ -4,6 +4,7 @@
  */
 package GUI.Classes;
 
+import MainClasses.EjemploGrafico;
 import java.awt.Point;
 
 /**
