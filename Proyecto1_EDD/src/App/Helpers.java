@@ -369,7 +369,7 @@ public class Helpers {
      * @param distancia2, distancia entre el nuevo almacen y el almacen destino.
      */
     public static void registrarNuevoAlmacen(String nuevoAlmacen, int almacenInicioIndex, int almacenDestinoIndex, double distancia1, double distancia2) {
-        if (nuevoAlmacen != null) {
+        if (!nuevoAlmacen.equals("")) {
             //Primero verificamos si el almacen ya esta registrado
             boolean almacenRegistrado = false;
             Node<Almacen> currentAlmacen = App.getG().getAlmacenes().getpFirst();
@@ -384,7 +384,7 @@ public class Helpers {
             //Si no esta registrado, entonces se registra en el grafo.
             if (!almacenRegistrado) {
                 //Si no hay espacio, se crea una nueva matriz de adyacencia y luego se registra el almacen
-                if (App.getG().getNumVertices() >= App.getG().getNumMaxVertices()) {
+                if (App.getG().getNumVertices() == App.getG().getNumMaxVertices()) {
                     //Creamos la nueva matriz de adyacencia
                     MatrizAdj newMatrix = new MatrizAdj(App.getG().getNumMaxVertices());
 

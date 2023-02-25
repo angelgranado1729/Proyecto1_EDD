@@ -79,4 +79,8 @@ public class Node<T> {
         return this.tInfo.toString();
     }
 
+    public void addAttribute(String uilabel, String toString) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }
