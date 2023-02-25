@@ -18,13 +18,13 @@ import javax.swing.JOptionPane;
  * @author andre & Angel Granado
  */
 public class Gestion_Inventario extends javax.swing.JFrame {
-    
+
     private boolean almacenSeleccionado = false;
     private boolean exisProduc = false;
     private boolean exisStock = false;
     private boolean newProduc = false;
     private boolean newStock = false;
-    
+
     private Node<Almacen> almacenSelecc;
     private int selecProdIndex;
     private int selecStock;
@@ -55,7 +55,6 @@ public class Gestion_Inventario extends javax.swing.JFrame {
         this.jButton3.setEnabled(false);
         this.jButton4.setEnabled(false);
         this.jButton7.setEnabled(false);
-        
     }
 
     /**
@@ -1091,10 +1090,10 @@ public class Gestion_Inventario extends javax.swing.JFrame {
             this.exis_Stock.setEnabled(false);
             this.new_Stock.setEnabled(false);
             this.Seleccion_ProdExis.removeAllItems();
-            
+
             this.almacenSelecc = App.getG().getAlmacenes().getNode(this.Seleccion_almacenes.getSelectedIndex());
             LinkedList<Producto> listaProductos = this.almacenSelecc.getTInfo().getListaProductos();
-            
+
             Node<Producto> aux = listaProductos.getpFirst();
             for (int i = 0; i < listaProductos.getiSize(); i++) {
                 this.Seleccion_ProdExis.addItem(aux.getTInfo().getProducto());
@@ -1106,7 +1105,7 @@ public class Gestion_Inventario extends javax.swing.JFrame {
             this.Descartar_btn2.setEnabled(false);
             this.Confirm1.setEnabled(false);
             this.Confirm2.setEnabled(false);
-            
+
         } else {
             this.Seleccion_almacenes.setEnabled(true);
             this.seleccionarAlmacen.setText("Siguiente");
@@ -1131,7 +1130,7 @@ public class Gestion_Inventario extends javax.swing.JFrame {
             this.new_Stock.setText("");
             this.Descartar_btn1.setEnabled(false);
             this.Descartar_btn2.setEnabled(false);
-            
+
         }
     }//GEN-LAST:event_seleccionarAlmacenActionPerformed
 
@@ -1148,7 +1147,7 @@ public class Gestion_Inventario extends javax.swing.JFrame {
         this.jButton3.setText("Siguiente");
         this.exis_Stock.setEnabled(false);
         this.Seleccion_ProdExis.setSelectedIndex(0);
-        
+
 
     }//GEN-LAST:event_Descartar_btn1ActionPerformed
 
@@ -1258,14 +1257,14 @@ public class Gestion_Inventario extends javax.swing.JFrame {
     private void iconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconoMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_iconoMouseClicked
-    
+
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
         Nuevo_pedido v2 = new Nuevo_pedido();
         v2.setVisible(true);
         this.dispose();
     }
-    
+
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
         Nuevo_pedido v2 = new Nuevo_pedido();

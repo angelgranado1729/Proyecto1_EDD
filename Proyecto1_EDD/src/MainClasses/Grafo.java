@@ -79,7 +79,8 @@ public class Grafo {
         if (!isVertex(almacen) && getAlmacenes().size() < getNumMaxVertices()) {
             Almacen newAlmacen = new Almacen(almacen);
             getAlmacenes().addEnd(newAlmacen);
-            setNumVertices(getNumVertices() + 1);
+            setNumVertices(this.almacenes.getiSize());
+            this.matrixAdj.setNumVertices(this.almacenes.getiSize());
         }
     }
 

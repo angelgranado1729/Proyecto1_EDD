@@ -20,7 +20,6 @@ public class Inicio extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-
     }
 
     /**
@@ -677,10 +676,6 @@ public class Inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_mapa_almacenesMouseClicked
 
-    private void iconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconoMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_iconoMouseClicked
-
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
         Nuevo_pedido v2 = new Nuevo_pedido();
@@ -694,6 +689,10 @@ public class Inicio extends javax.swing.JFrame {
         v2.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_nuevo_pedidoMouseClicked
+
+    private void iconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_iconoMouseClicked
 
     /**
      * @param args the command line arguments
