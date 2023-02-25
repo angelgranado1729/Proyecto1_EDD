@@ -13,8 +13,10 @@ import MainClasses.Producto;
 import MainClasses.RutasPosibles;
 import MainClasses.RutaYDistancia;
 import javax.swing.JOptionPane;
+import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.ui.view.Viewer;
 
 
 /**
@@ -432,36 +434,37 @@ public class Helpers {
     /**
      * Grafica el grafo, donde los vertices son los almacenes registrados.
      */
-    public static void plotGraph(){
+
+   public static void plotGraph() {
         // Crear un objeto Graph vacío
         Graph graph = new SingleGraph("Mi grafo");
 
         // Agregar nodos al grafo
-        String[] nombreAlmacenes = new String[App.getG().getNumVertices()];
-        var aux = App.getG().getAlmacenes().getpFirst();
+        Node<Almacen> aux = App.getG().getAlmacenes().getpFirst();
         for (int i = 0; i < App.getG().getNumVertices(); i++) {
             String nombre = aux.getTInfo().getAlmacen();
-            nombreAlmacenes[i] = nombre;
-            graph.addNode(nombre);
+            graph.addNode(aux.getTInfo().getAlmacen());
             aux = App.getG().getAlmacenes().next(aux);
         }
-        for (String a: nombreAlmacenes){
-            System.out.println(a);
-        }
+
         // Agregar aristas al grafo
         for (int i = 0; i < App.getG().getNumVertices(); i++) {
             for (int j = i + 1; j < App.getG().getNumVertices(); j++) {
                 double peso = App.getG().getPeso(i, j);
                 if (peso > 0) {
-                    String nombreNodo1 = nombreAlmacenes[i];
-                    String nombreNodo2 = nombreAlmacenes[j];
-                    graph.addEdge(nombreNodo1 + nombreNodo2, nombreNodo1, nombreNodo2);
+                    String nombreNodo1 = App.getG().getAlmacenes().getNode(i).getTInfo().getAlmacen();
+                    String nombreNodo2 = App.getG().getAlmacenes().getNode(j).getTInfo().getAlmacen();
+                    Edge edge = graph.addEdge(nombreNodo1 + nombreNodo2, nombreNodo1, nombreNodo2);
+                    edge.setAttribute("ui.label", peso);
+                    edge.setAttribute("ui.style", "arrow-shape: arrow; size: 3px, 3px;");
                 }
             }
         }
+
         System.setProperty("org.graphstream.ui", "swing");
 
-        // Mostrar el grafo
-        graph.display();
-    }
+        // Crear un viewer y mostrar el grafo
+        Viewer viewer = graph.display();
+        viewer.enableAutoLayout();
+}
 }
