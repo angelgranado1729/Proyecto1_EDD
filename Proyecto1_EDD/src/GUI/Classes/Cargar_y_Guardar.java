@@ -62,6 +62,7 @@ public class Cargar_y_Guardar extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         btn_mapa_almacenes = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         btn_cargar_guardar = new javax.swing.JPanel();
         icono7 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -391,12 +392,16 @@ public class Cargar_y_Guardar extends javax.swing.JFrame {
             }
         });
 
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/iconoMapaAlmacenes2.png"))); // NOI18N
+
         javax.swing.GroupLayout btn_mapa_almacenesLayout = new javax.swing.GroupLayout(btn_mapa_almacenes);
         btn_mapa_almacenes.setLayout(btn_mapa_almacenesLayout);
         btn_mapa_almacenesLayout.setHorizontalGroup(
             btn_mapa_almacenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_mapa_almacenesLayout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addGap(22, 22, 22)
+                .addComponent(jLabel14)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addContainerGap(42, Short.MAX_VALUE))
         );
@@ -404,7 +409,9 @@ public class Cargar_y_Guardar extends javax.swing.JFrame {
             btn_mapa_almacenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_mapa_almacenesLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jLabel2)
+                .addGroup(btn_mapa_almacenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel2))
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
@@ -751,6 +758,10 @@ public class Cargar_y_Guardar extends javax.swing.JFrame {
 
     private void btn_mapa_almacenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_mapa_almacenesMouseClicked
         // TODO add your handling code here:
+        Mapa_Almacenes v2 = new Mapa_Almacenes();
+        v2.setVisible(true);
+        this.dispose();
+
     }//GEN-LAST:event_btn_mapa_almacenesMouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
@@ -819,6 +830,7 @@ public class Cargar_y_Guardar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
