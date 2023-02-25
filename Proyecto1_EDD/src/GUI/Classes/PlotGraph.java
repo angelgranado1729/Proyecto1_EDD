@@ -80,12 +80,13 @@ public class PlotGraph extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/AmazonLogo.png"))); // NOI18N
         SidePanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 280, 80));
 
-        btn_Inicio.setBackground(new java.awt.Color(243, 168, 71));
+        btn_Inicio.setBackground(new java.awt.Color(55, 71, 90));
 
         icono1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        icono1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/icons8-amazon-32.png"))); // NOI18N
+        icono1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/amazon_logo_blanco.png"))); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Inicio");
 
         javax.swing.GroupLayout btn_InicioLayout = new javax.swing.GroupLayout(btn_Inicio);
@@ -350,7 +351,7 @@ public class PlotGraph extends javax.swing.JFrame {
 
         SidePanel.add(btn_gest_inventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 330, 60));
 
-        btn_mapa_almacenes.setBackground(new java.awt.Color(55, 71, 90));
+        btn_mapa_almacenes.setBackground(new java.awt.Color(243, 168, 71));
         btn_mapa_almacenes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_mapa_almacenesMouseClicked(evt);
