@@ -83,13 +83,28 @@ public class Mapa_Almacenes extends javax.swing.JFrame {
         SidePanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 280, 80));
 
         btn_Inicio.setBackground(new java.awt.Color(55, 71, 90));
+        btn_Inicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_InicioMouseClicked(evt);
+            }
+        });
 
         icono1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        icono1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/icons8-amazon-32.png"))); // NOI18N
+        icono1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/amazon_logo_blanco.png"))); // NOI18N
+        icono1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icono1MouseClicked(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Inicio");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_InicioLayout = new javax.swing.GroupLayout(btn_Inicio);
         btn_Inicio.setLayout(btn_InicioLayout);
@@ -699,6 +714,28 @@ public class Mapa_Almacenes extends javax.swing.JFrame {
         // TODO add your handling code here:
         Helpers.plotGraph();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btn_InicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_InicioMouseClicked
+        // TODO add your handling code here:Inicio v1 = new Inicio();
+        Inicio v1 = new Inicio();
+        v1.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_btn_InicioMouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        Inicio v1 = new Inicio();
+        v1.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void icono1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono1MouseClicked
+        // TODO add your handling code here:
+        Inicio v1 = new Inicio();
+        v1.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_icono1MouseClicked
 
     /**
      * @param args the command line arguments
