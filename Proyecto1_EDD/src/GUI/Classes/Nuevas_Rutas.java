@@ -44,6 +44,7 @@ public class Nuevas_Rutas extends javax.swing.JFrame {
         this.jTextArea1.setEnabled(false);
         this.Confirmar_bt.setEnabled(false);
         this.jTextField1.setEnabled(false);
+        this.jButton3.setEnabled(false);
     }
 
     /**
