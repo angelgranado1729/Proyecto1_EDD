@@ -6,6 +6,10 @@ package GUI.Classes;
 
 import App.App;
 import App.Helpers;
+import MainClasses.Almacen;
+import MainClasses.LinkedList;
+import MainClasses.Node;
+import MainClasses.Producto;
 import java.awt.Point;
 import javax.swing.JOptionPane;
 
@@ -13,33 +17,36 @@ import javax.swing.JOptionPane;
  *
  * @author andre
  */
-public class Nuevo_Almacen extends javax.swing.JFrame {
+public class Nuevo_pedido extends javax.swing.JFrame {
 
-    public boolean confirmNewAlmacen = false;
-    public boolean confirmOrgAlmacen = false;
-    public boolean confirmDestAlmacen = false;
-    public String nuevoAlmacen = "";
-    public int almacenOrigenIndex;
-    public int almacenDesIndex;
-    public double dist1;
-    public double dist2;
+    private boolean confirmAlmacen = false;
+    private boolean confirmProduc = false;
+    private boolean confirmCant = false;
+    private boolean realizar_Pedido = false;
+
+    private Node<Almacen> almacenOrigen;
+    private Producto producPedido;
+    private LinkedList<Producto> pedidos = new LinkedList();
 
     /**
      * Creates new form Inicio
      */
-    public Nuevo_Almacen() {
+    public Nuevo_pedido() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.ruta1.setFocusable(false);
-        this.ruta2.setFocusable(false);
-        this.confirm2.setEnabled(false);
-        this.confirm3.setEnabled(false);
-        this.crearAlmacen.setEnabled(false);
-        this.ComboAlmacenInicio.setEnabled(false);
-        this.ComboAlmacenDestino.setEnabled(false);
-        this.distancia1.setEnabled(false);
-        this.distancia2.setEnabled(false);
+        this.listaProducTA.setFocusable(false);
+        this.siguiente_bt2.setEnabled(false);
+        this.siguiente_bt3.setEnabled(false);
+        this.agregar_bt.setEnabled(false);
+        this.realizarPedido.setEnabled(false);
+        this.jTextArea2.setEnabled(true);
+        Node<Almacen> aux = App.getG().getAlmacenes().first();
+        for (int i = 0; i < App.getG().getAlmacenes().getiSize(); i++) {
+            this.Seleccion_almacenes1.addItem("Almacen " + aux.getTInfo().getAlmacen());
+            aux = App.getG().getAlmacenes().next(aux);
+        }
+        this.descartar_bt.setEnabled(false);
     }
 
     /**
@@ -57,6 +64,9 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
         btn_Inicio = new javax.swing.JPanel();
         icono1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        btn_nuevo_pedido = new javax.swing.JPanel();
+        icono2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         btn_nueva_ruta = new javax.swing.JPanel();
         icono3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -72,9 +82,6 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
         btn_mapa_almacenes = new javax.swing.JPanel();
         icono = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btn_nuevo_pedido = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         btn_cargar_guardar = new javax.swing.JPanel();
         icono7 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -85,23 +92,24 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
         exit = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        nuevoAlmacenInput = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        ComboAlmacenInicio = new javax.swing.JComboBox<>();
+        Seleccion_almacenes1 = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
-        distancia1 = new javax.swing.JTextField();
-        distancia2 = new javax.swing.JTextField();
-        ComboAlmacenDestino = new javax.swing.JComboBox<>();
+        Seleccion_productos = new javax.swing.JComboBox<>();
+        CantidadProduc = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
+        siguiente_bt3 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listaProducTA = new javax.swing.JTextArea();
         jLabel17 = new javax.swing.JLabel();
-        ruta1 = new javax.swing.JTextArea();
-        Descartar_btn = new javax.swing.JButton();
-        crearAlmacen = new javax.swing.JButton();
-        confirm2 = new javax.swing.JButton();
-        confirm1 = new javax.swing.JButton();
-        confirm3 = new javax.swing.JButton();
-        ruta2 = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jLabel18 = new javax.swing.JLabel();
+        descartar_bt = new javax.swing.JButton();
+        realizarPedido = new javax.swing.JButton();
+        siguiente_bt = new javax.swing.JButton();
+        siguiente_bt2 = new javax.swing.JButton();
+        agregar_bt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -168,6 +176,37 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
 
         SidePanel.add(btn_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 330, 60));
 
+        btn_nuevo_pedido.setBackground(new java.awt.Color(243, 168, 71));
+
+        icono2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        icono2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/pedido.png"))); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel5.setText("Nuevo Pedido");
+
+        javax.swing.GroupLayout btn_nuevo_pedidoLayout = new javax.swing.GroupLayout(btn_nuevo_pedido);
+        btn_nuevo_pedido.setLayout(btn_nuevo_pedidoLayout);
+        btn_nuevo_pedidoLayout.setHorizontalGroup(
+            btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_nuevo_pedidoLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(icono2)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addContainerGap(99, Short.MAX_VALUE))
+        );
+        btn_nuevo_pedidoLayout.setVerticalGroup(
+            btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_nuevo_pedidoLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel5)
+                    .addComponent(icono2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 14, Short.MAX_VALUE))
+        );
+
+        SidePanel.add(btn_nuevo_pedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 330, 60));
+
         btn_nueva_ruta.setBackground(new java.awt.Color(55, 71, 90));
         btn_nueva_ruta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -215,13 +254,29 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
 
         SidePanel.add(btn_nueva_ruta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 330, 60));
 
-        btn_nuevo_almacen.setBackground(new java.awt.Color(243, 168, 71));
+        btn_nuevo_almacen.setBackground(new java.awt.Color(55, 71, 90));
+        btn_nuevo_almacen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_nuevo_almacenMouseClicked(evt);
+            }
+        });
 
         icono4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        icono4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/nuevo Almacen.png"))); // NOI18N
+        icono4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/nuevo almacen blanco.png"))); // NOI18N
+        icono4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icono4MouseClicked(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Nuevo Almacen");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_nuevo_almacenLayout = new javax.swing.GroupLayout(btn_nuevo_almacen);
         btn_nuevo_almacen.setLayout(btn_nuevo_almacenLayout);
@@ -387,42 +442,6 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
 
         SidePanel.add(btn_mapa_almacenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 550, 330, 60));
 
-        btn_nuevo_pedido.setBackground(new java.awt.Color(55, 71, 90));
-        btn_nuevo_pedido.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_nuevo_pedidoMouseClicked(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Nuevo Pedido");
-
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/pedido_blanco.png"))); // NOI18N
-
-        javax.swing.GroupLayout btn_nuevo_pedidoLayout = new javax.swing.GroupLayout(btn_nuevo_pedido);
-        btn_nuevo_pedido.setLayout(btn_nuevo_pedidoLayout);
-        btn_nuevo_pedidoLayout.setHorizontalGroup(
-            btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_nuevo_pedidoLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel19)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addContainerGap(108, Short.MAX_VALUE))
-        );
-        btn_nuevo_pedidoLayout.setVerticalGroup(
-            btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_nuevo_pedidoLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel5))
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
-
-        SidePanel.add(btn_nuevo_pedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 330, 60));
-
         btn_cargar_guardar.setBackground(new java.awt.Color(55, 71, 90));
         btn_cargar_guardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -508,7 +527,7 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(581, Short.MAX_VALUE)
+                .addContainerGap(584, Short.MAX_VALUE)
                 .addComponent(exit)
                 .addContainerGap())
         );
@@ -522,7 +541,7 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Seccion de Nuevo Almacen");
+        jLabel11.setText("Seccion Nuevo Pedido");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -531,183 +550,186 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
         );
 
         BG.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 650, 190));
 
         jPanel2.setBackground(new java.awt.Color(55, 71, 90));
-        jPanel2.setToolTipText("");
-
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Nombre del nuevo Almacen:");
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Almacen de inicio:");
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel14.setText("Almacen del pedido");
 
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Distancia en Km:");
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("Inventario Actual");
 
-        distancia1.setToolTipText("");
-        distancia1.addActionListener(new java.awt.event.ActionListener() {
+        CantidadProduc.setToolTipText("");
+        CantidadProduc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                distancia1ActionPerformed(evt);
+                CantidadProducActionPerformed(evt);
             }
         });
 
-        distancia2.setToolTipText("");
-        distancia2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                distancia2ActionPerformed(evt);
-            }
-        });
-
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("Distancia en Km:");
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel16.setText("Cantidad");
+
+        siguiente_bt3.setText("Siguiente");
+        siguiente_bt3.setToolTipText("");
+        siguiente_bt3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                siguiente_bt3ActionPerformed(evt);
+            }
+        });
+
+        listaProducTA.setColumns(20);
+        listaProducTA.setRows(5);
+        jScrollPane1.setViewportView(listaProducTA);
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("Almacen de Destino:");
+        jLabel17.setText("Pedido a realizar");
 
-        ruta1.setColumns(20);
-        ruta1.setRows(5);
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane2.setViewportView(jTextArea2);
 
-        Descartar_btn.setBackground(new java.awt.Color(223, 83, 83));
-        Descartar_btn.setText("Descartar");
-        Descartar_btn.addActionListener(new java.awt.event.ActionListener() {
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel18.setText("Producto a seleccionar");
+
+        descartar_bt.setBackground(new java.awt.Color(223, 83, 83));
+        descartar_bt.setText("Descartar");
+        descartar_bt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Descartar_btnActionPerformed(evt);
+                descartar_btActionPerformed(evt);
             }
         });
 
-        crearAlmacen.setText("Crear Almacen");
-        crearAlmacen.setToolTipText("");
-        crearAlmacen.addActionListener(new java.awt.event.ActionListener() {
+        realizarPedido.setText("Realizar Pedido");
+        realizarPedido.setToolTipText("");
+        realizarPedido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                realizarPedidoMouseClicked(evt);
+            }
+        });
+        realizarPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                crearAlmacenActionPerformed(evt);
+                realizarPedidoActionPerformed(evt);
             }
         });
 
-        confirm2.setText("Siguiente");
-        confirm2.setToolTipText("");
-        confirm2.addActionListener(new java.awt.event.ActionListener() {
+        siguiente_bt.setText("Siguiente");
+        siguiente_bt.setToolTipText("");
+        siguiente_bt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirm2ActionPerformed(evt);
+                siguiente_btActionPerformed(evt);
             }
         });
 
-        confirm1.setText("Siguiente");
-        confirm1.addActionListener(new java.awt.event.ActionListener() {
+        siguiente_bt2.setText("Siguiente");
+        siguiente_bt2.setToolTipText("");
+        siguiente_bt2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirm1ActionPerformed(evt);
+                siguiente_bt2ActionPerformed(evt);
             }
         });
 
-        confirm3.setText("Siguiente");
-        confirm3.setToolTipText("");
-        confirm3.addActionListener(new java.awt.event.ActionListener() {
+        agregar_bt.setText("Agregar");
+        agregar_bt.setToolTipText("");
+        agregar_bt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirm3ActionPerformed(evt);
+                agregar_btActionPerformed(evt);
             }
         });
-
-        ruta2.setColumns(20);
-        ruta2.setRows(5);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(Descartar_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(crearAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ruta1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 85, Short.MAX_VALUE))
-                            .addComponent(nuevoAlmacenInput))
+                        .addComponent(Seleccion_almacenes1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(confirm1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(siguiente_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel15)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(distancia1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(ComboAlmacenInicio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(Seleccion_productos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(confirm2))
+                        .addComponent(siguiente_bt2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ruta2)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel17)
-                            .addComponent(ComboAlmacenDestino, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(distancia2, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(CantidadProduc)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(confirm3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                        .addComponent(siguiente_bt3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(descartar_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(agregar_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(realizarPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(36, 36, 36)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nuevoAlmacenInput, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(confirm1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Seleccion_almacenes1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(siguiente_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Seleccion_productos, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(siguiente_bt2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(siguiente_bt3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(CantidadProduc, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ComboAlmacenInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(distancia1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(confirm2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ruta1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel17)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ComboAlmacenDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(distancia2)
-                    .addComponent(confirm3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addComponent(ruta2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(crearAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Descartar_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(descartar_bt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(agregar_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(realizarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(49, 49, 49))
         );
 
         BG.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, 540, 500));
@@ -744,14 +766,6 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
         int y = getLocation().y - initialClick.y + evt.getY();
         setLocation(x, y);
     }//GEN-LAST:event_jPanel4MouseDragged
-
-    private void distancia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_distancia1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_distancia1ActionPerformed
-
-    private void distancia2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_distancia2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_distancia2ActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
@@ -802,27 +816,26 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_icono7MouseClicked
 
-    private void btn_nueva_rutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nueva_rutaMouseClicked
+    private void btn_gest_inventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_gest_inventarioMouseClicked
         // TODO add your handling code here:
-        Nuevas_Rutas v4 = new Nuevas_Rutas();
-        v4.setVisible(true);
+        Gestion_Inventario v6 = new Gestion_Inventario();
+        v6.setVisible(true);
         this.dispose();
+    }//GEN-LAST:event_btn_gest_inventarioMouseClicked
 
-    }//GEN-LAST:event_btn_nueva_rutaMouseClicked
-
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
-        Nuevas_Rutas v4 = new Nuevas_Rutas();
-        v4.setVisible(true);
+        Gestion_Inventario v6 = new Gestion_Inventario();
+        v6.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jLabel6MouseClicked
+    }//GEN-LAST:event_jLabel9MouseClicked
 
-    private void icono3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono3MouseClicked
+    private void icono6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono6MouseClicked
         // TODO add your handling code here:
-        Nuevas_Rutas v4 = new Nuevas_Rutas();
-        v4.setVisible(true);
+        Gestion_Inventario v6 = new Gestion_Inventario();
+        v6.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_icono3MouseClicked
+    }//GEN-LAST:event_icono6MouseClicked
 
     private void btn_reporteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_reporteMouseClicked
         // TODO add your handling code here:
@@ -845,33 +858,47 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_icono5MouseClicked
 
-    private void btn_gest_inventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_gest_inventarioMouseClicked
+    private void btn_nuevo_almacenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_almacenMouseClicked
         // TODO add your handling code here:
-        Gestion_Inventario v6 = new Gestion_Inventario();
-        v6.setVisible(true);
+        Nuevo_Almacen v4 = new Nuevo_Almacen();
+        v4.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btn_gest_inventarioMouseClicked
+    }//GEN-LAST:event_btn_nuevo_almacenMouseClicked
 
-    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
-        Gestion_Inventario v6 = new Gestion_Inventario();
-        v6.setVisible(true);
+        Nuevo_Almacen v4 = new Nuevo_Almacen();
+        v4.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jLabel9MouseClicked
+    }//GEN-LAST:event_jLabel7MouseClicked
 
-    private void icono6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono6MouseClicked
+    private void icono4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono4MouseClicked
         // TODO add your handling code here:
-        Gestion_Inventario v6 = new Gestion_Inventario();
-        v6.setVisible(true);
+        Nuevo_Almacen v4 = new Nuevo_Almacen();
+        v4.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_icono6MouseClicked
+    }//GEN-LAST:event_icono4MouseClicked
 
-    private void btn_nuevo_pedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_pedidoMouseClicked
+    private void btn_nueva_rutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nueva_rutaMouseClicked
         // TODO add your handling code here:
-        Nuevo_pedido v2 = new Nuevo_pedido();
-        v2.setVisible(true);
+        Nuevas_Rutas v3 = new Nuevas_Rutas();
+        v3.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btn_nuevo_pedidoMouseClicked
+    }//GEN-LAST:event_btn_nueva_rutaMouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+        Nuevas_Rutas v3 = new Nuevas_Rutas();
+        v3.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void icono3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono3MouseClicked
+        // TODO add your handling code here:
+        Nuevas_Rutas v3 = new Nuevas_Rutas();
+        v3.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_icono3MouseClicked
 
     private void btn_mapa_almacenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_mapa_almacenesMouseClicked
         // TODO add your handling code here:
@@ -885,192 +912,210 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_iconoMouseClicked
 
-    private void confirm1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirm1ActionPerformed
+    private void agregar_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_btActionPerformed
         // TODO add your handling code here:
-        if (!this.confirmNewAlmacen) {
+        if (this.pedidos.isEmpty()) {
+            this.pedidos.addEnd(producPedido);
+        } else {
+            boolean bAux = true;
+            Node<Producto> aux = this.pedidos.first();
+            for (int i = 0; i < this.pedidos.size(); i++) {
+                if (this.producPedido.getProducto().equalsIgnoreCase(aux.getTInfo().getProducto())) {
+                    int nroProduc = aux.getTInfo().getStock() + this.producPedido.getStock();
+                    aux.getTInfo().setStock(nroProduc);
+                    bAux = false;
+                    break;
+                }
+                aux = this.pedidos.next(aux);
+            }
+            if (bAux) {
+                this.pedidos.addEnd(producPedido);
+            }
+        }
+
+        this.siguiente_bt.setEnabled(false);
+        this.Seleccion_almacenes1.setEnabled(false);
+        this.Seleccion_productos.setEnabled(true);
+        this.siguiente_bt2.setEnabled(true);
+        this.siguiente_bt2.setText("Siguiente");
+        this.realizarPedido.setEnabled(true);
+        this.CantidadProduc.setText("");
+        this.CantidadProduc.setEnabled(false);
+        this.siguiente_bt3.setEnabled(false);
+        this.siguiente_bt3.setText("Siguiente");
+        this.confirmAlmacen = true;
+        this.confirmProduc = false;
+        this.confirmCant = false;
+        this.agregar_bt.setEnabled(false);
+        this.jTextArea2.setText("Productos agregados al pedido:\n\n" + Helpers.toStringPedido(pedidos));
+        this.realizar_Pedido = true;
+
+    }//GEN-LAST:event_agregar_btActionPerformed
+
+    private void siguiente_bt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguiente_bt2ActionPerformed
+        // TODO add your handling code here:
+        this.realizar_Pedido = false;
+        this.siguiente_bt2.setEnabled(true);
+        this.siguiente_bt2.setText("Siguiente");
+        if (!this.confirmProduc) {
+            this.confirmProduc = true;
+            this.siguiente_bt2.setText("Quitar");
+            this.Seleccion_productos.setEnabled(false);
+            this.siguiente_bt3.setText("Siguiente");
+            this.siguiente_bt3.setEnabled(true);
+            this.CantidadProduc.setEnabled(true);
+            this.CantidadProduc.setText("");
+            this.producPedido = new Producto(this.Seleccion_productos.getSelectedItem().toString());
+            this.jTextArea2.setText("");
+            this.realizarPedido.setEnabled(false);
+        } else {
+            this.confirmProduc = false;
+            this.confirmCant = false;
+            this.Seleccion_productos.setEnabled(true);
+            this.siguiente_bt2.setText("Siguiente");
+            this.siguiente_bt2.setEnabled(true);
+            this.siguiente_bt3.setText("Siguiente");
+            this.siguiente_bt3.setEnabled(false);
+            this.CantidadProduc.setEnabled(false);
+            this.CantidadProduc.setText("");
+            this.jTextArea2.setText("");
+        }
+        if (this.confirmAlmacen && !this.confirmProduc) {
+            this.realizarPedido.setEnabled(true);
+        }
+    }//GEN-LAST:event_siguiente_bt2ActionPerformed
+
+    private void siguiente_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguiente_btActionPerformed
+        // TODO add your handling code here:
+        this.CantidadProduc.setEnabled(false);
+        if (!this.confirmAlmacen) {
+            this.almacenOrigen = App.getG().getAlmacenes().getNode(this.Seleccion_almacenes1.getSelectedIndex());
+
+            Node<Producto> aux = this.almacenOrigen.getTInfo().getListaProductos().getpFirst();
+            String listaP = "";
+            for (int i = 0; i < this.almacenOrigen.getTInfo().getListaProductos().getiSize(); i++) {
+                listaP += aux.getTInfo().toString() + "\n\n";
+                this.Seleccion_productos.addItem(aux.getTInfo().getProducto());
+                aux = aux.getNextNode();
+            }
+            this.listaProducTA.setText(listaP);
+            this.confirmAlmacen = true;
+            this.siguiente_bt.setText("Quitar");
+            this.Seleccion_almacenes1.setEnabled(false);
+            this.siguiente_bt2.setEnabled(true);
+            this.siguiente_bt2.setText("Siguiente");
+            this.Seleccion_productos.setEnabled(true);
+            this.jTextArea2.setText(this.pedidos.toString());
+            this.descartar_bt.setEnabled(true);
+        } else {
+            this.confirmAlmacen = false;
+            this.confirmProduc = false;
+            this.confirmCant = false;
+            this.listaProducTA.setText("");
+            this.siguiente_bt.setText("Siguiente");
+            this.Seleccion_almacenes1.setEnabled(true);
+            this.Seleccion_productos.removeAllItems();
+            this.siguiente_bt2.setEnabled(false);
+            this.siguiente_bt2.setText("Siguiente");
+            this.siguiente_bt3.setEnabled(false);
+            this.siguiente_bt3.setText("Siguiente");
+            this.CantidadProduc.setEnabled(false);
+            this.CantidadProduc.setText("");
+            this.realizarPedido.setEnabled(false);
+            this.jTextArea2.setText(this.pedidos.toString());
+        }
+    }//GEN-LAST:event_siguiente_btActionPerformed
+
+    private void realizarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_realizarPedidoActionPerformed
+        // TODO add your handling code here:
+        if (this.realizar_Pedido) {
+            Helpers.realizarPedidoProced(almacenOrigen.getTInfo(), pedidos);
+            this.confirmAlmacen = false;
+            this.confirmProduc = false;
+            this.confirmCant = false;
+            this.realizar_Pedido = false;
+            this.jTextArea2.setText("");
+            this.realizarPedido.setEnabled(false);
+            this.Seleccion_almacenes1.setEnabled(true);
+            this.Seleccion_almacenes1.setSelectedIndex(0);
+            this.siguiente_bt.setEnabled(true);
+            this.siguiente_bt.setText("Siguiente");
+            this.siguiente_bt2.setEnabled(false);
+            this.siguiente_bt2.setText("Siguiente");
+            this.Seleccion_productos.removeAllItems();
+            this.CantidadProduc.setEnabled(false);
+            this.CantidadProduc.setText("");
+            this.siguiente_bt3.setEnabled(false);
+            this.siguiente_bt3.setText("Siguiente");
+            this.listaProducTA.setText("");
+            this.descartar_bt.setEnabled(false);
+            this.pedidos.destroy();
+        }
+    }//GEN-LAST:event_realizarPedidoActionPerformed
+
+    private void realizarPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_realizarPedidoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_realizarPedidoMouseClicked
+
+    private void descartar_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descartar_btActionPerformed
+        // TODO add your handling code here:
+        this.confirmAlmacen = false;
+        this.confirmProduc = false;
+        this.confirmCant = false;
+        this.realizar_Pedido = false;
+        this.jTextArea2.setText("");
+        this.realizarPedido.setEnabled(false);
+        this.Seleccion_almacenes1.setEnabled(true);
+        this.Seleccion_almacenes1.setSelectedIndex(0);
+        this.siguiente_bt.setEnabled(true);
+        this.siguiente_bt.setText("Siguiente");
+        this.siguiente_bt2.setEnabled(false);
+        this.siguiente_bt2.setText("Siguiente");
+        this.Seleccion_productos.removeAllItems();
+        this.CantidadProduc.setEnabled(false);
+        this.CantidadProduc.setText("");
+        this.siguiente_bt3.setEnabled(false);
+        this.siguiente_bt3.setText("Siguiente");
+        this.listaProducTA.setText("");
+        this.descartar_bt.setEnabled(false);
+        this.pedidos.destroy();
+    }//GEN-LAST:event_descartar_btActionPerformed
+
+    private void siguiente_bt3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguiente_bt3ActionPerformed
+        // TODO add your handling code here:
+
+        if (!this.confirmCant) {
             try {
-                if (this.nuevoAlmacenInput.getText().isBlank() || this.nuevoAlmacenInput.getText().isEmpty()) {
-                    throw new Exception("El nombre invalido");
+                this.confirmCant = true;
+                int cantidad = Helpers.validarNum(this.CantidadProduc.getText().strip());
+                if (cantidad <= 0) {
+                    throw new Exception("Cantidad no valida");
                 }
-                this.nuevoAlmacen = this.nuevoAlmacenInput.getText().strip();
-                this.confirmNewAlmacen = true;
-                this.confirm1.setText("Quitar");
-                this.ComboAlmacenInicio.setEnabled(true);
-                this.nuevoAlmacenInput.setEnabled(false);
-                this.confirm2.setEnabled(true);
-                this.distancia1.setEnabled(true);
-                for (int i = 0; i < App.getG().getAlmacenes().getiSize(); i++) {
-                    this.ComboAlmacenInicio.addItem("Almacen " + App.getG().getAlmacenes().getNode(i).getTInfo().getAlmacen());
-                }
+                this.producPedido.setStock(cantidad);
+                this.jTextArea2.setText("Producto a agregar\n"
+                        + "Nombre del producto: " + this.producPedido.getProducto() + "\n"
+                        + "Cantidad: " + this.producPedido.getStock());
+
+                this.agregar_bt.setEnabled(true);
+                this.CantidadProduc.setEnabled(false);
+                this.siguiente_bt3.setText("Quitar");
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "El nombre del almacen no puede ser vacio.");
+                JOptionPane.showMessageDialog(null, "El tamaño del pedido debe ser un numero entero positivo");
+                this.CantidadProduc.setText("");
             }
         } else {
-            this.confirmNewAlmacen = false;
-            this.ComboAlmacenInicio.setEnabled(false);
-            this.ComboAlmacenDestino.setEnabled(false);
-            this.ComboAlmacenDestino.removeAllItems();
-            this.crearAlmacen.setEnabled(false);
-            this.distancia1.setText("");
-            this.distancia1.setEnabled(false);
-            this.distancia2.setText("");
-            this.distancia2.setEnabled(false);
-            this.confirmDestAlmacen = false;
-            this.confirmOrgAlmacen = false;
-            this.ruta1.setText("");
-            this.ruta2.setText("");
-            this.confirm1.setText("Siguiente");
-            this.confirm2.setText("Siguiente");
-            this.confirm3.setText("Siguiente");
-            this.confirm2.setEnabled(false);
-            this.confirm3.setEnabled(false);
-            this.nuevoAlmacenInput.setEnabled(true);
-            this.ComboAlmacenInicio.removeAllItems();
+            this.confirmCant = false;
+            this.producPedido.setStock(0);
+            this.siguiente_bt3.setText("Siguiente");
+            this.agregar_bt.setEnabled(false);
+            this.CantidadProduc.setEnabled(true);
+            this.jTextArea2.setText(this.pedidos.toString());
         }
-    }//GEN-LAST:event_confirm1ActionPerformed
+    }//GEN-LAST:event_siguiente_bt3ActionPerformed
 
-    private void crearAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearAlmacenActionPerformed
+    private void CantidadProducActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CantidadProducActionPerformed
         // TODO add your handling code here:
-        this.confirmDestAlmacen = false;
-        this.confirmNewAlmacen = false;
-        this.confirmOrgAlmacen = false;
-        Helpers.registrarNuevoAlmacen(nuevoAlmacen, this.almacenOrigenIndex, this.almacenDesIndex, this.dist1, this.dist2);
-        this.ComboAlmacenInicio.setEnabled(false);
-        this.ComboAlmacenDestino.setEnabled(false);
-        this.ComboAlmacenDestino.removeAllItems();
-        this.distancia1.setText("");
-        this.distancia2.setText("");
-        this.distancia1.setEnabled(false);
-        this.distancia2.setEnabled(false);
-        this.confirm2.setEnabled(false);
-        this.confirm2.setEnabled(false);
-        this.confirm2.setText("Siguiente");
-        this.confirm3.setText("Siguiente");
-        this.crearAlmacen.setEnabled(false);
-        this.ruta1.setText("");
-        this.ruta2.setText("");
-        this.nuevoAlmacenInput.setText("");
-        this.nuevoAlmacenInput.setEnabled(true);
-        this.confirm1.setText("Siguiente");
-        this.ComboAlmacenInicio.removeAllItems();
-    }//GEN-LAST:event_crearAlmacenActionPerformed
-
-    private void confirm2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirm2ActionPerformed
-        // TODO add your handling code here:
-        if (!this.confirmOrgAlmacen) {
-            try {
-                this.almacenOrigenIndex = this.ComboAlmacenInicio.getSelectedIndex();
-                this.dist1 = Helpers.validarNumDouble(this.distancia1.getText());
-                if (this.dist1 <= 0) {
-                    throw new Exception("Distancia no valida");
-                }
-                this.confirmOrgAlmacen = true;
-                this.confirm2.setText("Quitar");
-                this.distancia1.setEnabled(false);
-                this.ComboAlmacenInicio.setEnabled(false);
-                this.confirm3.setEnabled(true);
-                this.ComboAlmacenDestino.setEnabled(true);
-                this.confirmOrgAlmacen = true;
-                this.distancia2.setEnabled(true);
-                this.ruta1.setText("Ruta: " + "Almacen " + this.ComboAlmacenInicio.getSelectedItem().toString()
-                        + " ----> " + "Almacen " + this.nuevoAlmacen + "\nDistancia: " + this.dist1 + " km");
-                for (int i = 0; i < App.getG().getAlmacenes().getiSize(); i++) {
-                    if (i != this.almacenOrigenIndex) {
-                        this.ComboAlmacenDestino.addItem("Almacen " + App.getG().getAlmacenes().getNode(i).getTInfo().getAlmacen());
-                    }
-                }
-
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "La distancia debe ser un numero positivo");
-            }
-        } else {
-            this.confirmOrgAlmacen = false;
-            this.ComboAlmacenInicio.setEnabled(true);
-            this.confirm2.setText("Siguente");
-            this.distancia1.setEnabled(true);
-            this.distancia1.setText("");
-            this.confirmDestAlmacen = false;
-            this.ComboAlmacenDestino.removeAllItems();
-            this.ComboAlmacenDestino.setEnabled(false);
-            this.distancia2.setEnabled(false);
-            this.distancia2.setText("");
-            this.confirm3.setText("Siguiente");
-            this.confirm3.setEnabled(false);
-            this.ruta1.setText("");
-            this.ruta2.setText("");
-            this.crearAlmacen.setEnabled(false);
-        }
-    }//GEN-LAST:event_confirm2ActionPerformed
-
-    private void confirm3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirm3ActionPerformed
-        // TODO add your handling code here:
-        if (!this.confirmDestAlmacen) {
-            try {
-                this.dist2 = Helpers.validarNumDouble(this.distancia2.getText());
-                if (dist2 <= 0) {
-                    throw new Exception("Distancia no valida");
-                }
-                this.ruta2.setText("Ruta: " + "Almacen " + this.nuevoAlmacen + " ----> "
-                        + "Almacen " + this.ComboAlmacenDestino.getSelectedItem().toString() + "\nDistancia: " + this.dist2 + " km");
-                this.confirmDestAlmacen = true;
-                this.crearAlmacen.setEnabled(true);
-                this.ComboAlmacenDestino.setEnabled(false);
-                this.distancia2.setEnabled(false);
-                this.confirm3.setText("Quitar");
-                this.almacenDesIndex = App.getG().getIndexWarehouse(this.ComboAlmacenDestino.getSelectedItem().toString().replace("Almacen ", ""));
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "La distancia debe ser un numero positivo");
-            }
-        } else {
-            this.confirmDestAlmacen = false;
-            this.crearAlmacen.setEnabled(false);
-            this.ComboAlmacenDestino.setEnabled(true);
-            this.distancia2.setText("");
-            this.distancia2.setEnabled(true);
-            this.confirm3.setText("Siguiente");
-            this.ruta2.setText("");
-        }
-    }//GEN-LAST:event_confirm3ActionPerformed
-
-    private void Descartar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Descartar_btnActionPerformed
-        // TODO add your handling code here:
-        this.confirmDestAlmacen = false;
-        this.confirmNewAlmacen = false;
-        this.confirmOrgAlmacen = false;
-        this.ComboAlmacenInicio.setEnabled(false);
-        this.ComboAlmacenDestino.setEnabled(false);
-        this.ComboAlmacenDestino.removeAllItems();
-        this.distancia1.setText("");
-        this.distancia2.setText("");
-        this.distancia1.setEnabled(false);
-        this.distancia2.setEnabled(false);
-        this.confirm2.setEnabled(false);
-        this.confirm2.setEnabled(false);
-        this.confirm2.setText("Siguiente");
-        this.confirm3.setText("Siguiente");
-        this.crearAlmacen.setEnabled(false);
-        this.ruta1.setText("");
-        this.ruta2.setText("");
-        this.nuevoAlmacenInput.setText("");
-        this.nuevoAlmacenInput.setEnabled(true);
-        this.confirm1.setText("Siguiente");
-        this.ComboAlmacenInicio.removeAllItems();
-    }//GEN-LAST:event_Descartar_btnActionPerformed
-
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-        Nuevo_pedido v2 = new Nuevo_pedido();
-        v2.setVisible(true);
-        this.dispose();
-    }
-
-    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-        Nuevo_pedido v2 = new Nuevo_pedido();
-        v2.setVisible(true);
-        this.dispose();
-    }
-
+    }//GEN-LAST:event_CantidadProducActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1089,27 +1134,21 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Nuevo_Almacen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Nuevo_pedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Nuevo_Almacen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Nuevo_pedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Nuevo_Almacen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Nuevo_pedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Nuevo_Almacen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Nuevo_pedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Nuevo_Almacen().setVisible(true);
+                new Nuevo_pedido().setVisible(true);
             }
         });
     }
@@ -1117,10 +1156,11 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BG;
-    private javax.swing.JComboBox<String> ComboAlmacenDestino;
-    private javax.swing.JComboBox<String> ComboAlmacenInicio;
-    private javax.swing.JButton Descartar_btn;
+    private javax.swing.JTextField CantidadProduc;
+    private javax.swing.JComboBox<String> Seleccion_almacenes1;
+    private javax.swing.JComboBox<String> Seleccion_productos;
     private javax.swing.JPanel SidePanel;
+    private javax.swing.JButton agregar_bt;
     private javax.swing.JPanel btn_Inicio;
     private javax.swing.JPanel btn_cargar_guardar;
     private javax.swing.JPanel btn_gest_inventario;
@@ -1129,15 +1169,11 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
     private javax.swing.JPanel btn_nuevo_almacen;
     private javax.swing.JPanel btn_nuevo_pedido;
     private javax.swing.JPanel btn_reporte;
-    private javax.swing.JButton confirm1;
-    private javax.swing.JButton confirm2;
-    private javax.swing.JButton confirm3;
-    private javax.swing.JButton crearAlmacen;
-    private javax.swing.JTextField distancia1;
-    private javax.swing.JTextField distancia2;
+    private javax.swing.JButton descartar_bt;
     private javax.swing.JLabel exit;
     private javax.swing.JLabel icono;
     private javax.swing.JLabel icono1;
+    private javax.swing.JLabel icono2;
     private javax.swing.JLabel icono3;
     private javax.swing.JLabel icono4;
     private javax.swing.JLabel icono5;
@@ -1146,12 +1182,11 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1163,9 +1198,20 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField nuevoAlmacenInput;
-    private javax.swing.JTextArea ruta1;
-    private javax.swing.JTextArea ruta2;
+    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea listaProducTA;
+    private javax.swing.JButton realizarPedido;
+    private javax.swing.JButton siguiente_bt;
+    private javax.swing.JButton siguiente_bt2;
+    private javax.swing.JButton siguiente_bt3;
     // End of variables declaration//GEN-END:variables
+
+    private class Seleccion_almacenes {
+
+        public Seleccion_almacenes() {
+        }
+    }
 }
