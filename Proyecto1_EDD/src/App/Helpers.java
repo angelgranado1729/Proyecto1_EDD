@@ -350,6 +350,8 @@ public class Helpers {
                                 + productosFaltantes + "\nLos productos faltantes seran pedidos al almacen mas cercano: Almacen " + ruta[0].getAlmacen()
                                 + "\n-La ruta a seguir sera la siguiente: " + rutaASeguir + "\n-La distancia a recorrer sera de " + rutaCorta.distancia + " km");
 
+                        Helpers.plotGraph(ruta);
+
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, """
@@ -407,7 +409,6 @@ public class Helpers {
                 App.getG().getAlmacenes().addEnd(new Almacen(nuevoAlmacen));
                 App.getG().setNumVertices(App.getG().getAlmacenes().getiSize());
                 App.getG().getMatrixAdj().setNumVertices(App.getG().getAlmacenes().getiSize());
-                
 
                 //Ahora registramos la rutas asociadas al nuevo almacen.
                 //Primero buscamos el indice del nuevo almacen, que justamente coincide con el numero de vertices del grafo.
@@ -435,8 +436,10 @@ public class Helpers {
 
     /**
      * Grafica el grafo, donde los vertices son los almacenes registrados.
+     *
+     * @param almacenes
      */
-    public static void plotGraph() {
+    public static void plotGraph(Almacen[] almacenes) {
         MultiGraph graph = new MultiGraph("Mi grafo");
 
         for (int i = 0; i < App.getG().getNumVertices(); i++) {
@@ -453,16 +456,38 @@ public class Helpers {
                     String edgeName = nombreNodo1 + " " + nombreNodo2;
                     graph.addEdge(edgeName, nombreNodo1, nombreNodo2, true);
                     Edge edge = graph.getEdge(edgeName);
-                    edge.setAttribute("ui.label", peso);
+                    if (peso % 1 == 0){
+                        edge.setAttribute("ui.label", (int) peso + " km");   
+                    } else{
+                        edge.setAttribute("ui.label", peso + " km");    
+                    }
                 }
             }
         }
 
-        graph.setAttribute("ui.stylesheet", "node { text-offset: 0px, -10px; size: 20px; text-size: 12;"
-                + " fill-color: #FF9900; text-alignment: above; text-color: #222; text-background-mode: plain;"
+        graph.setAttribute("ui.stylesheet", "node { text-offset: 0px, -10px; size: 15px; text-size: 15;"
+                + " fill-color: #232F3E; text-alignment: above; text-color: #222; text-background-mode: plain;"
                 + " text-background-color: white; } edge { size: 2px; fill-color: #444; text-alignment: above; "
-                + "text-size: 20; arrow-size: 12; text-color: #FF9900; text-offset: 10px, -20px;}");
+                + "text-size: 20; arrow-size: 12; text-color: #000000; text-offset: 10px, -20px;}");
         System.setProperty("org.graphstream.ui", "swing");
+
+        if (almacenes != null) {
+            for (int i = 0; i < almacenes.length; i++) {
+                for (int j = i + 1; j < almacenes.length; j++) {
+                    Edge ed = graph.getEdge(almacenes[i].getAlmacen() + " " + almacenes[j].getAlmacen());
+                    if (ed != null) {
+                        ed.setAttribute("ui.style", "fill-color: #FF9900; text-color: #FF9900;");
+                        graph.getNode(almacenes[i].getAlmacen()).setAttribute("ui.style", "fill-color: #FF9900; text-color: #FF9900;");
+                        graph.getNode(almacenes[i+1].getAlmacen()).setAttribute("ui.style", "fill-color: #FF9900; text-color: #FF9900;");
+
+                    }
+                }
+            }
+            String receptor = almacenes[almacenes.length - 1].getAlmacen();
+            graph.getNode(receptor).setAttribute("ui.label", "Almacen Receptor: " + almacenes[almacenes.length-1].getAlmacen());
+            String auxiliar = almacenes[0].getAlmacen();
+            graph.getNode(auxiliar).setAttribute("ui.label", "Almacen Auxiliar: " + almacenes[0].getAlmacen());
+        }
 
         Viewer viewer = graph.display();
         viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);

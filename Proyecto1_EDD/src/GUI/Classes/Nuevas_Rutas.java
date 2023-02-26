@@ -1045,17 +1045,14 @@ public class Nuevas_Rutas extends javax.swing.JFrame {
 
     private void btn_mapa_almacenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_mapa_almacenesMouseClicked
         // TODO add your handling code here:
-        Helpers.plotGraph();
     }//GEN-LAST:event_btn_mapa_almacenesMouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
-        Helpers.plotGraph();
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void iconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconoMouseClicked
         // TODO add your handling code here:
-        Helpers.plotGraph();
     }//GEN-LAST:event_iconoMouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {
