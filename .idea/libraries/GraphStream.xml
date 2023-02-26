@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="GraphStream">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Proyecto1_EDD/build/classes/GraphStream/gs-core-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Proyecto1_EDD/build/classes/GraphStream/gs-ui-swing-2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

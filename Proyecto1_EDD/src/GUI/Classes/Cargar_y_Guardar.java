@@ -766,6 +766,9 @@ public class Cargar_y_Guardar extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
+          Mapa_Almacenes v2 = new Mapa_Almacenes();
+        v2.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
 
     /**

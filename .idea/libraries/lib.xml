@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Proyecto1_EDD/dist/lib/gs-core-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Proyecto1_EDD/dist/lib/AbsoluteLayout.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Proyecto1_EDD/dist/lib/gs-ui-swing-2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

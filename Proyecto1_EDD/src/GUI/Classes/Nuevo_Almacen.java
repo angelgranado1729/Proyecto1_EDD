@@ -70,8 +70,8 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
         icono6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         btn_mapa_almacenes = new javax.swing.JPanel();
-        icono = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
         btn_nuevo_pedido = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -279,7 +279,7 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
                 .addComponent(icono5)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8)
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addContainerGap(174, Short.MAX_VALUE))
         );
         btn_reporteLayout.setVerticalGroup(
             btn_reporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,14 +347,6 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
             }
         });
 
-        icono.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/mapa blanco.png"))); // NOI18N
-        icono.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                iconoMouseClicked(evt);
-            }
-        });
-
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Mapa de Almacenes");
@@ -364,24 +356,31 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
             }
         });
 
+        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/iconoMapaAlmacenes2.png"))); // NOI18N
+        jLabel20.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel20MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout btn_mapa_almacenesLayout = new javax.swing.GroupLayout(btn_mapa_almacenes);
         btn_mapa_almacenes.setLayout(btn_mapa_almacenesLayout);
         btn_mapa_almacenesLayout.setHorizontalGroup(
             btn_mapa_almacenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_mapa_almacenesLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(icono)
+                .addComponent(jLabel20)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         btn_mapa_almacenesLayout.setVerticalGroup(
             btn_mapa_almacenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_mapa_almacenesLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(btn_mapa_almacenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel2)
-                    .addComponent(icono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(btn_mapa_almacenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel20)
+                    .addComponent(jLabel2))
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
@@ -875,10 +874,16 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
 
     private void btn_mapa_almacenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_mapa_almacenesMouseClicked
         // TODO add your handling code here:
+          Mapa_Almacenes v2 = new Mapa_Almacenes();
+        v2.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btn_mapa_almacenesMouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
+          Mapa_Almacenes v2 = new Mapa_Almacenes();
+        v2.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void iconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconoMouseClicked
@@ -1057,6 +1062,13 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
         this.ComboAlmacenInicio.removeAllItems();
     }//GEN-LAST:event_Descartar_btnActionPerformed
 
+    private void jLabel20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseClicked
+        // TODO add your handling code here:
+          Mapa_Almacenes v2 = new Mapa_Almacenes();
+        v2.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel20MouseClicked
+
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
         Nuevo_pedido v2 = new Nuevo_pedido();
@@ -1136,7 +1148,6 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
     private javax.swing.JTextField distancia1;
     private javax.swing.JTextField distancia2;
     private javax.swing.JLabel exit;
-    private javax.swing.JLabel icono;
     private javax.swing.JLabel icono1;
     private javax.swing.JLabel icono3;
     private javax.swing.JLabel icono4;
@@ -1153,6 +1164,7 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
