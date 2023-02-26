@@ -459,7 +459,8 @@ public class Helpers {
                     String nombreNodo2 = App.getG().getAlmacenes().getNode(j).getTInfo().getAlmacen();
                     Edge edge = graph.addEdge(nombreNodo1 + nombreNodo2, nombreNodo1, nombreNodo2);
                     edge.setAttribute("ui.label", peso);
-                    edge.setAttribute("ui.style", "arrow-shape: arrow; size: 1px, 6px; shape: line; stroke-mode: plain;");
+                    edge.setAttribute("ui.style", "arrow-shape: arrow; size: 3px, 10px; shape: line; stroke-mode: plain;");
+
                 }
             }
         }
@@ -472,5 +473,6 @@ public class Helpers {
         // Crear un viewer y mostrar el grafo
         Viewer viewer = graph.display();
         viewer.enableAutoLayout();
+        
     }
 }
