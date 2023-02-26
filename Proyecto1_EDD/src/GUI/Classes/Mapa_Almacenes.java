@@ -5,6 +5,7 @@
 package GUI.Classes;
 
 import App.Helpers;
+import MainClasses.Almacen;
 import java.awt.Point;
 
 /**
@@ -711,8 +712,9 @@ public class Mapa_Almacenes extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_nuevo_pedidoMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Almacen[] almacenes = null;
         // TODO add your handling code here:
-        Helpers.plotGraph();
+        Helpers.plotGraph(almacenes);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btn_InicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_InicioMouseClicked
