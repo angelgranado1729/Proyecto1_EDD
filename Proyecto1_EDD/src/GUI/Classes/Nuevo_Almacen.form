@@ -476,6 +476,9 @@
                       <Image iconType="3" name="/GUI/Images/iconoMapaAlmacenes2.png"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel20MouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
