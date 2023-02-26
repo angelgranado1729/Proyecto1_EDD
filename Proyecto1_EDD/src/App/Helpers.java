@@ -17,6 +17,7 @@ import org.graphstream.graph.Edge;
 import org.graphstream.graph.implementations.MultiGraph;
 import org.graphstream.ui.view.Viewer;
 
+
 /**
  *
  * @author Angel Granado
@@ -494,3 +495,4 @@ public class Helpers {
     }
 
 }
+

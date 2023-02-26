@@ -4,35 +4,22 @@
  */
 package GUI.Classes;
 
+import App.Helpers;
 import java.awt.Point;
-import App.App;
-import MainClasses.Almacen;
-import MainClasses.LinkedList;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author andre
  */
-public class Reporte extends javax.swing.JFrame {
+public class Mapa_Almacenes extends javax.swing.JFrame {
 
     /**
      * Creates new form Inicio
      */
-    public Reporte() {
+    public Mapa_Almacenes() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.BFS_TextArea.setFocusable(false);
-        this.DFS_TextArea.setFocusable(false);
-        try {
-            LinkedList<Almacen> bfsList = App.getG().BFS();
-            LinkedList<Almacen> dfsList = App.getG().DFS();
-            this.BFS_TextArea.setText(bfsList.toString());
-            this.DFS_TextArea.setText(dfsList.toString());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Reportes no disponibles. El grafo esta vacio!");
-        }
 
     }
 
@@ -51,6 +38,9 @@ public class Reporte extends javax.swing.JFrame {
         btn_Inicio = new javax.swing.JPanel();
         icono1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        btn_nuevo_pedido = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         btn_nueva_ruta = new javax.swing.JPanel();
         icono3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -63,12 +53,9 @@ public class Reporte extends javax.swing.JFrame {
         btn_gest_inventario = new javax.swing.JPanel();
         icono6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        btn_nuevo_pedido = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         btn_mapa_almacenes = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         btn_cargar_guardar = new javax.swing.JPanel();
         icono7 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -78,30 +65,21 @@ public class Reporte extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         exit = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        DFS_TextArea = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        BFS_TextArea = new javax.swing.JTextArea();
-        jLabel16 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
         setUndecorated(true);
 
         BG.setBackground(new java.awt.Color(155, 170, 193));
+        BG.setInheritsPopupMenu(true);
         BG.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         SidePanel.setBackground(new java.awt.Color(34, 46, 60));
         SidePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/AmazonLogo.png"))); // NOI18N
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
-            }
-        });
         SidePanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 280, 80));
 
         btn_Inicio.setBackground(new java.awt.Color(55, 71, 90));
@@ -136,8 +114,8 @@ public class Reporte extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(icono1)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addContainerGap(195, Short.MAX_VALUE))
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                .addContainerGap())
         );
         btn_InicioLayout.setVerticalGroup(
             btn_InicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,6 +128,47 @@ public class Reporte extends javax.swing.JFrame {
         );
 
         SidePanel.add(btn_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 330, 60));
+
+        btn_nuevo_pedido.setBackground(new java.awt.Color(55, 71, 90));
+        btn_nuevo_pedido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_nuevo_pedidoMouseClicked(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Nuevo Pedido");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/pedido_blanco.png"))); // NOI18N
+
+        javax.swing.GroupLayout btn_nuevo_pedidoLayout = new javax.swing.GroupLayout(btn_nuevo_pedido);
+        btn_nuevo_pedido.setLayout(btn_nuevo_pedidoLayout);
+        btn_nuevo_pedidoLayout.setHorizontalGroup(
+            btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_nuevo_pedidoLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel13)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addContainerGap(105, Short.MAX_VALUE))
+        );
+        btn_nuevo_pedidoLayout.setVerticalGroup(
+            btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_nuevo_pedidoLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 14, Short.MAX_VALUE))
+        );
+
+        SidePanel.add(btn_nuevo_pedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 330, 60));
 
         btn_nueva_ruta.setBackground(new java.awt.Color(55, 71, 90));
         btn_nueva_ruta.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -231,7 +250,7 @@ public class Reporte extends javax.swing.JFrame {
                 .addComponent(icono4)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel7)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         btn_nuevo_almacenLayout.setVerticalGroup(
             btn_nuevo_almacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,19 +258,35 @@ public class Reporte extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(btn_nuevo_almacenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel7)
-                    .addComponent(icono4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 14, Short.MAX_VALUE))
+                    .addComponent(icono4, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
+                .addGap(0, 7, Short.MAX_VALUE))
         );
 
         SidePanel.add(btn_nuevo_almacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 330, 60));
 
-        btn_reporte.setBackground(new java.awt.Color(243, 168, 71));
+        btn_reporte.setBackground(new java.awt.Color(55, 71, 90));
+        btn_reporte.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_reporteMouseClicked(evt);
+            }
+        });
 
         icono5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        icono5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/reporte.png"))); // NOI18N
+        icono5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/reporte blanco.png"))); // NOI18N
+        icono5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icono5MouseClicked(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Reporte");
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_reporteLayout = new javax.swing.GroupLayout(btn_reporte);
         btn_reporte.setLayout(btn_reporteLayout);
@@ -262,7 +297,7 @@ public class Reporte extends javax.swing.JFrame {
                 .addComponent(icono5)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8)
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
         btn_reporteLayout.setVerticalGroup(
             btn_reporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,12 +317,22 @@ public class Reporte extends javax.swing.JFrame {
                 btn_gest_inventarioMouseClicked(evt);
             }
         });
+        btn_gest_inventario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btn_gest_inventarioKeyPressed(evt);
+            }
+        });
 
         icono6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         icono6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/gestion_inventario_blanco.png"))); // NOI18N
         icono6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 icono6MouseClicked(evt);
+            }
+        });
+        icono6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                icono6KeyPressed(evt);
             }
         });
 
@@ -323,43 +368,7 @@ public class Reporte extends javax.swing.JFrame {
 
         SidePanel.add(btn_gest_inventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 330, 60));
 
-        btn_nuevo_pedido.setBackground(new java.awt.Color(55, 71, 90));
-        btn_nuevo_pedido.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_nuevo_pedidoMouseClicked(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Nuevo Pedido");
-
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/pedido_blanco.png"))); // NOI18N
-
-        javax.swing.GroupLayout btn_nuevo_pedidoLayout = new javax.swing.GroupLayout(btn_nuevo_pedido);
-        btn_nuevo_pedido.setLayout(btn_nuevo_pedidoLayout);
-        btn_nuevo_pedidoLayout.setHorizontalGroup(
-            btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_nuevo_pedidoLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel19)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addContainerGap(108, Short.MAX_VALUE))
-        );
-        btn_nuevo_pedidoLayout.setVerticalGroup(
-            btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_nuevo_pedidoLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(btn_nuevo_pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel5))
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
-
-        SidePanel.add(btn_nuevo_pedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 330, 60));
-
-        btn_mapa_almacenes.setBackground(new java.awt.Color(55, 71, 90));
+        btn_mapa_almacenes.setBackground(new java.awt.Color(243, 168, 71));
         btn_mapa_almacenes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_mapa_almacenesMouseClicked(evt);
@@ -375,25 +384,25 @@ public class Reporte extends javax.swing.JFrame {
             }
         });
 
-        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/iconoMapaAlmacenes2.png"))); // NOI18N
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/iconoMapaAlmacenes2.png"))); // NOI18N
 
         javax.swing.GroupLayout btn_mapa_almacenesLayout = new javax.swing.GroupLayout(btn_mapa_almacenes);
         btn_mapa_almacenes.setLayout(btn_mapa_almacenesLayout);
         btn_mapa_almacenesLayout.setHorizontalGroup(
             btn_mapa_almacenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_mapa_almacenesLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel20)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         btn_mapa_almacenesLayout.setVerticalGroup(
             btn_mapa_almacenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_mapa_almacenesLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(btn_mapa_almacenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel20)
+                    .addComponent(jLabel12)
                     .addComponent(jLabel2))
                 .addGap(0, 14, Short.MAX_VALUE))
         );
@@ -433,7 +442,7 @@ public class Reporte extends javax.swing.JFrame {
                 .addComponent(icono7)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel10)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         btn_cargar_guardarLayout.setVerticalGroup(
             btn_cargar_guardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -497,92 +506,51 @@ public class Reporte extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Seccion de Reporte");
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/Texto_Inicio.png"))); // NOI18N
+        jLabel11.setText("jLabel11");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 36, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
 
         BG.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 650, 190));
 
-        jPanel2.setBackground(new java.awt.Color(55, 71, 90));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton1.setText("Ver Mapa");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        BG.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 610, -1, -1));
 
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("DFS Recorrido Profundidad");
-
-        DFS_TextArea.setColumns(20);
-        DFS_TextArea.setRows(5);
-        jScrollPane1.setViewportView(DFS_TextArea);
-
-        BFS_TextArea.setColumns(20);
-        BFS_TextArea.setRows(5);
-        jScrollPane2.setViewportView(BFS_TextArea);
-
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("BFS Recorrido Anchura");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(31, 31, 31))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
-        );
-
-        BG.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, 540, 500));
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/MapaAlmacenesTxt.png"))); // NOI18N
+        BG.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(BG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(BG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -607,18 +575,152 @@ public class Reporte extends javax.swing.JFrame {
         setLocation(x, y);
     }//GEN-LAST:event_jPanel4MouseDragged
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
-        Inicio v1 = new Inicio();
-        v1.setVisible(true);
+        Gestion_Inventario v6 = new Gestion_Inventario();
+        v6.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jLabel3MouseClicked
+    }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void icono6KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_icono6KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_icono6KeyPressed
+
+    private void icono6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono6MouseClicked
+        // TODO add your handling code here:
+        Gestion_Inventario v6 = new Gestion_Inventario();
+        v6.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_icono6MouseClicked
+
+    private void btn_gest_inventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_gest_inventarioMouseClicked
+        // TODO add your handling code here:
+        Gestion_Inventario v6 = new Gestion_Inventario();
+        v6.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_gest_inventarioMouseClicked
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        // TODO add your handling code here:
+        Cargar_y_Guardar v2 = new Cargar_y_Guardar();
+        v2.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void btn_cargar_guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cargar_guardarMouseClicked
+        // TODO add your handling code here:
+        Cargar_y_Guardar v2 = new Cargar_y_Guardar();
+        v2.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_cargar_guardarMouseClicked
+
+    private void icono7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono7MouseClicked
+        // TODO add your handling code here:
+        Cargar_y_Guardar v2 = new Cargar_y_Guardar();
+        v2.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_icono7MouseClicked
+
+    private void btn_nueva_rutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nueva_rutaMouseClicked
+        // TODO add your handling code here:
+        Nuevas_Rutas v3 = new Nuevas_Rutas();
+        v3.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_nueva_rutaMouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+        Nuevas_Rutas v3 = new Nuevas_Rutas();
+        v3.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void icono3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono3MouseClicked
+        // TODO add your handling code here:
+        Nuevas_Rutas v3 = new Nuevas_Rutas();
+        v3.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_icono3MouseClicked
+
+    private void icono4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono4MouseClicked
+        // TODO add your handling code here:
+        Nuevo_Almacen v4 = new Nuevo_Almacen();
+        v4.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_icono4MouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+        Nuevo_Almacen v4 = new Nuevo_Almacen();
+        v4.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void btn_nuevo_almacenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_almacenMouseClicked
+        // TODO add your handling code here:
+        Nuevo_Almacen v4 = new Nuevo_Almacen();
+        v4.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_nuevo_almacenMouseClicked
+
+    private void btn_reporteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_reporteMouseClicked
+        // TODO add your handling code here:
+        Reporte v5 = new Reporte();
+        v5.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_reporteMouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        // TODO add your handling code here:
+        Reporte v5 = new Reporte();
+        v5.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void icono5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono5MouseClicked
+        // TODO add your handling code here:
+        Reporte v5 = new Reporte();
+        v5.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_icono5MouseClicked
+
+    private void btn_gest_inventarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btn_gest_inventarioKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_gest_inventarioKeyPressed
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void btn_mapa_almacenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_mapa_almacenesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_mapa_almacenesMouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+        Nuevo_pedido v2 = new Nuevo_pedido();
+        v2.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void btn_nuevo_pedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_pedidoMouseClicked
+        // TODO add your handling code here:
+        Nuevo_pedido v2 = new Nuevo_pedido();
+        v2.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_nuevo_pedidoMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Helpers.plotGraph(null);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btn_InicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_InicioMouseClicked
-        // TODO add your handling code here:
+        // TODO add your handling code here:Inicio v1 = new Inicio();
         Inicio v1 = new Inicio();
         v1.setVisible(true);
         this.dispose();
+        
     }//GEN-LAST:event_btn_InicioMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
@@ -634,125 +736,6 @@ public class Reporte extends javax.swing.JFrame {
         v1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_icono1MouseClicked
-
-    private void btn_cargar_guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cargar_guardarMouseClicked
-        // TODO add your handling code here:
-        Cargar_y_Guardar v3 = new Cargar_y_Guardar();
-        v3.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btn_cargar_guardarMouseClicked
-
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-        // TODO add your handling code here:
-        Cargar_y_Guardar v3 = new Cargar_y_Guardar();
-        v3.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel10MouseClicked
-
-    private void icono7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono7MouseClicked
-        // TODO add your handling code here:
-        Cargar_y_Guardar v3 = new Cargar_y_Guardar();
-        v3.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_icono7MouseClicked
-
-    private void btn_gest_inventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_gest_inventarioMouseClicked
-        // TODO add your handling code here:
-        Gestion_Inventario v6 = new Gestion_Inventario();
-        v6.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btn_gest_inventarioMouseClicked
-
-    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-        // TODO add your handling code here:
-        Gestion_Inventario v6 = new Gestion_Inventario();
-        v6.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel9MouseClicked
-
-    private void icono6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono6MouseClicked
-        // TODO add your handling code here:
-        Gestion_Inventario v6 = new Gestion_Inventario();
-        v6.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_icono6MouseClicked
-
-    private void btn_nueva_rutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nueva_rutaMouseClicked
-        // TODO add your handling code here:
-        Nuevas_Rutas v4 = new Nuevas_Rutas();
-        v4.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btn_nueva_rutaMouseClicked
-
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        // TODO add your handling code here:
-        Nuevas_Rutas v4 = new Nuevas_Rutas();
-        v4.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel6MouseClicked
-
-    private void icono3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono3MouseClicked
-        // TODO add your handling code here:
-        Nuevas_Rutas v4 = new Nuevas_Rutas();
-        v4.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_icono3MouseClicked
-
-    private void btn_nuevo_almacenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_almacenMouseClicked
-        // TODO add your handling code here:
-        Nuevo_Almacen v5 = new Nuevo_Almacen();
-        v5.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btn_nuevo_almacenMouseClicked
-
-    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        // TODO add your handling code here:
-        Nuevo_Almacen v5 = new Nuevo_Almacen();
-        v5.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel7MouseClicked
-
-    private void icono4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icono4MouseClicked
-        // TODO add your handling code here:
-        Nuevo_Almacen v5 = new Nuevo_Almacen();
-        v5.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_icono4MouseClicked
-
-    private void btn_nuevo_pedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_nuevo_pedidoMouseClicked
-        // TODO add your handling code here:
-        Nuevo_pedido v2 = new Nuevo_pedido();
-        v2.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btn_nuevo_pedidoMouseClicked
-
-    private void btn_mapa_almacenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_mapa_almacenesMouseClicked
-        // TODO add your handling code here:
-        Mapa_Almacenes v2 = new Mapa_Almacenes();
-        v2.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btn_mapa_almacenesMouseClicked
-
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        // TODO add your handling code here:
-        Mapa_Almacenes v2 = new Mapa_Almacenes();
-        v2.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel2MouseClicked
-
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-        Nuevo_pedido v2 = new Nuevo_pedido();
-        v2.setVisible(true);
-        this.dispose();
-    }
-
-    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-        Nuevo_pedido v2 = new Nuevo_pedido();
-        v2.setVisible(true);
-        this.dispose();
-    }
 
     /**
      * @param args the command line arguments
@@ -771,26 +754,14 @@ public class Reporte extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Reporte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Mapa_Almacenes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Reporte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Mapa_Almacenes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Reporte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Mapa_Almacenes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Reporte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Mapa_Almacenes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -799,16 +770,14 @@ public class Reporte extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Reporte().setVisible(true);
+                new Mapa_Almacenes().setVisible(true);
             }
         });
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea BFS_TextArea;
     private javax.swing.JPanel BG;
-    private javax.swing.JTextArea DFS_TextArea;
     private javax.swing.JPanel SidePanel;
     private javax.swing.JPanel btn_Inicio;
     private javax.swing.JPanel btn_cargar_guardar;
@@ -825,14 +794,14 @@ public class Reporte extends javax.swing.JFrame {
     private javax.swing.JLabel icono5;
     private javax.swing.JLabel icono6;
     private javax.swing.JLabel icono7;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -841,10 +810,7 @@ public class Reporte extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }
