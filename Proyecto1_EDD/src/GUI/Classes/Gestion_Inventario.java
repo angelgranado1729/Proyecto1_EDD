@@ -1254,6 +1254,7 @@ public class Gestion_Inventario extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
 
+
     private void iconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconoMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_iconoMouseClicked

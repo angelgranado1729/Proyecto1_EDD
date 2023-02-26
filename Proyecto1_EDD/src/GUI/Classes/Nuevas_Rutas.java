@@ -44,6 +44,7 @@ public class Nuevas_Rutas extends javax.swing.JFrame {
         this.jTextArea1.setEnabled(false);
         this.Confirmar_bt.setEnabled(false);
         this.jTextField1.setEnabled(false);
+        this.jButton3.setEnabled(false);
     }
 
     /**
@@ -1045,18 +1046,19 @@ public class Nuevas_Rutas extends javax.swing.JFrame {
 
     private void btn_mapa_almacenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_mapa_almacenesMouseClicked
         // TODO add your handling code here:
+        Mapa_Almacenes v2 = new Mapa_Almacenes();
+        v2.setVisible(true);
+        this.dispose();
+
     }//GEN-LAST:event_btn_mapa_almacenesMouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
-          Mapa_Almacenes v2 = new Mapa_Almacenes();
-        v2.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void iconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconoMouseClicked
         // TODO add your handling code here:
-          Mapa_Almacenes v2 = new Mapa_Almacenes();
+        Mapa_Almacenes v2 = new Mapa_Almacenes();
         v2.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_iconoMouseClicked

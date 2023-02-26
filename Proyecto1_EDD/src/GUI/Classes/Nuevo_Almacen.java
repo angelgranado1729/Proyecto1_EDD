@@ -1083,6 +1083,7 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
         this.dispose();
     }
 
+
     /**
      * @param args the command line arguments
      */
