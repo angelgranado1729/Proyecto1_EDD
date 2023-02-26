@@ -20,7 +20,6 @@ public class Inicio extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-
     }
 
     /**
@@ -691,6 +690,10 @@ public class Inicio extends javax.swing.JFrame {
         v2.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_nuevo_pedidoMouseClicked
+
+    private void iconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_iconoMouseClicked
 
     /**
      * @param args the command line arguments

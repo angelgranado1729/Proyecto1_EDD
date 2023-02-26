@@ -14,10 +14,8 @@ import MainClasses.RutasPosibles;
 import MainClasses.RutaYDistancia;
 import javax.swing.JOptionPane;
 import org.graphstream.graph.Edge;
-import org.graphstream.graph.Graph;
-import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.graph.implementations.MultiGraph;
 import org.graphstream.ui.view.Viewer;
-
 
 /**
  *
@@ -352,6 +350,8 @@ public class Helpers {
                                 + productosFaltantes + "\nLos productos faltantes seran pedidos al almacen mas cercano: Almacen " + ruta[0].getAlmacen()
                                 + "\n-La ruta a seguir sera la siguiente: " + rutaASeguir + "\n-La distancia a recorrer sera de " + rutaCorta.distancia + " km");
 
+                        Helpers.plotGraph(ruta);
+
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, """
@@ -406,22 +406,24 @@ public class Helpers {
                 }
 
                 //Registramos el almacen en la lista de almacenes (el procedimiento ya modifica el numero de vertices
-                App.getG().addAlmacen(nuevoAlmacen);
+                App.getG().getAlmacenes().addEnd(new Almacen(nuevoAlmacen));
+                App.getG().setNumVertices(App.getG().getAlmacenes().getiSize());
+                App.getG().getMatrixAdj().setNumVertices(App.getG().getAlmacenes().getiSize());
 
                 //Ahora registramos la rutas asociadas al nuevo almacen.
                 //Primero buscamos el indice del nuevo almacen, que justamente coincide con el numero de vertices del grafo.
-                int nuevoAlmacenIndex = App.getG().getNumVertices();
+                int nuevoAlmacenIndex = App.getG().getNumVertices() - 1;
 
                 //Luego registramos s rutas en la matriz de adyacencia
-                App.getG().getMatrixAdj().addEdge(almacenInicioIndex, nuevoAlmacenIndex, distancia1);
-                App.getG().getMatrixAdj().addEdge(nuevoAlmacenIndex, almacenDestinoIndex, distancia2);
+                App.getG().getMatrixAdj().getMatrix()[almacenInicioIndex][nuevoAlmacenIndex] = distancia1;
+                App.getG().getMatrixAdj().getMatrix()[nuevoAlmacenIndex][almacenDestinoIndex] = distancia2;
 
                 //Mostramos un mensaje que indica que el almacen ha sido registrado exitosamente.
                 JOptionPane.showMessageDialog(null, "El almacen " + nuevoAlmacen
                         + " ha sido registrado exitosamente!\n\n"
                         + "-Ruta 1: Almacen " + App.getG().getAlmacenes().getNode(almacenInicioIndex).getTInfo().getAlmacen()
                         + " ----> Almacen " + nuevoAlmacen + "(" + distancia1 + " km)\n" + "\n-Ruta 2: Almacen " + nuevoAlmacen + " ----> "
-                        + "Almacen " + App.getG().getAlmacenes().getNode(almacenDestinoIndex).getTInfo().getAlmacen() + " (" + distancia2 + "km).");
+                        + "Almacen " + App.getG().getAlmacenes().getNode(almacenDestinoIndex).getTInfo().getAlmacen() + " (" + distancia2 + " km)");
 
                 //Si ya hay un almacen con el mismo nombre entonces no se registra el almacen.
             } else {
@@ -431,48 +433,64 @@ public class Helpers {
             }
         }
     }
+
     /**
      * Grafica el grafo, donde los vertices son los almacenes registrados.
+     *
+     * @param almacenes
      */
+    public static void plotGraph(Almacen[] almacenes) {
+        MultiGraph graph = new MultiGraph("Mi grafo");
 
-    public static void plotGraph() {
-        // Crear un objeto Graph vacío
-        Graph graph = new SingleGraph("Mi grafo");
-
-        // Agregar nodos al grafo
-        Node<Almacen> aux = App.getG().getAlmacenes().getpFirst();
         for (int i = 0; i < App.getG().getNumVertices(); i++) {
-            String nombre = aux.getTInfo().getAlmacen();
-            graph.addNode(aux.getTInfo().getAlmacen());
-            graph.getNode(nombre).setAttribute("ui.label", nombre);
-            graph.getNode(nombre).setAttribute("ui.style", "shape: circle; size: 25px; fill-color: #ffcc00;");
-
-            aux = App.getG().getAlmacenes().next(aux);
+            String nombre = App.getG().getAlmacenes().getNode(i).getTInfo().getAlmacen();
+            graph.addNode(nombre).setAttribute("ui.label", nombre + "\n");
         }
 
-        // Agregar aristas al grafo
-        for (int i = 0; i < App.getG().getNumVertices(); i++) {
-            for (int j = i + 1; j < App.getG().getNumVertices(); j++) {
+        for (int i = 0; i < App.getG().getMatrixAdj().getMatrix().length; i++) {
+            for (int j = 0; j < App.getG().getMatrixAdj().getMatrix()[i].length; j++) {
                 double peso = App.getG().getPeso(i, j);
                 if (peso > 0) {
                     String nombreNodo1 = App.getG().getAlmacenes().getNode(i).getTInfo().getAlmacen();
                     String nombreNodo2 = App.getG().getAlmacenes().getNode(j).getTInfo().getAlmacen();
-                    Edge edge = graph.addEdge(nombreNodo1 + nombreNodo2, nombreNodo1, nombreNodo2);
-                    edge.setAttribute("ui.label", peso);
-                    edge.setAttribute("ui.style", "arrow-shape: arrow; size: 3px, 10px; shape: line; stroke-mode: plain;");
-
+                    String edgeName = nombreNodo1 + " " + nombreNodo2;
+                    graph.addEdge(edgeName, nombreNodo1, nombreNodo2, true);
+                    Edge edge = graph.getEdge(edgeName);
+                    if (peso % 1 == 0){
+                        edge.setAttribute("ui.label", (int) peso + " km");   
+                    } else{
+                        edge.setAttribute("ui.label", peso + " km");    
+                    }
                 }
             }
         }
-        // Establecer el tamaño de las etiquetas de los nodos
-        graph.setAttribute("ui.stylesheet", "node { text-size: 20; }");
 
-
+        graph.setAttribute("ui.stylesheet", "node { text-offset: 0px, -10px; size: 15px; text-size: 15;"
+                + " fill-color: #232F3E; text-alignment: above; text-color: #222; text-background-mode: plain;"
+                + " text-background-color: white; } edge { size: 2px; fill-color: #444; text-alignment: above; "
+                + "text-size: 20; arrow-size: 12; text-color: #000000; text-offset: 10px, -20px;}");
         System.setProperty("org.graphstream.ui", "swing");
 
-        // Crear un viewer y mostrar el grafo
+        if (almacenes != null) {
+            for (int i = 0; i < almacenes.length; i++) {
+                for (int j = i + 1; j < almacenes.length; j++) {
+                    Edge ed = graph.getEdge(almacenes[i].getAlmacen() + " " + almacenes[j].getAlmacen());
+                    if (ed != null) {
+                        ed.setAttribute("ui.style", "fill-color: #FF9900; text-color: #FF9900;");
+                        graph.getNode(almacenes[i].getAlmacen()).setAttribute("ui.style", "fill-color: #FF9900; text-color: #FF9900;");
+                        graph.getNode(almacenes[i+1].getAlmacen()).setAttribute("ui.style", "fill-color: #FF9900; text-color: #FF9900;");
+
+                    }
+                }
+            }
+            String receptor = almacenes[almacenes.length - 1].getAlmacen();
+            graph.getNode(receptor).setAttribute("ui.label", "Almacen Receptor: " + almacenes[almacenes.length-1].getAlmacen());
+            String auxiliar = almacenes[0].getAlmacen();
+            graph.getNode(auxiliar).setAttribute("ui.label", "Almacen Auxiliar: " + almacenes[0].getAlmacen());
+        }
+
         Viewer viewer = graph.display();
-        viewer.enableAutoLayout();
-        
+        viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
     }
+
 }

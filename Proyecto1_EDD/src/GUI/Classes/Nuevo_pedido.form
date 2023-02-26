@@ -781,16 +781,13 @@
                               <Component id="siguiente_bt3" min="-2" pref="88" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jLabel16" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="jLabel17" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" pref="202" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="102" attributes="0">
                               <Component id="descartar_bt" min="-2" pref="96" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="agregar_bt" min="-2" pref="96" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" alignment="0" pref="280" max="32767" attributes="0"/>
+                          <Component id="jLabel17" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -948,7 +945,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Resumen"/>
+                <Property name="text" type="java.lang.String" value="Pedido a realizar"/>
               </Properties>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane2">

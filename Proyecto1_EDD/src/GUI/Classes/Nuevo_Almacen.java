@@ -6,15 +6,23 @@ package GUI.Classes;
 
 import App.App;
 import App.Helpers;
-import MainClasses.Almacen;
-import MainClasses.Node;
 import java.awt.Point;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author andre
  */
 public class Nuevo_Almacen extends javax.swing.JFrame {
+
+    public boolean confirmNewAlmacen = false;
+    public boolean confirmOrgAlmacen = false;
+    public boolean confirmDestAlmacen = false;
+    public String nuevoAlmacen = "";
+    public int almacenOrigenIndex;
+    public int almacenDesIndex;
+    public double dist1;
+    public double dist2;
 
     /**
      * Creates new form Inicio
@@ -23,13 +31,15 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.jTextArea1.setFocusable(false);
-        this.jTextArea2.setFocusable(false);
-        Node<Almacen> aux = App.getG().getAlmacenes().first();
-        for (int i = 0; i < App.getG().getAlmacenes().getiSize(); i++) {
-            this.ComboAlmacenInicio.addItem("Almacen " + aux.getTInfo().getAlmacen());
-            aux = App.getG().getAlmacenes().next(aux);
-        }
+        this.ruta1.setFocusable(false);
+        this.ruta2.setFocusable(false);
+        this.confirm2.setEnabled(false);
+        this.confirm3.setEnabled(false);
+        this.crearAlmacen.setEnabled(false);
+        this.ComboAlmacenInicio.setEnabled(false);
+        this.ComboAlmacenDestino.setEnabled(false);
+        this.distancia1.setEnabled(false);
+        this.distancia2.setEnabled(false);
     }
 
     /**
@@ -60,8 +70,8 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
         icono6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         btn_mapa_almacenes = new javax.swing.JPanel();
+        icono = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
         btn_nuevo_pedido = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -75,25 +85,23 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
         exit = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        nuevoAlmacenInput = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         ComboAlmacenInicio = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        distancia1 = new javax.swing.JTextField();
+        distancia2 = new javax.swing.JTextField();
         ComboAlmacenDestino = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        Descartar_btn2 = new javax.swing.JButton();
-        Descartar_btn1 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        ruta1 = new javax.swing.JTextArea();
+        Descartar_btn = new javax.swing.JButton();
+        crearAlmacen = new javax.swing.JButton();
+        confirm2 = new javax.swing.JButton();
+        confirm1 = new javax.swing.JButton();
+        confirm3 = new javax.swing.JButton();
+        ruta2 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -271,7 +279,7 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
                 .addComponent(icono5)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8)
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
         btn_reporteLayout.setVerticalGroup(
             btn_reporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,6 +347,14 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
             }
         });
 
+        icono.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/mapa blanco.png"))); // NOI18N
+        icono.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iconoMouseClicked(evt);
+            }
+        });
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Mapa de Almacenes");
@@ -348,26 +364,24 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
             }
         });
 
-        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/iconoMapaAlmacenes2.png"))); // NOI18N
-
         javax.swing.GroupLayout btn_mapa_almacenesLayout = new javax.swing.GroupLayout(btn_mapa_almacenes);
         btn_mapa_almacenes.setLayout(btn_mapa_almacenesLayout);
         btn_mapa_almacenesLayout.setHorizontalGroup(
             btn_mapa_almacenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_mapa_almacenesLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jLabel20)
+                .addComponent(icono)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         btn_mapa_almacenesLayout.setVerticalGroup(
             btn_mapa_almacenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_mapa_almacenesLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(btn_mapa_almacenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel20)
-                    .addComponent(jLabel2))
+                .addGroup(btn_mapa_almacenesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel2)
+                    .addComponent(icono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
@@ -546,17 +560,17 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Distancia en Km:");
 
-        jTextField2.setToolTipText("");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        distancia1.setToolTipText("");
+        distancia1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                distancia1ActionPerformed(evt);
             }
         });
 
-        jTextField3.setToolTipText("");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        distancia2.setToolTipText("");
+        distancia2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                distancia2ActionPerformed(evt);
             }
         });
 
@@ -568,27 +582,50 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Almacen de Destino:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        ruta1.setColumns(20);
+        ruta1.setRows(5);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        Descartar_btn.setBackground(new java.awt.Color(223, 83, 83));
+        Descartar_btn.setText("Descartar");
+        Descartar_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Descartar_btnActionPerformed(evt);
+            }
+        });
 
-        Descartar_btn2.setBackground(new java.awt.Color(223, 83, 83));
-        Descartar_btn2.setText("Descartar");
+        crearAlmacen.setText("Crear Almacen");
+        crearAlmacen.setToolTipText("");
+        crearAlmacen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearAlmacenActionPerformed(evt);
+            }
+        });
 
-        Descartar_btn1.setText("Crear Almacen");
-        Descartar_btn1.setToolTipText("");
+        confirm2.setText("Siguiente");
+        confirm2.setToolTipText("");
+        confirm2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirm2ActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Siguiente");
-        jButton1.setToolTipText("");
+        confirm1.setText("Siguiente");
+        confirm1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirm1ActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Siguiente");
+        confirm3.setText("Siguiente");
+        confirm3.setToolTipText("");
+        confirm3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirm3ActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Siguiente");
-        jButton3.setToolTipText("");
+        ruta2.setColumns(20);
+        ruta2.setRows(5);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -596,44 +633,43 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(Descartar_btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Descartar_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Descartar_btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(crearAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ruta1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 85, Short.MAX_VALUE))
+                            .addComponent(nuevoAlmacenInput))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(confirm1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel15)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(distancia1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ComboAlmacenInicio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(confirm2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ruta2)
                             .addComponent(jLabel14)
                             .addComponent(jLabel17)
                             .addComponent(ComboAlmacenDestino, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel16)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addComponent(distancia2, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, Short.MAX_VALUE))
-                                .addComponent(jTextField1))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel15)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(ComboAlmacenInicio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton1))))
+                        .addComponent(confirm3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -643,20 +679,19 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nuevoAlmacenInput, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(confirm1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ComboAlmacenInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel15)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(distancia1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(confirm2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ruta1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -664,14 +699,14 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField3)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(distancia2)
+                    .addComponent(confirm3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
+                .addComponent(ruta2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Descartar_btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Descartar_btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(crearAlmacen, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Descartar_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -710,13 +745,13 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
         setLocation(x, y);
     }//GEN-LAST:event_jPanel4MouseDragged
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void distancia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_distancia1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_distancia1ActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void distancia2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_distancia2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_distancia2ActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
@@ -840,17 +875,187 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
 
     private void btn_mapa_almacenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_mapa_almacenesMouseClicked
         // TODO add your handling code here:
-        Mapa_Almacenes v2 = new Mapa_Almacenes();
-        v2.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_btn_mapa_almacenesMouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
-        Mapa_Almacenes v2 = new Mapa_Almacenes();
-        v2.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void iconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_iconoMouseClicked
+
+    private void confirm1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirm1ActionPerformed
+        // TODO add your handling code here:
+        if (!this.confirmNewAlmacen) {
+            try {
+                if (this.nuevoAlmacenInput.getText().isBlank() || this.nuevoAlmacenInput.getText().isEmpty()) {
+                    throw new Exception("El nombre invalido");
+                }
+                this.nuevoAlmacen = this.nuevoAlmacenInput.getText().strip();
+                this.confirmNewAlmacen = true;
+                this.confirm1.setText("Quitar");
+                this.ComboAlmacenInicio.setEnabled(true);
+                this.nuevoAlmacenInput.setEnabled(false);
+                this.confirm2.setEnabled(true);
+                this.distancia1.setEnabled(true);
+                for (int i = 0; i < App.getG().getAlmacenes().getiSize(); i++) {
+                    this.ComboAlmacenInicio.addItem("Almacen " + App.getG().getAlmacenes().getNode(i).getTInfo().getAlmacen());
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "El nombre del almacen no puede ser vacio.");
+            }
+        } else {
+            this.confirmNewAlmacen = false;
+            this.ComboAlmacenInicio.setEnabled(false);
+            this.ComboAlmacenDestino.setEnabled(false);
+            this.ComboAlmacenDestino.removeAllItems();
+            this.crearAlmacen.setEnabled(false);
+            this.distancia1.setText("");
+            this.distancia1.setEnabled(false);
+            this.distancia2.setText("");
+            this.distancia2.setEnabled(false);
+            this.confirmDestAlmacen = false;
+            this.confirmOrgAlmacen = false;
+            this.ruta1.setText("");
+            this.ruta2.setText("");
+            this.confirm1.setText("Siguiente");
+            this.confirm2.setText("Siguiente");
+            this.confirm3.setText("Siguiente");
+            this.confirm2.setEnabled(false);
+            this.confirm3.setEnabled(false);
+            this.nuevoAlmacenInput.setEnabled(true);
+            this.ComboAlmacenInicio.removeAllItems();
+        }
+    }//GEN-LAST:event_confirm1ActionPerformed
+
+    private void crearAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearAlmacenActionPerformed
+        // TODO add your handling code here:
+        this.confirmDestAlmacen = false;
+        this.confirmNewAlmacen = false;
+        this.confirmOrgAlmacen = false;
+        Helpers.registrarNuevoAlmacen(nuevoAlmacen, this.almacenOrigenIndex, this.almacenDesIndex, this.dist1, this.dist2);
+        this.ComboAlmacenInicio.setEnabled(false);
+        this.ComboAlmacenDestino.setEnabled(false);
+        this.ComboAlmacenDestino.removeAllItems();
+        this.distancia1.setText("");
+        this.distancia2.setText("");
+        this.distancia1.setEnabled(false);
+        this.distancia2.setEnabled(false);
+        this.confirm2.setEnabled(false);
+        this.confirm2.setEnabled(false);
+        this.confirm2.setText("Siguiente");
+        this.confirm3.setText("Siguiente");
+        this.crearAlmacen.setEnabled(false);
+        this.ruta1.setText("");
+        this.ruta2.setText("");
+        this.nuevoAlmacenInput.setText("");
+        this.nuevoAlmacenInput.setEnabled(true);
+        this.confirm1.setText("Siguiente");
+        this.ComboAlmacenInicio.removeAllItems();
+    }//GEN-LAST:event_crearAlmacenActionPerformed
+
+    private void confirm2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirm2ActionPerformed
+        // TODO add your handling code here:
+        if (!this.confirmOrgAlmacen) {
+            try {
+                this.almacenOrigenIndex = this.ComboAlmacenInicio.getSelectedIndex();
+                this.dist1 = Helpers.validarNumDouble(this.distancia1.getText());
+                if (this.dist1 <= 0) {
+                    throw new Exception("Distancia no valida");
+                }
+                this.confirmOrgAlmacen = true;
+                this.confirm2.setText("Quitar");
+                this.distancia1.setEnabled(false);
+                this.ComboAlmacenInicio.setEnabled(false);
+                this.confirm3.setEnabled(true);
+                this.ComboAlmacenDestino.setEnabled(true);
+                this.confirmOrgAlmacen = true;
+                this.distancia2.setEnabled(true);
+                this.ruta1.setText("Ruta: " + "Almacen " + this.ComboAlmacenInicio.getSelectedItem().toString()
+                        + " ----> " + "Almacen " + this.nuevoAlmacen + "\nDistancia: " + this.dist1 + " km");
+                for (int i = 0; i < App.getG().getAlmacenes().getiSize(); i++) {
+                    if (i != this.almacenOrigenIndex) {
+                        this.ComboAlmacenDestino.addItem("Almacen " + App.getG().getAlmacenes().getNode(i).getTInfo().getAlmacen());
+                    }
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "La distancia debe ser un numero positivo");
+            }
+        } else {
+            this.confirmOrgAlmacen = false;
+            this.ComboAlmacenInicio.setEnabled(true);
+            this.confirm2.setText("Siguente");
+            this.distancia1.setEnabled(true);
+            this.distancia1.setText("");
+            this.confirmDestAlmacen = false;
+            this.ComboAlmacenDestino.removeAllItems();
+            this.ComboAlmacenDestino.setEnabled(false);
+            this.distancia2.setEnabled(false);
+            this.distancia2.setText("");
+            this.confirm3.setText("Siguiente");
+            this.confirm3.setEnabled(false);
+            this.ruta1.setText("");
+            this.ruta2.setText("");
+            this.crearAlmacen.setEnabled(false);
+        }
+    }//GEN-LAST:event_confirm2ActionPerformed
+
+    private void confirm3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirm3ActionPerformed
+        // TODO add your handling code here:
+        if (!this.confirmDestAlmacen) {
+            try {
+                this.dist2 = Helpers.validarNumDouble(this.distancia2.getText());
+                if (dist2 <= 0) {
+                    throw new Exception("Distancia no valida");
+                }
+                this.ruta2.setText("Ruta: " + "Almacen " + this.nuevoAlmacen + " ----> "
+                        + "Almacen " + this.ComboAlmacenDestino.getSelectedItem().toString() + "\nDistancia: " + this.dist2 + " km");
+                this.confirmDestAlmacen = true;
+                this.crearAlmacen.setEnabled(true);
+                this.ComboAlmacenDestino.setEnabled(false);
+                this.distancia2.setEnabled(false);
+                this.confirm3.setText("Quitar");
+                this.almacenDesIndex = App.getG().getIndexWarehouse(this.ComboAlmacenDestino.getSelectedItem().toString().replace("Almacen ", ""));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "La distancia debe ser un numero positivo");
+            }
+        } else {
+            this.confirmDestAlmacen = false;
+            this.crearAlmacen.setEnabled(false);
+            this.ComboAlmacenDestino.setEnabled(true);
+            this.distancia2.setText("");
+            this.distancia2.setEnabled(true);
+            this.confirm3.setText("Siguiente");
+            this.ruta2.setText("");
+        }
+    }//GEN-LAST:event_confirm3ActionPerformed
+
+    private void Descartar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Descartar_btnActionPerformed
+        // TODO add your handling code here:
+        this.confirmDestAlmacen = false;
+        this.confirmNewAlmacen = false;
+        this.confirmOrgAlmacen = false;
+        this.ComboAlmacenInicio.setEnabled(false);
+        this.ComboAlmacenDestino.setEnabled(false);
+        this.ComboAlmacenDestino.removeAllItems();
+        this.distancia1.setText("");
+        this.distancia2.setText("");
+        this.distancia1.setEnabled(false);
+        this.distancia2.setEnabled(false);
+        this.confirm2.setEnabled(false);
+        this.confirm2.setEnabled(false);
+        this.confirm2.setText("Siguiente");
+        this.confirm3.setText("Siguiente");
+        this.crearAlmacen.setEnabled(false);
+        this.ruta1.setText("");
+        this.ruta2.setText("");
+        this.nuevoAlmacenInput.setText("");
+        this.nuevoAlmacenInput.setEnabled(true);
+        this.confirm1.setText("Siguiente");
+        this.ComboAlmacenInicio.removeAllItems();
+    }//GEN-LAST:event_Descartar_btnActionPerformed
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
@@ -913,8 +1118,7 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
     private javax.swing.JPanel BG;
     private javax.swing.JComboBox<String> ComboAlmacenDestino;
     private javax.swing.JComboBox<String> ComboAlmacenInicio;
-    private javax.swing.JButton Descartar_btn1;
-    private javax.swing.JButton Descartar_btn2;
+    private javax.swing.JButton Descartar_btn;
     private javax.swing.JPanel SidePanel;
     private javax.swing.JPanel btn_Inicio;
     private javax.swing.JPanel btn_cargar_guardar;
@@ -924,16 +1128,20 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
     private javax.swing.JPanel btn_nuevo_almacen;
     private javax.swing.JPanel btn_nuevo_pedido;
     private javax.swing.JPanel btn_reporte;
+    private javax.swing.JButton confirm1;
+    private javax.swing.JButton confirm2;
+    private javax.swing.JButton confirm3;
+    private javax.swing.JButton crearAlmacen;
+    private javax.swing.JTextField distancia1;
+    private javax.swing.JTextField distancia2;
     private javax.swing.JLabel exit;
+    private javax.swing.JLabel icono;
     private javax.swing.JLabel icono1;
     private javax.swing.JLabel icono3;
     private javax.swing.JLabel icono4;
     private javax.swing.JLabel icono5;
     private javax.swing.JLabel icono6;
     private javax.swing.JLabel icono7;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -944,7 +1152,6 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -955,13 +1162,9 @@ public class Nuevo_Almacen extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField nuevoAlmacenInput;
+    private javax.swing.JTextArea ruta1;
+    private javax.swing.JTextArea ruta2;
     // End of variables declaration//GEN-END:variables
 }

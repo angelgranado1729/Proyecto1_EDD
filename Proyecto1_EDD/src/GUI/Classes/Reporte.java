@@ -6,7 +6,6 @@ package GUI.Classes;
 
 import java.awt.Point;
 import App.App;
-import App.Helpers;
 import MainClasses.Almacen;
 import MainClasses.LinkedList;
 import javax.swing.JOptionPane;
